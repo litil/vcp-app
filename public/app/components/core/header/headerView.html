@@ -1,0 +1,27 @@
+<!--
+  public/app/components/core/header/headerView.html
+
+  This view will show the common header for all views.
+-->
+
+<!-- HEADER -->
+<nav class="navbar navbar-static-top" ng-controller="HeaderController">
+    <div class="inner">
+      <div class="row">
+        <div class="logo col-md-6">
+          <div logo></div>
+          <h3 class="masthead-brand">
+            <a href="#/ticket">VCP</a>
+          </h3>
+        </div>
+        <nav class="col-md-6">
+          <ul class="nav masthead-nav col-md-12">
+            <li class="col-md-4 {{isActive('/about')}}"><a href="#/about">About</a></li>
+            <li class="col-md-4 {{isActive('/extras')}}"><a href="#/extras">Extras</a></li>
+            <li class="col-md-4 {{isActive('/construction')}}"><a href="#/construction">Connexion</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+</nav>
+<!-- end of masthead -->

@@ -1,0 +1,154 @@
+<!--
+  public/app/components/ticket/ticketView.html
+
+  This view will show the "ticket" player. This is the HOME part of VCP
+  application.
+-->
+
+<!-- INNER BODY -->
+<div class="inner cover">
+  <div class="row">
+    <div class="ticket col-md-10 col-md-offset-1">
+
+      <div class="row row-eq-height main-row-ticket">
+
+        <div class="ticket-nick ticket-nick-left"></div>
+        <div class="ticket-nick ticket-nick-right"></div>
+
+        <!-- TICKET LEFT -->
+        <div class="ticket-left {{ticketController.playlists.current.cls}}">
+          <div class="ticket-info-wrapper">
+            <!-- ARTIST -->
+            <div class="row row-content" id="row-artist">
+              <div class="col-md-12 ticket-label-container">
+                <label class="ticket-label">ARTIST ı ARTISTE :</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 ticket-content-container">
+                <div class="row-content fake-input">{{ticketController.song.artist}}</div>
+              </div>
+            </div>
+
+            <!-- TITLE -->
+            <div class="row row-content">
+              <div class="col-md-12 ticket-label-container">
+                <label class="ticket-label">TITLE ı TITRE :</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 ticket-content-container">
+                <div class="row-content fake-input">{{ticketController.song.title}}</div>
+              </div>
+            </div>
+
+            <!-- PLAYISTS -->
+            <div class="row row-content">
+              <div class="col-md-4">
+                <div class="row-content fake-input fake-input-big">
+                  <div class="text-center">{{ticketController.playlists.current.key}}</div>
+                </div>
+              </div>
+              <div class="col-md-8">
+                <div class="row">
+                  <div class="col-md-12 ticket-label-container">
+                    <label class="ticket-label-playlist">ACTUAL FLIGHT ı VOL EN COURS :</label>
+                  </div>
+                  <div class="col-md-12 ticket-content-container">
+                    <div class="row-content fake-input">
+                      <span class="row-content-playlist">{{ticketController.playlists.current.label}}</span>
+                      <span class="row-content-playlist-time">
+                        ({{ticketController.playlists.current.start | playlistBounds}} / {{ticketController.playlists.current.end | playlistBounds}})
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12 ticket-label-container">
+                    <label class="ticket-label-playlist">NEXT FLIGHT ı VOL SUIVANT</label>
+                  </div>
+                  <div class="col-md-12 ticket-content-container">
+                    <div class="row-content fake-input">
+                      <span class="row-content-playlist">{{ticketController.playlists.next.label}}</span>
+                      <span class="row-content-playlist-time">
+                        ({{ticketController.playlists.next.start | playlistBounds}} / {{ticketController.playlists.next.end | playlistBounds}})
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- end of PLAYISTS -->
+
+            <!-- PROGRESS BAR -->
+            <div class="row progress-bar-container">
+              <div class="col-md-12 ticket-label-container">
+                <label>{{ticketController.getCurrentPosition() | time}} / {{ticketController.song.duration | time}}</label>
+              </div>
+              <div class="col-md-12 ticket-content-container">
+                <div class="progress {{ticketController.playlists.current.cls}}">
+                  <div class="progress-bar">
+                    <div id="playhead" class="progress-position" style="left:{{ticketController.getCurrentPercentage()}}%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- DATE & BARCODE -->
+            <div class="row ticket-footer-container">
+              <div class="col-md-8 ticket-label-container">
+                <label>SAT 1ST NOV. 5:19 AM</label>
+                <div barcode class="svg-code"></div><!-- see svgCodeDirective -->
+              </div>
+              <div class="col-md-2 small-icon-container" id="volume-container" ng-class="{'muted': ticketController.isMuted()}">
+                <i
+                  class="fa fa-volume-off"
+                  ng-class="{'show': ticketController.isMuted(), 'hidden': !ticketController.isMuted()}"
+                  ng-click="ticketController.togglePlay()">
+                </i>
+                <i
+                  class="fa fa-volume-up"
+                  ng-class="{'show': !ticketController.isMuted(), 'hidden': ticketController.isMuted()}"
+                  ng-click="ticketController.togglePlay()">
+                </i>
+              </div>
+              <div class="col-md-2 small-icon-container" id="social-container">
+                <i class="fa fa-facebook-square"></i>
+                <i class="fa fa-twitter-square"></i>
+              </div>
+            </div>
+          </div>
+          <!-- end of ticket info wrapper -->
+        </div>
+        <!-- end of TICKET LEFT -->
+
+
+        <!-- TICKET RIGHT -->
+        <div class="ticket-right col-md-4">
+          <div class="ticket-right-wrapper" ng-click="ticketController.togglePlay()">
+
+            <div class="row">
+              <div id="cover-container" class="col-md-12">
+
+                <!-- TICKET COVER -->
+                <div class="ticket-cover">
+                  <div class="ticket-cover-overlay {{ticketController.playlists.current.cls}}"></div>
+                  <div class="ticket-cover-overlay-black"></div>
+                </div>
+                <!-- TICKET PLAY BUTTON -->
+                <span class="ticket-right-play">
+                  <div ticketplay ng-class="{playing: ticketController.isPlaying()}"></div>
+                  <!-- <div ticketpause></div> -->
+                  </div>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end of TICKET RIGHT -->
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end of INNER BODY>

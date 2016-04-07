@@ -1,0 +1,14 @@
+Playlist Colors :
+  ORANGE: MWE : #eb771f
+  VERT : MRN : #008a2e
+  BLEU : CRG : #649ed0
+  JAUNE : BFR : #f0df38
+  ROSE : AFR : #f09185
+special :
+  ROSE : GRN : #ff7594
+  ORANGE : OTR : #eb8b42
+  GRIS : DPS : #9d9ca3
+  ROUGE : KDS : #e2001a
+  VERT : SPR : #00b33a
+  VIOLET : EGS : #8772ad
+  JAUNE : HPH : #ffed3b

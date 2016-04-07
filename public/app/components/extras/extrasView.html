@@ -1,0 +1,116 @@
+<!--
+  public/app/components/extras/extrasView.html
+
+  This view will show the "extras" page, meaning a light player (with no cover) and
+  the a list of playlists. The active one will be coloured.
+-->
+
+<!-- INNER BODY -->
+<div class="inner-body extras">
+
+  <!-- first row : header -->
+  <div class="row header">
+    <div class="col-md-2 current-playlist {{extrasController.playlists.current.cls}}-font">
+      MRN
+    </div>
+
+    <div class="col-md-8 text-left" id="about-header-song-info">
+      <div class="row ">
+        <!-- ARTIST -->
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-12 label-container">
+              <label class="">ARTIST ı ARTISTE :</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 info-container">
+              <div class="row-content">Metronomy</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TITLE -->
+        <div class="col-md-6" id="about-header-title">
+          <div class="row">
+            <div class="col-md-12 label-container">
+              <label class="">TITLE ı TITRE :</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 info-container">
+              <div class="row-content">Love Letters</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROGRESS BAR -->
+      <div class="row progress-bar-container">
+        <div class="col-md-12 progress-label-container">
+          <label>0'40'' / 5'15''</label>
+        </div>
+        <div class="col-md-12 progress-info-container">
+          <div class="progress">
+            <div class="progress-bar">
+              <div id="playhead" class="progress-position" style="left:35%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-2" id="about-header-connexion">
+      <div class="col-md-12 connexion-button {{extrasController.playlists.current.cls}}">
+        <a>Retour au live</a>
+      </div>
+      <div class="col-md-12 text-left no-gutter-left">
+        <i class="fa fa-volume-down"></i>
+      </div>
+    </div>
+  </div>
+
+  <!-- second row : VCP playlists -->
+  <div class="row playlist-border">
+    <div class="playlist-category text-left col-md-12">
+      VCP
+    </div>
+  </div>
+  <div class="row playlist-row">
+    <div class="playlist-col col-md-2" ng-repeat="playlist in normalPlaylists">
+      <div class="playlist-container text-left col-md-12 {{playlist.cls}}">
+        <div class="playlist-title text-left col-md-12">
+          {{playlist.key}}
+        </div>
+        <div class="playlist-sub text-left col-md-12">
+          {{playlist.label}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- third row : special playlists -->
+
+  <div class="row playlist-border">
+    <div class="playlist-category text-left col-md-12">
+      Special
+    </div>
+  </div>
+  <div class="row playlist-row">
+    <div class="playlist-col col-md-2" ng-repeat="playlist in specialPlaylists">
+      <div class="playlist-container text-left col-md-12 {{playlist.cls}}">
+        <div class="playlist-title text-left col-md-12">
+          {{playlist.key}}
+        </div>
+        <div class="playlist-sub text-left col-md-12">
+          {{playlist.label}}
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+</div>
+<!-- end of INNER BODY>

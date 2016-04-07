@@ -1,0 +1,987 @@
+@import "elements.less";
+
+/*****************************************************************************/
+
+
+/*                             Table Of Contents                             */
+
+
+/*                                                                           */
+
+
+/*   1- Globals                                                              */
+
+
+/*   2- Header                                                               */
+
+
+/*   3- Body                                                                 */
+
+
+/*****************************************************************************/
+
+
+/*****************************************************************************/
+
+
+/*                             1- Fonts                                      */
+
+
+/*****************************************************************************/
+
+@font-face {
+  font-family: KO51;
+  src:  url(../fonts/Knockout-HTF51-Middleweight.ce3e976f.eot?#iefix) format("embedded-opentype"),
+        url(../fonts/Knockout-HTF51-Middleweight.1c1ad06a.ttf) format("truetype"),
+        url(../fonts/Knockout-HTF51-Middleweight.0e37f03b.svg#Knockout-HTF51-Middleweight) format("svg");
+  font-weight: 400;
+  font-style: normal
+}
+@font-face {
+  font-family: KO48;
+  src:  url(../fonts/Knockout-HTF48-Featherweight.95b40f77.eot?#iefix) format("embedded-opentype"),
+        url(../fonts/Knockout-HTF48-Featherweight.4f5d0557.ttf) format("truetype"),
+        url(../fonts/Knockout-HTF48-Featherweight.0e2887a4.svg#Knockout-HTF48-Featherweight) format("svg");
+  font-weight: 400;
+  font-style: normal
+}
+@font-face {
+  font-family: KO31;
+  src:
+    url(../fonts/Knockout-HTF31-JuniorMiddlewt.0cc2e8fd.eot?#iefix) format("embedded-opentype"),
+    url(../fonts/Knockout-HTF31-JuniorMiddlewt.334cf529.ttf) format("truetype"),
+    url(../fonts/Knockout-HTF31-JuniorMiddlewt.7c7a3c78.svg#Knockout-HTF31-JuniorMiddlewt) format("svg");
+  font-weight: 400;
+  font-style: normal
+}
+@font-face {
+  font-family: fontawesomeregular;
+  src: url(../fonts/fontawesome-webfont-webfont.b90252b2.eot);
+  src: url(../fonts/fontawesome-webfont-webfont.b90252b2.eot?#iefix) format("embedded-opentype"), url(../fonts/fontawesome-webfont-webfont.031edd93.woff2) format("woff2"), url(../fonts/fontawesome-webfont-webfont.ec3ad7f8.woff) format("woff"), url(../fonts/fontawesome-webfont-webfont.e02f69e8.ttf) format("truetype"), url(../fonts/fontawesome-webfont-webfont.932d964a.svg#fontawesomeregular) format("svg");
+  font-weight: 400;
+  font-style: normal;
+}
+
+/*****************************************************************************/
+
+
+/*                          2- LESS variables                                */
+
+
+/*****************************************************************************/
+
+
+/* components sizes */
+
+@ticket-height: 400px;
+@cover-width: 400px;
+@ticket-width: 700px;
+
+/* fonts */
+
+@KO31: KO31, Verdana, sans-serif;
+@KO48: KO48, Verdana, sans-serif;
+@KO51: KO51, Verdana, sans-serif;
+@small-font-size: 16px;
+@main-font-size: 18px;
+@important-font-size: 21px;
+@big-font-size: 25px;
+@bigger-font-size: 36px;
+@huge-font-size: 110px;
+@massive-font-size: 136px;
+
+/* bounce */
+@-webkit-keyframes vcp-bounce {
+  0%, 100% {
+    -webkit-transform: scale(0);
+    transform: scale(0)
+  }
+  50% {
+    -webkit-transform: scale(1);
+    transform: scale(1)
+  }
+}
+@keyframes vcp-bounce {
+  0%, 100% {
+    -webkit-transform: scale(0);
+    transform: scale(0)
+  }
+  50% {
+    -webkit-transform: scale(1);
+    transform: scale(1)
+  }
+}
+
+/* colors */
+
+.white-ie8-proofing {
+  color: #fff;
+  /* IE8 proofing */
+  color: rgba(255, 255, 255, 1);
+}
+.white-ie8-proofing-half-opacity {
+  color: #999;
+  /* IE8 proofing */
+  color: rgba(255, 255, 255, .5);
+}
+@body-bg-color: #3E3D40;
+@body-bg-color-light: rgba(228, 228, 228, 1);
+@font-grey-color: #3E3D40;
+@morning-weekend: rgba(225, 120, 30, 1);
+@morning-weekend-overlay: rgba(225, 120, 30, 1);
+@morning: rgba(0, 138, 46, 1);
+@morning-overlay: rgba(0, 138, 46, 1);
+@cruising: rgba(100, 158, 208, 1);
+@cruising-overlay: rgba(100, 158, 208, 1);
+@before: rgba(240, 223, 56, 1);
+@before-overlay: rgba(240, 223, 56, 1);
+@after: rgba(240, 145, 133, 1);
+@after-overlay: rgba(240, 145, 133, 1);
+
+@girls-night: rgba(255, 117, 148, 1);
+@girls-night-overlay: rgba(255, 117, 148, 1);
+@on-road: rgba(235, 139, 66, 1);
+@on-road-overlay: rgba(235, 139, 66, 1);
+@depressed: rgba(157, 156, 163, 1);
+@depressed-overlay: rgba(157, 156, 163, 1);
+@kids: rgba(226, 0, 26, 1);
+@kids-overlay: rgba(226, 0, 26, 1);
+@sports: rgba(0, 179, 58, 1);
+@sports-overlay: rgba(0, 179, 58, 1);
+@eighties: rgba(135, 114, 173, 1);
+@eighties-overlay: rgba(135, 114, 173, 1);
+@hip-hop: rgba(255, 237, 59, 1);
+@hip-hop-overlay: rgba(255, 237, 59, 1);
+
+/* filets */
+
+@small-filet-size: 2px;
+@main-filet-size: 3px;
+@big-filet-size: 6px;
+@header-filet: @main-filet-size solid #fff;
+@header-filet-dark: @main-filet-size solid @body-bg-color;
+@big-header-filet: @big-filet-size solid #fff;
+@big-header-filet-dark: @big-filet-size solid @body-bg-color;
+@ticket-filet: @small-filet-size solid @body-bg-color;
+@about-filet: @small-filet-size solid @body-bg-color;
+
+/* misc */
+
+@playlist-radius: 10px;
+@ticket-radius: 20px;
+.box-shadow-none {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+/*****************************************************************************/
+
+
+/*                             3- Globals                                    */
+
+
+/*****************************************************************************/
+
+/* Bootstrap */
+.no-gutter-left {
+  padding-left: 0px;
+}
+
+/* Links */
+
+a, a:focus, a:hover {
+  color: #fff;
+}
+
+/* Custom default button */
+
+.btn-default, .btn-default:hover, .btn-default:focus {
+  color: #333;
+  text-shadow: none;
+  /* Prevent inheritence from `body` */
+  background-color: #fff;
+  border: 1px solid #fff;
+}
+
+/*
+ * Base structure
+ */
+
+html, body {
+  height: 100%;
+}
+body {
+  color: #fff;
+  text-align: center;
+  /* text-shadow: 0 1px 3px rgba(0,0,0,.5); */
+
+  background-color: @body-bg-color-light;
+  &.background-light {
+    background-color: @body-bg-color-light;
+  }
+  &.background-dark {
+    background-color: @body-bg-color;
+  }
+}
+
+.inner-body {
+  padding: 0px 75px 0px 75px;
+}
+
+/*****************************************************************************/
+
+
+/*                             4- Header                                     */
+
+
+/*****************************************************************************/
+
+@header-delta-text-filet: 2px;
+.logo {
+  border-bottom: @header-filet;
+  padding: 0px 30px 0px 0px;
+  fill: @morning-weekend;
+  .masthead-brand {
+    font-family: @KO31;
+    font-size: 36px;
+    .white-ie8-proofing;
+    margin: 10px 0px 0px 0px;
+    padding: 0px 0px @header-delta-text-filet 0px;
+    text-transform: uppercase;
+    a:hover {
+      text-decoration: none;
+    }
+  }
+  .svg-logo-play {
+    float: left;
+    margin: 14px 5px 0px 0px;
+  }
+  .masthead-nav {
+    padding: 0px 0px;
+  }
+}
+.masthead-nav > li {
+  display: inline-block;
+  padding-left: 0px;
+  padding-right: 0px;
+  text-align: left;
+  & > a {
+    font-family: @KO31;
+    font-size: @important-font-size;
+    .white-ie8-proofing;
+    border-bottom: @header-filet;
+    margin: 0px 0px 0px 15px;
+    padding: 19px 0px @header-delta-text-filet 0px;
+    &:hover, &:focus {
+      background-color: transparent;
+    }
+  }
+  &.active {
+    & > a {
+      border-bottom: @big-header-filet-dark;
+    }
+  }
+}
+.masthead-nav > .active > a, .masthead-nav > .active > a:hover, .masthead-nav > .active > a:focus {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+@media (min-width: 768px) {
+  .masthead-brand {
+    float: left;
+  }
+  .masthead-nav {
+    float: right;
+  }
+}
+
+/*****************************************************************************/
+
+
+/*                             5- Body                                       */
+
+
+/*****************************************************************************/
+
+.cover {
+  padding: 0 20px;
+}
+.cover .btn-lg {
+  padding: 10px 20px;
+  font-weight: bold;
+}
+
+
+
+.progress-bar-container {
+  .ticket-content-container {
+    height: 20px;
+  }
+  .ticket-label-container {
+    margin: 30px 0px 10px 0px;
+  }
+  .progress {
+    .box-shadow-none;
+    .progress-bar {
+      height: 3px;
+      width: 100%;
+      background-color: @body-bg-color;
+      .progress-position {
+        height: 1.25rem;
+        width: 1.25rem;
+        background-color: @body-bg-color;
+        position: absolute;
+        top: -.5rem;
+        left: 0;
+        .border-radius(50%, 50%, 50%, 50%);
+        transition: left 250ms;
+      }
+    }
+  }
+}
+
+/*****************************************************************************/
+
+
+/*                       6- Playing Ticket                                   */
+
+
+/*****************************************************************************/
+
+.ticket {
+  height: 400px;
+  margin-top: 70px;
+  padding: 0px;
+  .main-row-ticket {
+    margin-left: 0px;
+  }
+  .ticket-nick {
+    position: absolute;
+    /* TODO : see how to better handle nick positionning */
+    ;
+    top: 50%;
+    height: 7rem;
+    width: 1.50rem;
+    z-index: 10000;
+    margin-top: -2.5rem;
+    background-color: @body-bg-color;
+    .rounded(10px);
+  }
+  .ticket-nick-left {
+    left: -.625rem
+  }
+  .ticket-nick-right {
+    right: 8.5rem
+  }
+}
+.ticket-left, .ticket-right {
+  position: relative;
+  float: left;
+  overflow: hidden;
+  height: 100%;
+}
+.ticket-left {
+  min-height: @ticket-height;
+  width: @ticket-width;
+  border-right: 2px dotted #7C7A80;
+  .border-radius(0, 0, @ticket-radius, @ticket-radius);
+
+  .ticket-info-wrapper {
+    margin: 10px 20px 10px 20px;
+    padding: 0px 10px 0px 10px;
+    #row-artist {
+      margin-top: 15px;
+    }
+    label, .fake-input {
+      color: @body-bg-color;
+      position: relative;
+      padding: 0px;
+      margin: 0px;
+    }
+    label {
+      font-family: @KO31;
+      font-size: @small-font-size;
+      font-weight: normal;
+    }
+    .ticket-label-container, .ticket-content-container {
+      text-align: left;
+    }
+    .ticket-label-container {
+      margin-top: 10px;
+      line-height: 0.9;
+    }
+    .ticket-label-playlist {
+      padding-left: 7px;
+    }
+    .row-content {
+      font-family: @KO51;
+      font-size: @important-font-size;
+      vertical-align: bottom;
+      padding: 0px 7px 2px 7px;
+      &:after {
+        content: " ";
+        position: absolute;
+        bottom: 4px;
+        left: 0;
+        right: 0;
+        border: @ticket-filet;
+        border-top: 0;
+        height: 5px;
+      }
+      .row-content-playlist {
+        font-size: @main-font-size;
+      }
+      .row-content-playlist-time {
+        font-family: @KO31;
+        font-size: @main-font-size;
+      }
+    }
+    .fake-input-big {
+      font-family: @KO48;
+      font-size: @massive-font-size;
+      text-align: center;
+      height: 13rem;
+      line-height: 15.75rem;
+      margin: 0;
+      padding-left: 0px;
+    }
+    .ticket-footer-container {
+      .ticket-label-container {
+        margin-top: 15px;
+      }
+      div.svg-code {
+        display: inline;
+        svg-code {
+          margin-left: 10px;
+        }
+      }
+      .small-icon-container {
+        margin-top: 15px;
+        font-size: @big-font-size;
+        color: @body-bg-color;
+        text-align: right;
+
+        .fa-volume-up, .fa-volume-off {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+.ticket-right {
+  width: @cover-width;
+  height: @ticket-height;
+  .border-radius(@ticket-radius, @ticket-radius, 0, 0);
+  .ticket-right-wrapper {
+    width: @cover-width;
+    height: @ticket-height;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    & > row {
+      width: 100%;
+      height: 100%;
+    }
+    #cover-container {
+      width: 100%;
+      height: 100%;
+      padding: 0px;
+    }
+    .ticket-cover {
+      width: @cover-width;
+      height: @ticket-height;
+      background-image: url('../img/demo_cover_2.jpg');
+      background-size: contain;
+      .ticket-cover-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-size: contain;
+        opacity: .4;
+      }
+      .ticket-cover-overlay-black {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-size: contain;
+        opacity: .4;
+        background-color: #000;
+      }
+    }
+    .ticket-right-play {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 4rem;
+      height: 4rem;
+      margin-top: -7rem;
+      margin-left: -10rem;
+      .pause, .play {
+        transition: opacity .4s;
+        position: absolute;
+        top: 0;
+        left: 0
+      }
+      .playing .play {
+        opacity: 0;
+      }
+      .try-playing {
+        -webkit-animation: vcp-bounce 1s infinite ease-in-out;
+        animation: vcp-bounce 1s infinite ease-in-out;
+        -webkit-animation-direction: reverse;
+        animation-direction: reverse;
+
+        opacity: 0.8;
+      }
+
+
+    }
+  }
+}
+
+/*****************************************************************************/
+
+
+/*                       7- Connexion Ticket                                 */
+
+
+/*****************************************************************************/
+
+.main-row-login {
+  color: @font-grey-color;
+  text-align: left;
+  .ticket-nick-left {
+    left: -2.125rem;
+  }
+  .ticket-nick-right {
+    right: -2.125rem;
+  }
+  .ticket-left {
+    width: 85%;
+    background-color: @morning-weekend;
+    .ticket-login-wrapper {
+      margin: 10px 20px 10px 20px;
+      padding: 0px 20px 0px 20px;
+      .row div {
+        padding-left: 0px;
+      }
+      h4 {
+        font-family: @KO48;
+        font-size: @huge-font-size;
+        text-transform: uppercase;
+        margin: 0px;
+      }
+      .login-description span {
+        font-family: @KO31;
+        font-size: @main-font-size;
+        text-transform: uppercase;
+      }
+      .login-button {
+        background-color: @body-bg-color;
+        a {
+          color: @morning-weekend;
+          font-family: @KO51;
+          font-size: @big-font-size;
+          text-transform: uppercase;
+          text-decoration: none;
+        }
+      }
+      .login-label {
+        font-family: @KO31;
+        font-size: @main-font-size;
+        text-transform: uppercase;
+      }
+      #login-social-container {
+        font-size: @bigger-font-size;
+      }
+      .signup-button {
+        a {
+          color: @font-grey-color;
+          font-family: @KO31;
+          font-size: @main-font-size;
+          text-transform: uppercase;
+          text-decoration: none;
+          &:after {
+            content: " ";
+            position: absolute;
+            bottom: 4px;
+            left: 0;
+            right: 0;
+            border: @ticket-filet;
+            border-top: 0;
+            height: 5px;
+          }
+        }
+      }
+    }
+  }
+  .ticket-right {
+    width: 15%;
+    background-color: @morning-weekend;
+    #logo-container {
+      color: @font-grey-color;
+      font-family: @KO31;
+      font-size: @bigger-font-size;
+      transform: rotate(270deg);
+      margin-top: 40px;
+      text-transform: uppercase;
+      float: left;
+      /* Floating the element will essentially emulate an auto width */
+    }
+  }
+}
+
+
+/*****************************************************************************/
+
+
+/*                       8- extras                                           */
+
+
+/*****************************************************************************/
+.extras {
+  margin-top: -20px;
+  .header {
+    color: @font-grey-color;
+
+    .current-playlist {
+      font-size: @massive-font-size;
+      text-transform: uppercase;
+      font-family: @KO48;
+
+      &.morning-weekend-font {
+        color: @morning-weekend;
+      }
+      &.morning-font {
+        color: @morning;
+      }
+      &.cruising-font {
+        color: @cruising;
+      }
+      &.before-font {
+        color: @before;
+      }
+      &.after-font {
+        color: @after;
+      }
+    }
+
+    .info-container, .label-container {
+      padding-left: 7px;
+      .row-content {
+        font-size: @important-font-size;
+        text-transform: uppercase;
+        vertical-align: bottom;
+        padding: 0px 7px 2px 0px;
+      }
+    }
+    .label-container {
+        font-family: @KO31;
+        label {
+            margin-bottom: 0px;
+        }
+    }
+    .info-container {
+      font-family: @KO51;
+      &:after {
+        content: " ";
+        position: absolute;
+        bottom: 4px;
+        left: 0;
+        right: 0;
+        border: @ticket-filet;
+        border-top: 0;
+        height: 5px;
+      }
+    }
+
+    #about-header-title {
+      padding: 0px 30px;
+      .row {
+        margin-left: 0px;
+      }
+    }
+
+    #about-header-song-info {
+      margin-top: 30px;
+    }
+
+    #about-header-connexion {
+      margin-top: 27px;
+      padding: 0px 30px 0px 0px;
+
+      .fa {
+        font-size: @bigger-font-size;
+      }
+
+      .connexion-button {
+        background-color: @body-bg-color;
+        margin: 18px 0px 18px 0px;
+        padding-top: 3px;
+        a {
+          color: @body-bg-color-light;
+          font-family: @KO51;
+          font-size: @important-font-size;
+          text-transform: uppercase;
+          text-decoration: none;
+        }
+      }
+    }
+
+    .progress-bar-container {
+      margin-top: 20px;
+      .ticket-content-container {
+        height: 20px;
+      }
+      .progress-label-container, .progress-info-container {
+        /*margin: 30px 0px 10px 0px;*/
+        padding-left: 0px;
+      }
+      .progress {
+        background-color: @body-bg-color-light;
+        .progress-bar {
+          background-color: @body-bg-color;
+          .progress-position {
+            background-color: @body-bg-color;
+          }
+        }
+      }
+    }
+  }
+
+  .playlist-row, .playlist-border {
+    margin-left: 0px;
+  }
+
+  .playlist-row {
+    padding-left: 0px;
+    .playlist-container {
+      margin-bottom: 20px;
+    }
+  }
+
+  .playlist-border {
+    padding-right: 30px;
+    .playlist-category {
+      padding: 10px 0px 15px 0px;
+      font-size: @important-font-size;
+      text-transform: uppercase;
+      font-family: @KO51;
+      color: @font-grey-color;
+      border-top: @about-filet;
+    }
+  }
+}
+
+/*****************************************************************************/
+
+
+/*                       8- about                                            */
+
+
+/*****************************************************************************/
+.playlist-col {
+  padding-left: 0px;
+  padding-right: 30px;
+  line-height: 1;
+
+  .playlist-container {
+    .border-radius(@playlist-radius, @playlist-radius, @playlist-radius, @playlist-radius);
+    padding-left: 0px;
+
+    .playlist-title, .playlist-sub {
+      font-family: @KO31;
+      text-transform: uppercase;
+    }
+
+    .playlist-title {
+      font-size: @bigger-font-size;
+      font-weight: bold;
+      padding: 10px 0px 0px 10px;
+    }
+
+    .playlist-sub {
+      font-size: @small-font-size;
+      padding: 0px 0px 10px 10px;
+      text-transform: uppercase;
+    }
+  }
+}
+
+.about {
+  font-family: @KO31;
+  color: @font-grey-color;
+
+  &>.row {
+    line-height: 1;
+  }
+
+  .brand, .subbrand {
+    padding-left: 0px;
+    font-family: @KO31;
+    text-transform: uppercase;
+  }
+
+  .brand {
+    font-size: @bigger-font-size;
+    font-weight: bold;
+  }
+  .subbrand {
+    font-size: @small-font-size;
+  }
+
+  .playlist-col {
+    padding-left: 30px;
+    padding-right: 0px;
+  }
+
+  .about-description {
+    margin-top: 10px;
+    line-height: 20px;
+
+    div {
+      font-family: @KO31;
+      font-size: @main-font-size;
+    }
+
+    .playlist-desc{
+      padding-left: 30px;
+    }
+  }
+
+}
+
+.morning-weekend {
+  background-color: @morning-weekend !important;
+}
+.morning {
+  background-color: @morning !important;
+}
+.cruising {
+  background-color: @cruising !important;
+}
+.before {
+  background-color: @before !important;
+}
+.after {
+  background-color: @after !important;
+}
+.inactive {
+  background-color: @body-bg-color !important;
+}
+
+/*****************************************************************************/
+
+
+/*                             9- Footer                                     */
+
+
+/*****************************************************************************/
+
+.navbar {
+  font-family: @KO31;
+  font-size: @important-font-size;
+  .white-ie8-proofing;
+  .inner {
+    float: left;
+    width: 100%;
+    .row {
+      margin-left: 0px;
+      #footer-links-container {
+        text-align: left;
+      }
+    }
+    a {
+      .white-ie8-proofing;
+    }
+  }
+}
+
+.background-light {
+  .masthead-nav {
+    li {
+      & > a {
+        color: @body-bg-color;
+        border-bottom: @header-filet-dark;
+        padding: 19px 0px @header-delta-text-filet 0px;
+      }
+    }
+    li.active {
+      & > a {
+        border-bottom: @big-header-filet-dark;
+      }
+    }
+  }
+
+  .logo {
+    border-bottom: @header-filet-dark;
+    .masthead-brand {
+      & > a {
+        color: @body-bg-color;
+      }
+    }
+  }
+}
+
+footer {
+  font: @KO31;
+  font-size: @important-font-size;
+  padding-left: 60px;
+  #footer-links-container {
+    text-align: left;
+  }
+}
+
+.background-light {
+  footer {
+    #footer-links-container {
+      color: @body-bg-color;
+      & > a {
+        color: @body-bg-color;
+      }
+    }
+  }
+}
+
+/*
+ * Affix and center
+ */
+
+@media (min-width: 768px) {
+  .navbar {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    .inner {
+      padding-left: 75px;
+      padding-right: 75px;
+    }
+  }
+
+  footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+  }
+}
+@media (min-width: 992px) {
+  .masthead, .mastfoot, .cover-container {
+    width: 992px;
+  }
+}
+@media (min-width: 1200px) {
+  .masthead, .mastfoot, .cover-container {
+    width: 1200px;
+  }
+}
+@media (min-width: 1400px) {
+  .masthead, .mastfoot, .cover-container {
+    width: 1350px;
+  }
+}
