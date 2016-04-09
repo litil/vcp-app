@@ -113,7 +113,6 @@
         // reset the duration counter if it is a new song
         //TODO Player - replace title with id once the id is correctly sent by server
         if (vm.song.title !== title){
-          debugger;
           PlayerService.resetProgress();
         }
 
@@ -145,10 +144,6 @@
           $http.jsonp(vm.URL_INFOS);
       }, vm.POLLING_INTERVAL);
     };
-
-    // initialise the player service
-    // we might want to create a PlayerController which initializes the player when the app launches
-    //PlayerService.init();
 
     // first we get the current and next playlist
     vm.playlists = {};
@@ -202,8 +197,7 @@
     this.isMuted = function() {
       return isMuted;
     }
-
-    // if the radio is playing pause it, if it is not playing, play it
+    
     /**
      * If the player is not playing, start it.
      *
