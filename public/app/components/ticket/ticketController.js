@@ -113,6 +113,7 @@
         // reset the duration counter if it is a new song
         //TODO Player - replace title with id once the id is correctly sent by server
         if (vm.song.title !== title){
+          debugger;
           PlayerService.resetProgress();
         }
 
@@ -175,6 +176,7 @@
       if (Math.ceil(percentage) > 97) {
         percentage = 97;
       }
+
       return percentage;
     };
 

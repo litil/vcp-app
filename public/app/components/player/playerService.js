@@ -23,6 +23,8 @@
           var progressPosition = 0;
           var i = function() {};
 
+          var lastReset = 0;
+
           /*
           var callApiAndSetInfo = function(setSongInfo) {
               window.parseMusic = function(data) {
@@ -71,10 +73,10 @@
             return this;
           },
           i.prototype.getCurrentPosition = function() {
-            return progressPosition;
+            return progressPosition - lastReset;
           },
           i.prototype.resetProgress = function() {
-            progressPosition = 0;
+            lastReset = progressPosition;
           },
           i.prototype.mute = function() {
               return angularPlayerParam.mute();
