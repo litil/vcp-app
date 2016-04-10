@@ -17,25 +17,14 @@
      */
     angular
     .module("vcpProject")
-    .service("PlayerService", ["$q", "$rootScope", "$timeout", "$http", "angularPlayer", function(a, rootScopeParam, timeoutWrapper, httpClient, angularPlayerParam) {
+    .service("PlayerService", ["$q", "$rootScope", "$timeout", "$http", "$interval", "angularPlayer", function(a, rootScopeParam, timeoutWrapper, httpClient, interval, angularPlayerParam) {
           window.angularPlayer = angularPlayerParam;
           var deferred = a.defer();
           var progressPosition = 0;
           var i = function() {};
-
           var lastReset = 0;
-
-          /*
-          var callApiAndSetInfo = function(setSongInfo) {
-              window.parseMusic = function(data) {
-                  timeoutWrapper(function() {
-                      setSongInfo(data)
-                  })
-              };
-              // get the info from the music server
-              httpClient.jsonp(i.URL_INFOS);
-          };
-          */
+          var song = {};
+          var hasBeenInitialized = false;
 
           rootScopeParam.$on("angularPlayer:ready", function() {
               deferred.resolve();
@@ -54,24 +43,72 @@
           i.URL_INFOS = i.URL_BASE + "/jsonp.xsl",
           i.prototype.infos = "default_infos",
           i.prototype.current = "default_current",
+
+          i.prototype.getSongInfosTask = function() {
+            // don't start a new polling if we're already polling
+            if ( angular.isDefined(this.getSongInfosInterval)) return;
+
+            var POLLING_INTERVAL = 5000;
+
+            this.getSongInfosInterval = interval(function() {
+                httpClient.jsonp("http://radio.vendredicestpermis.com/jsonp.xsl");
+            }, POLLING_INTERVAL);
+          },
+
           i.prototype.init = function() {
               var a = this;
+              httpClient.jsonp("http://radio.vendredicestpermis.com/jsonp.xsl");
 
-              // calls the radio to get the current track
-              // set the info into the player
-              /*
-              return callApiAndSetInfo(
-                function(data) {
-                  a.infos = data;
-                  var urlSuffix = "/radio_VCP";
-                  // I don't get what this line does apart from setting the info into a.current
-                  a.current = data[urlSuffix];
-              }
-            ), this;
-            */
+              this.getSongInfosTask();
 
-            return this;
+              return this;
           },
+
+          i.prototype.parseMusic = function(data) {
+            var INFOS_KEY = "/radio_VCP"
+            var rawData = data[INFOS_KEY];
+
+            // get the artist and title from the 'title' field
+            var artistTitle = rawData.title;
+            if (rawData.title.indexOf('[Vendredi c\'est permis]') > -1){
+              artistTitle = rawData.title.substring(0, rawData.title.indexOf('[Vendredi c\'est permis]'));
+            }
+            artistTitle = artistTitle.trim();
+            var artistTitleArray = artistTitle.split(" - ");
+            var artist = artistTitleArray[0];
+            var title = artistTitleArray[1];
+
+            // check title and artist length
+            if (artist.length > 64){
+              artist = artist.substring(0, 64) + ' ... ';
+            }
+            if (title.length > 64){
+              title = title.substring(0, 64) + ' ... ';
+            }
+
+            // reset the duration counter if it is a new song
+            //TODO Player - replace title with id once the id is correctly sent by server
+            if (song.title !== title){
+              this.resetProgress();
+            }
+
+            // build  the song object
+            song = {
+              'id' : rawData.id,
+              'artist' : artist,
+              'title' : title,
+              'duration' : rawData.duration * 1000
+            }
+
+            // TODO if the player has not been initialized, do it and mute it
+            if (hasBeenInitialized === false){
+              this.setCurrent(rawData);
+              hasBeenInitialized = true;
+            }
+
+            return song;
+          },
+
           i.prototype.getCurrentPosition = function() {
             return progressPosition - lastReset;
           },
@@ -113,6 +150,7 @@
                   angularPlayerParam.play();
                 }.bind(this)), this
           },
+
           new i;
       }])
 

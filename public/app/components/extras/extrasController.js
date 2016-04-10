@@ -31,6 +31,13 @@
   function ExtrasController($auth, $state, $http, $rootScope, $scope, $interval, PlayerService, PlaylistService) {
       var vm = this;
       vm.playlists = {};
+      // set default value into vm.song
+      vm.song = {
+        'id' : 0,
+        'artist' : 'The Artist',
+        'title' : 'The Title',
+        'duration' : 4*60*1000
+      }
 
       this.getCurrentPlaylist = function() {
         vm.playlists.current = PlaylistService.getCurrentPlaylist();

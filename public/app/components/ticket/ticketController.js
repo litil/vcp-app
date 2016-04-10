@@ -73,7 +73,6 @@
     vm.getSongInfosInterval;
     var isPlaying = false;  // when we arrive on the application, the player is not playing
     var isMuted = false;
-    vm.hasBeenInitialized = false;
 
     // set default value into vm.song
     vm.song = {
@@ -90,45 +89,7 @@
      * which only put the song information into a "song" object.
      */
     window.parseMusic = function(data) {
-        var rawData = data[vm.INFOS_KEY];
-
-        // get the artist and title from the 'title' field
-        var artistTitle = rawData.title;
-        if (rawData.title.indexOf('[Vendredi c\'est permis]') > -1){
-          artistTitle = rawData.title.substring(0, rawData.title.indexOf('[Vendredi c\'est permis]'));
-        }
-        artistTitle = artistTitle.trim();
-        var artistTitleArray = artistTitle.split(" - ");
-        var artist = artistTitleArray[0];
-        var title = artistTitleArray[1];
-
-        // check title and artist length
-        if (artist.length > 64){
-          artist = artist.substring(0, 64) + ' ... ';
-        }
-        if (title.length > 64){
-          title = title.substring(0, 64) + ' ... ';
-        }
-
-        // reset the duration counter if it is a new song
-        //TODO Player - replace title with id once the id is correctly sent by server
-        if (vm.song.title !== title){
-          PlayerService.resetProgress();
-        }
-
-        // build  the song object
-        vm.song = {
-          'id' : rawData.id,
-          'artist' : artist,
-          'title' : title,
-          'duration' : rawData.duration * 1000
-        }
-
-        // TODO if the player has not been initialized, do it and mute it
-        if (vm.hasBeenInitialized === false){
-          PlayerService.setCurrent(rawData);
-          vm.hasBeenInitialized = true;
-        }
+        vm.song = PlayerService.parseMusic(data);
     };
 
     /**
@@ -136,6 +97,7 @@
      * It asks the server for the current song information. See the parseMusic
      * method to understand what it does right after having received those info.
      */
+     /*
     this.getSongInfosTask = function() {
       // don't start a new polling if we're already polling
       if ( angular.isDefined(vm.getSongInfosInterval)) return;
@@ -144,6 +106,7 @@
           $http.jsonp(vm.URL_INFOS);
       }, vm.POLLING_INTERVAL);
     };
+    */
 
     // first we get the current and next playlist
     vm.playlists = {};
@@ -151,10 +114,12 @@
     vm.playlists.next = PlaylistService.getNextPlaylist(vm.playlists.current);
 
     // we ask a first time for the song info
-    $http.jsonp(vm.URL_INFOS);
+    //$http.jsonp(vm.URL_INFOS);
 
     // then launch the task polling
-    this.getSongInfosTask();
+    //this.getSongInfosTask();
+
+    PlayerService.init();
 
 
     /**
@@ -197,7 +162,7 @@
     this.isMuted = function() {
       return isMuted;
     }
-    
+
     /**
      * If the player is not playing, start it.
      *
