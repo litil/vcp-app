@@ -64,8 +64,6 @@
     // this is the main URL for the radio and the
     vm.URL_BASE = "http://radio.vendredicestpermis.com";
     vm.URL_INFOS = vm.URL_BASE + "/jsonp.xsl";
-    vm.INFOS_KEY = "/radio_VCP"
-    vm.URL_RADIO = vm.URL_BASE + vm.INFOS_KEY;
     vm.POLLING_INTERVAL = 5000;  // we start with 10 seconds
 
     vm.playerError = false;
@@ -92,33 +90,14 @@
         vm.song = PlayerService.parseMusic(data);
     };
 
-    /**
-     * This method is an asynchronous task which runs every 10 seconds for now.
-     * It asks the server for the current song information. See the parseMusic
-     * method to understand what it does right after having received those info.
-     */
-     /*
-    this.getSongInfosTask = function() {
-      // don't start a new polling if we're already polling
-      if ( angular.isDefined(vm.getSongInfosInterval)) return;
-
-      vm.getSongInfosInterval = $interval(function() {
-          $http.jsonp(vm.URL_INFOS);
-      }, vm.POLLING_INTERVAL);
-    };
-    */
-
     // first we get the current and next playlist
     vm.playlists = {};
     vm.playlists.current = PlaylistService.getCurrentPlaylist();
     vm.playlists.next = PlaylistService.getNextPlaylist(vm.playlists.current);
 
-    // we ask a first time for the song info
-    //$http.jsonp(vm.URL_INFOS);
-
-    // then launch the task polling
-    //this.getSongInfosTask();
-
+    // initializing the Player
+    // meaning it gets the current song data
+    // and set a cron task which does it every 5s
     PlayerService.init();
 
 
