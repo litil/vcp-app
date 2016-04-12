@@ -61,14 +61,6 @@
   function TicketController($auth, $state, $http, $rootScope, $interval, PlayerService, PlaylistService) {
       var vm = this;
 
-    // this is the main URL for the radio and the
-    vm.URL_BASE = "http://radio.vendredicestpermis.com";
-    vm.URL_INFOS = vm.URL_BASE + "/jsonp.xsl";
-    vm.POLLING_INTERVAL = 5000;  // we start with 10 seconds
-
-    vm.playerError = false;
-    vm.playerErrorText;
-    vm.getSongInfosInterval;
     var isPlaying = false;  // when we arrive on the application, the player is not playing
     var isMuted = false;
 
