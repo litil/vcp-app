@@ -34,9 +34,6 @@
           });
 
 
-
-
-
           // create the object that will contain all the data
           // initialise this object
           return i.prototype.infos = "default_infos",
@@ -178,8 +175,6 @@
            * ID/title.
            */
           i.prototype.isSameSong = function(currentSongTitle, lastSongTitle, currentSongId, lastSongId) {
-            console.log(currentSongTitle + '/' + lastSongTitle);
-            console.log(currentSongId + '/' + lastSongId);
             if (currentSongId !== undefined && lastSongId !== undefined){
               if (currentSongId !== lastSongId){
                 return false;
