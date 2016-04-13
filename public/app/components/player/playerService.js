@@ -79,8 +79,6 @@
            * the current progression and finally returns the fully built song object.
            * Of course, it initializes the player if it hasn't been yet.
            *
-           * TODO : we have to parse the ID now
-           *
            * @param data the current song information
            */
           i.prototype.parseMusic = function(data) {
@@ -120,7 +118,7 @@
 
             // reset the duration counter if it is a new song
             //TODO Player - replace title with id once the id is correctly sent by server
-            if (song.title !== title){
+            if (this.isSameSong(title, song.title, id, song.id) === false){
               this.resetProgress();
             }
 
@@ -173,6 +171,26 @@
            */
           i.prototype.unmute = function() {
               return angularPlayerParam.unmute();
+          },
+
+          /**
+           * This method checks the current ID/title against the last song
+           * ID/title.
+           */
+          i.prototype.isSameSong = function(currentSongTitle, lastSongTitle, currentSongId, lastSongId) {
+            console.log(currentSongTitle + '/' + lastSongTitle);
+            console.log(currentSongId + '/' + lastSongId);
+            if (currentSongId !== undefined && lastSongId !== undefined){
+              if (currentSongId !== lastSongId){
+                return false;
+              }
+            } else {
+              if (currentSongTitle !== lastSongTitle){
+                return false;
+              }
+            }
+
+            return true;
           },
 
           /**
