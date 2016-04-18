@@ -51,9 +51,44 @@
         $scope.specialPlaylists = PlaylistService.getSpecialPlaylists();
       };
 
+      /**
+       * This method gets the current date from the beginning of the current song.
+       * It gets it from the PlayerService.
+       *
+       * @return the time since the beginning of the current song, in milliseconds.
+       */
+      this.getCurrentPosition = function() {
+        return PlayerService.getCurrentPosition();
+      };
+
+      /**
+       * This method calculates the percentage of the current song that has already
+       * been played, from the current position and the known song duration.
+       *
+       * @return the current percentage, between 0 and 100
+       */
+      this.getCurrentPercentage = function() {
+        // vm.song.duration is already in ms
+        //TODO understand why it goes from 2% to 97%
+        var percentage = PlayerService.getCurrentPosition() * 95 / (vm.song.duration);
+        percentage += 2;
+        if (Math.ceil(percentage) > 97) {
+          percentage = 97;
+        }
+
+        return percentage;
+      };
+
       this.getNormalPlaylists();
       this.getSpecialPlaylists();
       this.getCurrentPlaylist();
 
+
+
+      // call the radio to get current song information
+      $scope.song = PlayerService.getCurrentSong();
+      this.getSongInfosInterval = $interval(function() {
+          $scope.song = PlayerService.getCurrentSong();
+      }, 5000);
   }
 })();

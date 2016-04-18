@@ -25,6 +25,7 @@
           var lastReset = 0;
           var song = {};
           var hasBeenInitialized = false;
+          var currentSong = {};
 
           rootScopeParam.$on("angularPlayer:ready", function() {
               deferred.resolve();
@@ -120,7 +121,7 @@
             }
 
             // build  the song object
-            song = {
+            currentSong = {
               'id' : id,
               'artist' : artist,
               'title' : title,
@@ -133,7 +134,14 @@
               hasBeenInitialized = true;
             }
 
-            return song;
+            return currentSong;
+          },
+
+          /**
+           * This method returns the current song.
+           */
+          i.prototype.getCurrentSong = function() {
+            return currentSong;
           },
 
           /**
