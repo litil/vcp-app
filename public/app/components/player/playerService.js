@@ -116,7 +116,7 @@
 
             // reset the duration counter if it is a new song
             //TODO Player - replace title with id once the id is correctly sent by server
-            if (this.isSameSong(title, song.title, id, song.id) === false){
+            if (this.isSameSong(title, currentSong.title, id, currentSong.id) === false){
               this.resetProgress();
             }
 
@@ -150,6 +150,7 @@
            * the current progression.
            */
           i.prototype.getCurrentPosition = function() {
+            console.log(progressPosition + "   " + lastReset);
             return progressPosition - lastReset;
           },
 

@@ -49,7 +49,7 @@
       <div class="row progress-bar-container">
         <div class="col-md-12 progress-label-container">
           <label>
-            {{ticketController.getCurrentPosition() | time}} / {{song.duration | time}}
+            {{extrasController.getCurrentPosition() | time}} / {{song.duration | time}}
           </label>
         </div>
         <div class="col-md-12 progress-info-container">
@@ -67,7 +67,11 @@
         <a>Retour au live</a>
       </div>
       <div class="col-md-12 text-left no-gutter-left">
-        <i class="fa fa-volume-down"></i>
+        <i
+          class="fa fa-volume-up"
+          ng-class="{'show': !extrasController.isMuted(), 'hidden': extrasController.isMuted()}"
+          ng-click="extrasController.togglePlay()">
+        </i>
       </div>
     </div>
   </div>

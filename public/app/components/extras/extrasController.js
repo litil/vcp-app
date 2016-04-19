@@ -51,6 +51,14 @@
         $scope.specialPlaylists = PlaylistService.getSpecialPlaylists();
       };
 
+      // TO BE REFACTORED
+      this.isPlaying = function() {
+          return PlayerService.isPlaying();
+      };
+      this.isMuted = function() {
+        return isMuted;
+      }
+
       /**
        * This method gets the current date from the beginning of the current song.
        * It gets it from the PlayerService.
