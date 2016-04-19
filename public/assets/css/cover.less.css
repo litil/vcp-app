@@ -995,14 +995,39 @@ footer {
   .masthead, .mastfoot, .cover-container {
     width: 992px;
   }
+  .seven-cols {
+    .col-md-1, .col-sm-1, .col-lg-1 {
+      width: 14.285714285714285714285714285714%;
+      *width: 14.285714285714285714285714285714%;
+    }
+    .col-md-2, .col-sm-2, .col-lg-2 {
+      width: 28.5714285714%;
+      *width: 28.5714285714%;
+    }
+    .col-md-3, .col-sm-3, .col-lg-3 {
+      width: 42.8571428571%;
+      *width: 42.8571428571%;
+    }
+    .col-md-5, .col-sm-5, .col-lg-5 {
+      width: 71.4285714286%;
+      *width: 71.4285714286%;
+    }
+  }
 }
 @media (min-width: 1200px) {
   .masthead, .mastfoot, .cover-container {
     width: 1200px;
+
   }
 }
 @media (min-width: 1400px) {
   .masthead, .mastfoot, .cover-container {
     width: 1350px;
+    .seven-cols {
+      .col-md-1, .col-sm-1, .col-lg-1 {
+        width: 14.285714285714285714285714285714%;
+        *width: 14.285714285714285714285714285714%;
+      }
+    }
   }
 }
