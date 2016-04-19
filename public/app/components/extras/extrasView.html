@@ -68,6 +68,11 @@
       </div>
       <div class="col-md-12 text-left no-gutter-left">
         <i
+          class="fa fa-volume-off"
+          ng-class="{'show': extrasController.isMuted(), 'hidden': !extrasController.isMuted()}"
+          ng-click="extrasController.togglePlay()">
+        </i>
+        <i
           class="fa fa-volume-up"
           ng-class="{'show': !extrasController.isMuted(), 'hidden': extrasController.isMuted()}"
           ng-click="extrasController.togglePlay()">

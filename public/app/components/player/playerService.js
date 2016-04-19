@@ -26,6 +26,8 @@
           var song = {};
           var hasBeenInitialized = false;
           var currentSong = {};
+          var isPlaying = false;  // when we arrive on the application, the player is not playing
+          var isMuted = false;
 
           rootScopeParam.$on("angularPlayer:ready", function() {
               deferred.resolve();
@@ -56,6 +58,32 @@
             this.getSongInfosInterval = interval(function() {
                 httpClient.jsonp("http://radio.vendredicestpermis.com/jsonp.xsl");
             }, POLLING_INTERVAL);
+          },
+
+          i.prototype.togglePlay = function() {
+            if (this.isPlaying() === false){
+              // play the radio
+              isPlaying = true;
+              this.play();
+            }
+
+            if (this.isPlaying() && isMuted){
+              // unmute the radio
+              isMuted = false;
+              this.mute();
+            } else if (this.isPlaying() && !isMuted){
+              // mute the radio
+              isMuted = true;
+              this.mute();
+            }
+          },
+
+          i.prototype.getIsPlaying = function() {
+            return isPlaying;
+          },
+
+          i.prototype.isMuted = function() {
+            return isMuted;
           },
 
           /**
@@ -150,7 +178,6 @@
            * the current progression.
            */
           i.prototype.getCurrentPosition = function() {
-            console.log(progressPosition + "   " + lastReset);
             return progressPosition - lastReset;
           },
 

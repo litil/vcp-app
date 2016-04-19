@@ -61,9 +61,6 @@
   function TicketController($auth, $state, $http, $rootScope, $interval, PlayerService, PlaylistService) {
       var vm = this;
 
-    var isPlaying = false;  // when we arrive on the application, the player is not playing
-    var isMuted = false;
-
     // set default value into vm.song
     vm.song = {
       'id' : 0,
@@ -125,13 +122,13 @@
     // TO BE REFACTORED
 
     this.tryPlaying = function() {
-        return isPlaying;
+        return PlayerService.getIsPlaying();
     };
     this.isPlaying = function() {
         return PlayerService.isPlaying();
     };
     this.isMuted = function() {
-      return isMuted;
+      return PlayerService.isMuted();
     }
 
     /**
@@ -141,21 +138,7 @@
      * playing and unmuted, mute it.
      */
     this.togglePlay = function() {
-      if (this.isPlaying() === false){
-        // play the radio
-        isPlaying = true;
-        PlayerService.play();
-      }
-
-      if (this.isPlaying() && isMuted){
-        // unmute the radio
-        isMuted = false;
-        PlayerService.mute();
-      } else if (this.isPlaying() && !isMuted){
-        // mute the radio
-        isMuted = true;
-        PlayerService.mute();
-      }
+      PlayerService.togglePlay();
     };
 
   }

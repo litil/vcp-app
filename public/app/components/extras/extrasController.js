@@ -56,8 +56,17 @@
           return PlayerService.isPlaying();
       };
       this.isMuted = function() {
-        return isMuted;
-      }
+        return PlayerService.isMuted();
+      };
+      /**
+       * If the player is not playing, start it.
+       *
+       * Then if it's playing and muted, unmute it. If it is,
+       * playing and unmuted, mute it.
+       */
+      this.togglePlay = function() {
+        PlayerService.togglePlay();
+      };
 
       /**
        * This method gets the current date from the beginning of the current song.
