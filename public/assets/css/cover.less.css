@@ -174,7 +174,7 @@
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-@slot-1h-size: 14px;
+@slot-1h-size: 15px;
 /*****************************************************************************/
 
 
@@ -876,30 +876,38 @@ body {
       }
 
       .slot {
-        background-color: @timetable-slot-bg-color;
-        .border-radius(@playlist-radius, @playlist-radius, @playlist-radius, @playlist-radius);
-        padding: 10px 0px 10px 0px;
-        text-decoration: uppercase;
-        font-family: @KO48;
-        font-size: @bigger-font-size;
+        padding: 0px 10px 10px 0px;
 
-        &.slot-4h {
+        .no-padding-right {
+          padding-right: 0px;
+        }
+
+        div {
+          text-transform: uppercase;
+          font-family: @KO48;
+          font-size: @bigger-font-size;
+          background-color: @timetable-slot-bg-color;
+          .border-radius(@playlist-radius, @playlist-radius, @playlist-radius, @playlist-radius);
+          padding: 10px 0px 10px 0px;
+        }
+
+        &.slot-4h div {
           height: @slot-1h-size * 4;
         }
-        &.slot-5h {
+        &.slot-5h div {
           height: @slot-1h-size * 5;
         }
-        &.slot-7h {
+        &.slot-7h div {
           height: @slot-1h-size * 7;
         }
-        &.slot-12h {
-          height: @slot-1h-size * 12;
+        &.slot-12h div {
+          height: @slot-1h-size * 12 - 10px;
         }
-        &.slot-13h {
-          height: @slot-1h-size * 13;
+        &.slot-13h div {
+          height: @slot-1h-size * 13 + 10px;
         }
-        &.slot-15h {
-          height: @slot-1h-size * 15;
+        &.slot-15h div {
+          height: @slot-1h-size * 15 + 10px;
         }
       }
 
@@ -1025,7 +1033,6 @@ footer {
     width: 992px;
   }
   .seven-cols {
-    margin: 0 -15px;
     .col-md-1, .col-sm-1, .col-lg-1 {
       width: 14.285714285714285714285714285714%;
       *width: 14.285714285714285714285714285714%;
