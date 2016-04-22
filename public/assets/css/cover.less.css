@@ -174,7 +174,7 @@
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-
+@slot-1h-size: 14px;
 /*****************************************************************************/
 
 
@@ -859,21 +859,50 @@ body {
   .timetable {
     margin-top: 30px;
 
+    .hours {
+      font-family: @KO31;
+      font-size: @main-font-size;
+    }
     #hour-left, #hour-right {
       padding : 0px;
-    }
-    .col-md-10 {
-      background-color: red;
     }
 
     #timetable-container {
       padding: 0px;
+
+      .days {
+        font-family: @KO31;
+        font-size: @main-font-size;
+      }
+
       .slot {
-        text-decoration: uppercase;
-        padding: 10px 0px 10px 0px;
         background-color: @timetable-slot-bg-color;
         .border-radius(@playlist-radius, @playlist-radius, @playlist-radius, @playlist-radius);
+        padding: 10px 0px 10px 0px;
+        text-decoration: uppercase;
+        font-family: @KO48;
+        font-size: @bigger-font-size;
+
+        &.slot-4h {
+          height: @slot-1h-size * 4;
+        }
+        &.slot-5h {
+          height: @slot-1h-size * 5;
+        }
+        &.slot-7h {
+          height: @slot-1h-size * 7;
+        }
+        &.slot-12h {
+          height: @slot-1h-size * 12;
+        }
+        &.slot-13h {
+          height: @slot-1h-size * 13;
+        }
+        &.slot-15h {
+          height: @slot-1h-size * 15;
+        }
       }
+
     }
   }
 }
@@ -996,6 +1025,7 @@ footer {
     width: 992px;
   }
   .seven-cols {
+    margin: 0 -15px;
     .col-md-1, .col-sm-1, .col-lg-1 {
       width: 14.285714285714285714285714285714%;
       *width: 14.285714285714285714285714285714%;
@@ -1011,6 +1041,22 @@ footer {
     .col-md-5, .col-sm-5, .col-lg-5 {
       width: 71.4285714286%;
       *width: 71.4285714286%;
+    }
+    .col-md-7, .col-sm-7, .col-lg-7 {
+      width: 100%;
+      *width: 100%;
+    }
+
+    .five-cols {
+      margin: 0 -15px;
+      .col-md-2, .col-sm-2, .col-lg-2 {
+        width: 40%;
+        *width: 40%;
+      }
+      .col-md-3, .col-sm-3, .col-lg-3 {
+        width: 60%;
+        *width: 60%;
+      }
     }
   }
 }
