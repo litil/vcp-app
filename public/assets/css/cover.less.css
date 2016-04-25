@@ -867,6 +867,38 @@ body {
       padding : 0px;
     }
 
+    #hour-left .hour-top {
+      height: @slot-1h-size * 5 + 10;
+    }
+
+    #hour-left .hour-11h {
+      height: @slot-1h-size * 12 + 10;
+    }
+
+    #hour-left .hour-23h {
+      height: @slot-1h-size * 3 + 10;
+    }
+
+    #hour-left .hour-02h {
+      height: @slot-1h-size * 4 + 10;
+    }
+
+    #hour-right .hour-top {
+      height: @slot-1h-size * 7 + 10;
+    }
+
+    #hour-right .hour-13h {
+      height: @slot-1h-size * 10 + 10;
+    }
+
+    #hour-right .hour-23h {
+      height: @slot-1h-size * 3 + 10;
+    }
+
+    #hour-right .hour-02h {
+      height: @slot-1h-size * 4 + 10;
+    }
+
     #timetable-container {
       padding: 0px;
 
