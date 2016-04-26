@@ -23,5 +23,27 @@
       // first we get the current playlist
       vm.playlists = {};
       vm.playlists.current = PlaylistService.getCurrentPlaylist();
+
+
+      this.getCurrentSlotCls = function(days, start, end) {
+        // get the current day from the playlist
+        var playlistDay = vm.playlists.current.day;
+        var playlistStart = vm.playlists.current.start;
+        var playlistEnd = vm.playlists.current.end;
+        var playlistCls = vm.playlists.current.cls;
+
+        var activeSlotCls = '';
+
+        angular.forEach(days, function(value) {
+          if(playlistDay === value) {
+            if (start >= playlistStart && end <= playlistEnd) {
+              // TODO prolem when day + 1 (maybe do 24 + 2h for example ?)
+              activeSlotCls = playlistCls;
+            }
+          }
+        });
+
+        return activeSlotCls;
+      };
   }
 })();

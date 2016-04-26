@@ -109,8 +109,9 @@
               key: schedules.PARIS[day][property],
               label: currPlaylistConst.label,
               description: currPlaylistConst.description,
-              start: playlistStart, //TODO create a method converting int into HH:MM AM|PM
+              start: playlistStart, //TODO create a method converting it into HH:MM AM|PM
               end: playlistEnd,
+              day: day,
               scheduleIndex : index,
               cls : currPlaylistConst.cls
             }
