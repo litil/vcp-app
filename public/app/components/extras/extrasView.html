@@ -63,10 +63,10 @@
     </div>
 
     <div class="col-md-2" id="about-header-connexion">
-      <div class="col-md-12 back-to-live-button {{extrasController.playlists.current.cls}}">
+      <div class="col-md-12 back-to-live-button text-left {{extrasController.playlists.current.cls}}">
         <a>Retour au live</a>
       </div>
-      <div class="col-md-12 text-left no-gutter-left">
+      <div class="col-md-12 text-left fa-container no-gutter-left">
         <i
           class="fa fa-volume-off"
           ng-class="{'show': extrasController.isMuted(), 'hidden': !extrasController.isPlaying() || !extrasController.isMuted()}"
