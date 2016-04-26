@@ -921,6 +921,9 @@ body {
           background-color: @timetable-slot-bg-color;
           .border-radius(@playlist-radius, @playlist-radius, @playlist-radius, @playlist-radius);
           padding: 10px 0px 10px 0px;
+          display: flex;
+          justify-content: center; /* align horizontal */
+          align-items: center; /* align vertical */
         }
 
         &.slot-4h div {
