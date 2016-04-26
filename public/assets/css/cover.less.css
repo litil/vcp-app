@@ -714,17 +714,18 @@ body {
     }
 
     #about-header-connexion {
-      margin-top: 27px;
+      margin-top: 15px;
       padding: 0px 30px 0px 0px;
 
       .fa {
         font-size: @bigger-font-size;
       }
 
-      .connexion-button {
+      .back-to-live-button {
         background-color: @body-bg-color;
-        margin: 18px 0px 18px 0px;
         padding-top: 3px;
+        padding-left: 10px;
+        text-align: left;
         a {
           color: @body-bg-color-light;
           font-family: @KO51;
