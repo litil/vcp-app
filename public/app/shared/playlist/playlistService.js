@@ -80,9 +80,8 @@
 
       /**
        * This method gets the current playlist according to the selected schedule
-       * (which is for now Paris) and the current time. It first gets all the values
-       * for the current day and then loop on them to find the range corresponding
-       * to the actual time.
+       * (which is for now Paris) and the current time. It loops on the playlists,
+       * then on the days and finally checks the time slot.
        *
        * @return a playlist object, with a key, a label, a start|end time and a
        * CSS class.
@@ -97,43 +96,20 @@
         var currPlaylist = null;
         var playlistStart;
         var playlistEnd;
-        var index = 0;
 
-
-        /*
-        for (var property in schedules.PARIS[day]){
-          playlistStart = property.substring(0, property.indexOf('-'));
-          playlistEnd = property.substring(property.indexOf('-') + 1, property.length);
-
-          if (time >= playlistStart && time <  playlistEnd){
-            // we are in the correct constant value
-            var currPlaylistConst = playlists.normal[schedules.PARIS[day][property]];
-            currPlaylist = {
-              key: schedules.PARIS[day][property],
-              label: currPlaylistConst.label,
-              description: currPlaylistConst.description,
-              start: playlistStart, //TODO create a method converting it into HH:MM AM|PM
-              end: playlistEnd,
-              day: day,
-              scheduleIndex : index,
-              cls : currPlaylistConst.cls
-            }
-          }
-
-          index++;
-        }
-        */
-
+        // loop on the different playlists
         angular.forEach(schedules.PARIS, function(value, key) {
           var currentPlaylistKey = key;
 
+          // for each playlists, loop on the day
           angular.forEach(value, function(playlistValue, playlistKey) {
             var currentPlaylistDay = playlistKey;
 
             if (currentPlaylistDay == day) {
+              // we're in the current day
               angular.forEach(playlistValue, function(dayValue) {
-
                 if (time >= dayValue.start && time < dayValue.end) {
+                  // we're in the correct time slot
                   var currPlaylistConst = playlists.normal[currentPlaylistKey];
 
                   currPlaylist = {
@@ -145,16 +121,13 @@
                     day: currentPlaylistDay,
                     nextKey: dayValue.nextKey,
                     nextDay: dayValue.nextDay,
-                    //scheduleIndex : index,
                     cls : currPlaylistConst.cls
                   }
 
-                  // return currPlaylist;
+                  return currPlaylist;
                 }
               });
             }
-
-
           });
         });
 
@@ -164,27 +137,27 @@
 
       /**
        * This method gets the next playlist according to the selected schedule
-       * (which is for now Paris) and the index of the current playlist in the
-       * schedule constant.
+       * (which is for now Paris) and the current playlist.
        *
        * @return a playlist object, with a key, a label, a start|end time and a
        * CSS class.
        */
       this.getNextPlaylist = function(currPlaylist) {
-
-        debugger;
-
+        // get the next playlist from the current one
         var nextPlaylistConst = playlists.normal[currPlaylist.nextKey];
-        var possibleNext = schedules.PARIS[currPlaylist.nextKey][currPlaylist.nextDay];
-        var nextPlaylistSchedule = null;
 
+        // get the list of possible next playlists (it's an array)
+        var possibleNext = schedules.PARIS[currPlaylist.nextKey][currPlaylist.nextDay];
+
+        // select the real next playlist by checking its key
+        var nextPlaylistSchedule = null;
         angular.forEach(possibleNext, function(value) {
           if (value.key === currPlaylist.nextKey) {
             nextPlaylistSchedule = value;
           }
-
         });
 
+        // build the next playlist
         var nextPlaylist = {
           key: currPlaylist.nextKey,
           label: nextPlaylistConst.label,
@@ -194,54 +167,7 @@
           cls : nextPlaylistConst.cls
         }
 
-
         return nextPlaylist;
-
-        /*
-        var scheduleIndex = currPlaylist.scheduleIndex;
-
-        // get the current date and time
-        var cDate = new Date();
-        var day = cDate.getDay();   // 0 is Sunday
-        var time = cDate.getHours();
-
-        if (currPlaylist != null){
-          var sheduleKey = null;
-          var scheduleIndex = 0;
-          // get the first value from the same day starting with the current playlist end time
-          // for example if the current playlist is AFR on monday, the next one is the one
-          // starting with '6-' the same day. If none is found, take the first one of the
-          // following day
-
-          // we first test if there is a next value value in the current day.
-          // In that case, we return that value.
-          // If not, we return the first playlist of the following day.
-          if (Object.keys(schedules.PARIS[day])[currPlaylist.scheduleIndex + 1] === undefined){
-            day = (day === 6) ? 0 : day + 1;
-            sheduleKey = Object.keys(schedules.PARIS[day])[0];
-          } else {
-            sheduleKey = Object.keys(schedules.PARIS[day])[currPlaylist.scheduleIndex + 1];
-            scheduleIndex = currPlaylist.scheduleIndex + 1;
-          }
-
-          var nextPlaylistConst = playlists.normal[schedules.PARIS[day][sheduleKey]];
-          var playlistStart = sheduleKey.substring(0, sheduleKey.indexOf('-'));
-          var playlistEnd = sheduleKey.substring(sheduleKey.indexOf('-') + 1, sheduleKey.length);
-
-          var nextPlaylist = {
-            key: schedules.PARIS[day][sheduleKey],
-            label: nextPlaylistConst.label,
-            description: nextPlaylistConst.description,
-            start: playlistStart, //TODO create a method converting int into HH:MM AM|PM
-            end: playlistEnd,
-            scheduleIndex : scheduleIndex,
-            cls : nextPlaylistConst.cls
-          }
-
-          return nextPlaylist;
-        }
-        return null;
-        */
       };
 
     }])

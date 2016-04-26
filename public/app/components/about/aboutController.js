@@ -25,6 +25,18 @@
       vm.playlists.current = PlaylistService.getCurrentPlaylist();
 
 
+      /**
+       * This method checks the given days, start time and end time representing
+       * a slot time with the current playlist to know it we're in this slot.
+       * If we are, it returns the current playlist css class to be applied,
+       * otherwise it returns ''.
+       *
+       * @param days an array of integer representing the slot's days
+       * @param start the slot start time
+       * @param end the the slot end time
+       *
+       * @return the css class to be applied or ''
+       */
       this.getCurrentSlotCls = function(days, start, end) {
         // get the current day from the playlist
         var playlistDay = vm.playlists.current.day;
@@ -35,7 +47,7 @@
         var activeSlotCls = '';
 
         angular.forEach(days, function(value) {
-          if(playlistDay === value) {
+          if(playlistDay == value) {
             if (start >= playlistStart && end <= playlistEnd) {
               // TODO prolem when day + 1 (maybe do 24 + 2h for example ?)
               activeSlotCls = playlistCls;
