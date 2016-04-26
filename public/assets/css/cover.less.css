@@ -720,7 +720,7 @@ body {
       .fa-container {
         padding-left: 5px;
         margin-top: 50px;
-        
+
         .fa {
           font-size: @bigger-font-size;
         }
@@ -728,8 +728,9 @@ body {
 
       .back-to-live-button {
         background-color: @body-bg-color;
-        padding-top: 3px;
-        padding-left: 10px;
+        padding-top: 4px;
+        padding-left: 7px;
+        line-height: @important-font-size + 3px;
         a {
           color: @body-bg-color-light;
           font-family: @KO51;
