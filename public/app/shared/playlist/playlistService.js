@@ -98,6 +98,9 @@
         var playlistStart;
         var playlistEnd;
         var index = 0;
+
+
+        /*
         for (var property in schedules.PARIS[day]){
           playlistStart = property.substring(0, property.indexOf('-'));
           playlistEnd = property.substring(property.indexOf('-') + 1, property.length);
@@ -119,6 +122,41 @@
 
           index++;
         }
+        */
+
+        angular.forEach(schedules.PARIS, function(value, key) {
+          var currentPlaylistKey = key;
+
+          angular.forEach(value, function(playlistValue, playlistKey) {
+            var currentPlaylistDay = playlistKey;
+
+            if (currentPlaylistDay == day) {
+              angular.forEach(playlistValue, function(dayValue) {
+
+                if (time >= dayValue.start && time < dayValue.end) {
+                  var currPlaylistConst = playlists.normal[currentPlaylistKey];
+
+                  currPlaylist = {
+                    key: currentPlaylistKey,
+                    label: currPlaylistConst.label,
+                    description: currPlaylistConst.description,
+                    start: dayValue.start, //TODO create a method converting it into HH:MM AM|PM
+                    end: dayValue.end,
+                    day: currentPlaylistDay,
+                    nextKey: dayValue.nextKey,
+                    nextDay: dayValue.nextDay,
+                    //scheduleIndex : index,
+                    cls : currPlaylistConst.cls
+                  }
+
+                  // return currPlaylist;
+                }
+              });
+            }
+
+
+          });
+        });
 
         return currPlaylist;
       };
@@ -133,29 +171,39 @@
        * CSS class.
        */
       this.getNextPlaylist = function(currPlaylist) {
+
+        debugger;
+
+        var nextPlaylistConst = playlists.normal[currPlaylist.nextKey];
+        var possibleNext = schedules.PARIS[currPlaylist.nextKey][currPlaylist.nextDay];
+        var nextPlaylistSchedule = null;
+
+        angular.forEach(possibleNext, function(value) {
+          if (value.key === currPlaylist.nextKey) {
+            nextPlaylistSchedule = value;
+          }
+
+        });
+
+        var nextPlaylist = {
+          key: currPlaylist.nextKey,
+          label: nextPlaylistConst.label,
+          description: nextPlaylistConst.description,
+          start: nextPlaylistSchedule.start, //TODO create a method converting int into HH:MM AM|PM
+          end: nextPlaylistSchedule.end,
+          cls : nextPlaylistConst.cls
+        }
+
+
+        return nextPlaylist;
+
+        /*
         var scheduleIndex = currPlaylist.scheduleIndex;
 
         // get the current date and time
         var cDate = new Date();
         var day = cDate.getDay();   // 0 is Sunday
         var time = cDate.getHours();
-
-        // debug
-        /*
-        var key = 'CRS';
-        var label = 'Cruising';
-        var start = '06:00 AM';
-        var end = '11:00 AM';
-        var cls = 'playlist-cruising';
-
-        return {
-          'key' : key,
-          'label' : label,
-          'start' : start,
-          'end' : end,
-          'cls' : cls
-        }
-        */
 
         if (currPlaylist != null){
           var sheduleKey = null;
@@ -193,6 +241,7 @@
           return nextPlaylist;
         }
         return null;
+        */
       };
 
     }])
