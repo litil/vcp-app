@@ -118,6 +118,8 @@
                     description: currPlaylistConst.description,
                     start: dayValue.start, //TODO create a method converting it into HH:MM AM|PM
                     end: dayValue.end,
+                    displayStart: dayValue.displayStart,
+                    displayEnd: dayValue.displayEnd,
                     day: currentPlaylistDay,
                     nextKey: dayValue.nextKey,
                     nextDay: dayValue.nextDay,
@@ -162,8 +164,10 @@
           key: currPlaylist.nextKey,
           label: nextPlaylistConst.label,
           description: nextPlaylistConst.description,
-          start: nextPlaylistSchedule.start, //TODO create a method converting int into HH:MM AM|PM
+          start: nextPlaylistSchedule.start,
           end: nextPlaylistSchedule.end,
+          displayStart: nextPlaylistSchedule.displayStart,
+          displayEnd: nextPlaylistSchedule.displayEnd,
           cls : nextPlaylistConst.cls
         }
 

@@ -58,7 +58,7 @@
                     <div class="row-content fake-input">
                       <span class="row-content-playlist">{{ticketController.playlists.current.label}}</span>
                       <span class="row-content-playlist-time">
-                        ({{ticketController.playlists.current.start | playlistBounds}} / {{ticketController.playlists.current.end | playlistBounds}})
+                        ({{ticketController.playlists.current.displayStart | playlistBounds}} / {{ticketController.playlists.current.displayEnd | playlistBounds}})
                       </span>
                     </div>
                   </div>
@@ -71,7 +71,7 @@
                     <div class="row-content fake-input">
                       <span class="row-content-playlist">{{ticketController.playlists.next.label}}</span>
                       <span class="row-content-playlist-time">
-                        ({{ticketController.playlists.next.start | playlistBounds}} / {{ticketController.playlists.next.end | playlistBounds}})
+                        ({{ticketController.playlists.next.displayStart | playlistBounds}} / {{ticketController.playlists.next.displayEnd | playlistBounds}})
                       </span>
                     </div>
                   </div>
