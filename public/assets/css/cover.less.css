@@ -992,9 +992,6 @@ body {
     width: 100%;
     .row {
       margin-left: 0px;
-      #footer-links-container {
-        text-align: left;
-      }
     }
     a {
       .white-ie8-proofing;
@@ -1029,11 +1026,14 @@ body {
 }
 
 footer {
-  font: @KO31;
-  font-size: @important-font-size;
+  font-family: @KO31;
+  font-size: @main-font-size;
   padding-left: 60px;
   #footer-links-container {
     text-align: left;
+    a {
+      text-decoration: none;
+    }
   }
 }
 
