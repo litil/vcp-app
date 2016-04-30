@@ -975,6 +975,30 @@ body {
   background-color: @body-bg-color !important;
 }
 
+
+/*****************************************************************************/
+
+
+/*                     7- Terms of Use and Privacy Policy                    */
+
+
+/*****************************************************************************/
+#termsOfUse, #policy {
+  color: @body-bg-color;
+  font: @KO31;
+
+  h1 {
+    font-size: @big-font-size;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin: 20px 0px 30px 0px;
+  }
+
+  p {
+    text-align: left;
+  }
+}
+
 /*****************************************************************************/
 
 

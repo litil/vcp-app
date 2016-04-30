@@ -58,7 +58,22 @@
           	cssClassnames : 'background-light'
        		}
 					// no controller, we don't need any to display this static view
-					// controller: 'TicketController as ticket'
+				})
+				.state('termsOfUse', {
+					url: '/termsOfUse',
+					templateUrl: '../app/components/terms/termsOfUse.html',
+					data : {
+          	cssClassnames : 'background-light'
+       		}
+					// no controller, we don't need any to display this static view
+				})
+				.state('policy', {
+					url: '/policy',
+					templateUrl: '../app/components/policy/privacyPolicy.html',
+					data : {
+          	cssClassnames : 'background-light'
+       		}
+					// no controller, we don't need any to display this static view
 				})
 				.state('404', {
 					url: '/404',
@@ -67,7 +82,6 @@
           	cssClassnames : 'background-light'
        		}
 					// no controller, we don't need any to display this static view
-					// controller: 'TicketController as ticket'
 				})
 				.state('ticket', {
 					url: '/ticket',
