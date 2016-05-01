@@ -195,7 +195,7 @@
             {
               key: 'MWE',
               start: 6,
-              end: 11,
+              end: 13,
               displayStart : 6,
               displayEnd : 13,
               nextKey : 'CRG',
@@ -206,7 +206,7 @@
             {
               key: 'MWE',
               start: 6,
-              end: 11,
+              end: 13,
               displayStart : 6,
               displayEnd : 13,
               nextKey : 'CRG',
