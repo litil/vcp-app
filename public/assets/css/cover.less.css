@@ -766,6 +766,7 @@ body {
     padding-left: 0px;
     .playlist-container {
       margin-bottom: 20px;
+      cursor: pointer;
     }
   }
 

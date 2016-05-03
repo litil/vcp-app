@@ -89,7 +89,9 @@
   </div>
   <div class="row playlist-row">
     <div class="playlist-col col-md-2" ng-repeat="playlist in normalPlaylists">
-      <div class="playlist-container text-left col-md-12 {{playlist.cls}}">
+      <div
+          class="playlist-container text-left col-md-12 {{playlist.cls}}"
+          ng-click="extrasController.switchPlaylist(playlist.key)">
         <div class="playlist-title text-left col-md-12">
           {{playlist.key}}
         </div>
@@ -110,7 +112,9 @@
   </div>
   <div class="row playlist-row">
     <div class="playlist-col col-md-2" ng-repeat="playlist in specialPlaylists">
-      <div class="playlist-container text-left col-md-12 {{playlist.cls}}">
+      <div
+          class="playlist-container text-left col-md-12 {{playlist.cls}}"
+          ng-click="extrasController.switchPlaylist(playlist.key)">
         <div class="playlist-title text-left col-md-12">
           {{playlist.key}}
         </div>

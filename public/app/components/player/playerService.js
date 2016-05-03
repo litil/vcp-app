@@ -28,6 +28,8 @@
           var currentSong = {};
           var isPlaying = false;  // when we arrive on the application, the player is not playing
           var isMuted = false;
+          var playingPlaylist = null;
+          var INFOS_KEY = "/radio_VCP";
 
           rootScopeParam.$on("angularPlayer:ready", function() {
               deferred.resolve();
@@ -109,7 +111,8 @@
            */
           i.prototype.parseMusic = function(data) {
             // get the song raw data
-            var INFOS_KEY = "/radio_VCP";
+            debugger;
+            // var INFOS_KEY = "/radio_VCP";
             var rawData = data[INFOS_KEY];
 
             // remove [Vendredi c'est permis]] from the rawTitle if it exists
@@ -179,6 +182,32 @@
            */
           i.prototype.getCurrentPosition = function() {
             return progressPosition - lastReset;
+          },
+
+          /**
+           * This method gets the playlist that is being played. It returns
+           * null if we're playing the live flux.
+           */
+          i.prototype.getPlayingPlaylist = function() {
+            return playingPlaylist;
+          },
+
+          /**
+           * This method updates the infos key depending on the given playlist
+           * key.
+           */
+          i.prototype.updateInfosKey = function(infoKey) {
+            INFOS_KEY = infoKey;
+          },
+
+          /**
+           * This method sets the new playlist that is being played.
+           *
+           * param playlistKey
+           */
+          i.prototype.setPlayingPlaylist = function(playlistKey) {
+            playingPlaylist = playlistKey;
+            return playingPlaylist;
           },
 
           /**

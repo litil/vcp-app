@@ -174,6 +174,23 @@
         return nextPlaylist;
       };
 
+
+      /**
+       * This method gets the playlist corresponding to the given playlist key.
+       *
+       * @param playlistKey
+       *
+       * @return a playlist object
+       */
+      this.getPlaylist = function(playlistKey) {
+        debugger;
+        if (playlists.normal[playlistKey] === undefined) {
+          return playlists.special[playlistKey];
+        }
+
+        return playlists.normal[playlistKey];
+      }
+
     }])
 
 })();

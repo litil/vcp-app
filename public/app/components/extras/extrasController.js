@@ -117,5 +117,31 @@
       this.getSongInfosInterval = $interval(function() {
           $scope.song = PlayerService.getCurrentSong();
       }, 5000);
+
+
+      /**
+       * This method stops the radio and starts it again with the playlist
+       * corresponding to the given key.
+       *
+       * @param playlistKey
+       */
+      this.switchPlaylist = function(playlistKey) {
+        debugger;
+
+        // check we're not switching to the current playlist
+        if (PlayerService.getPlayingPlaylist() !== null  && PlayerService.getPlayingPlaylist() === playlistKey){
+          debugger;
+          return;
+        }
+
+        // stop the actual playlist and remove the time
+        // TODO we must have a stop / clean method
+        PlayerService.pause();
+
+
+        // start the playlist corresponding to the key
+        PlayerService.updateInfosKey(PlaylistService.getPlaylist(playlistKey).infoKey);
+
+      };
   }
 })();
