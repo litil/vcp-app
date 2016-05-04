@@ -194,10 +194,22 @@
           },
 
           /**
-           * This method updates the infos key depending on the given playlist
-           * key and start the player.
+           * This method checks we're not switching to the playing playlist.
+           * Then it stops the player and starts it again with the playlist
+           * corresponding to the given key.
+           *
+           * @param playlistKey
            */
-          i.prototype.switchPlaylist = function(infoKey) {
+          i.prototype.switchPlaylist = function(playlistKey, infoKey) {
+            // check we're not switching to the current playlist
+            if (this.getPlayingPlaylist() !== null  && this.getPlayingPlaylist() === playlistKey){
+              return;
+            }
+
+            // stop the actual playlist and remove the time
+            this.stopAndClean();
+
+            // start the playlist corresponding to the key
             INFOS_KEY = infoKey;
             this.play();
           },

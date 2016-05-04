@@ -126,16 +126,7 @@
        * @param playlistKey
        */
       this.switchPlaylist = function(playlistKey) {
-        // check we're not switching to the current playlist
-        if (PlayerService.getPlayingPlaylist() !== null  && PlayerService.getPlayingPlaylist() === playlistKey){
-          return;
-        }
-
-        // stop the actual playlist and remove the time
-        PlayerService.stopAndClean();
-
-        // start the playlist corresponding to the key
-        PlayerService.switchPlaylist(PlaylistService.getPlaylist(playlistKey).infoKey);
+        PlayerService.switchPlaylist(playlistKey, PlaylistService.getPlaylist(playlistKey).infoKey);
       };
   }
 })();
