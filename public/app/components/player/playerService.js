@@ -30,6 +30,7 @@
           var isMuted = false;
           var playingPlaylist = null;
           var INFOS_KEY = "/radio_VCP";
+          var BASE_URL = "http://radio.vendredicestpermis.com";
 
           rootScopeParam.$on("angularPlayer:ready", function() {
               deferred.resolve();
@@ -194,10 +195,11 @@
 
           /**
            * This method updates the infos key depending on the given playlist
-           * key.
+           * key and start the player.
            */
-          i.prototype.updateInfosKey = function(infoKey) {
+          i.prototype.switchPlaylist = function(infoKey) {
             INFOS_KEY = infoKey;
+            this.play();
           },
 
           /**
@@ -306,15 +308,16 @@
           i.prototype.playCurrent = function() {
               return this.isReady()
                 .then(function() {
+                  this.url = BASE_URL + INFOS_KEY;
+
                   // if the player is "ready" then add the current track into it
                   this.song = {
                       id: this.current.id,
                       title: this.current.server_name + " " + this.current.genre,
                       artist: this.current.server_name + "stream",
-                      url: this.current.url
+                      //url: this.current.url
+                      url: this.url
                   };
-
-                  debugger;
 
                   angularPlayerParam.addTrack(this.song);
 
