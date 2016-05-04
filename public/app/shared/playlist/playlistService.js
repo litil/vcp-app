@@ -183,7 +183,6 @@
        * @return a playlist object
        */
       this.getPlaylist = function(playlistKey) {
-        debugger;
         if (playlists.normal[playlistKey] === undefined) {
           return playlists.special[playlistKey];
         }

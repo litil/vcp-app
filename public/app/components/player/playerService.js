@@ -111,7 +111,6 @@
            */
           i.prototype.parseMusic = function(data) {
             // get the song raw data
-            debugger;
             // var INFOS_KEY = "/radio_VCP";
             var rawData = data[INFOS_KEY];
 
@@ -160,6 +159,7 @@
             }
 
             // if the player has not been initialized, do it
+            this.setCurrent(rawData);
             if (hasBeenInitialized === false){
               this.setCurrent(rawData);
               hasBeenInitialized = true;
@@ -270,6 +270,14 @@
           },
 
           /**
+           * This method stops the player and remove the existing track.
+           */
+          i.prototype.stopAndClean = function() {
+              angularPlayerParam.stop();
+              angularPlayerParam.removeSong(this.song.id, 0);
+          },
+
+          /**
            * This method returns the playing status of the player. It checks the
            * component status but also the current progression.
            */
@@ -299,12 +307,16 @@
               return this.isReady()
                 .then(function() {
                   // if the player is "ready" then add the current track into it
-                  angularPlayerParam.addTrack({
+                  this.song = {
                       id: this.current.id,
                       title: this.current.server_name + " " + this.current.genre,
                       artist: this.current.server_name + "stream",
                       url: this.current.url
-                  });
+                  };
+
+                  debugger;
+
+                  angularPlayerParam.addTrack(this.song);
 
                   // play
                   angularPlayerParam.play();
