@@ -20,17 +20,19 @@
     .service("PlayerService", ["$q", "$rootScope", "$timeout", "$http", "$interval", "angularPlayer", function(a, rootScopeParam, timeoutWrapper, httpClient, interval, angularPlayerParam) {
           window.angularPlayer = angularPlayerParam;
           var deferred = a.defer();
-          var progressPosition = 0;
-          var i = function() {};
-          var lastReset = 0;
-          var song = {};
-          var hasBeenInitialized = false;
-          var currentSong = {};
-          var isPlaying = false;  // when we arrive on the application, the player is not playing
-          var isMuted = false;
-          var playingPlaylist = null;
           var INFOS_KEY = "/radio_VCP";
           var BASE_URL = "http://radio.vendredicestpermis.com";
+
+          var i = function() {};
+          var hasBeenInitialized = false;
+          var progressPosition = 0;
+          var isPlaying = false;  // when we arrive on the application, the player is not playing
+          var isMuted = false;
+          var lastReset = 0;
+
+          var song = {};
+          var playingSong = {};
+          var playingPlaylist = null;
 
           rootScopeParam.$on("angularPlayer:ready", function() {
               deferred.resolve();
@@ -63,6 +65,10 @@
             }, POLLING_INTERVAL);
           },
 
+          /**
+           * This method starts the player if he's not already playing. Then
+           * it mute it or unmute if he is playing.
+           */
           i.prototype.togglePlay = function() {
             if (this.isPlaying() === false){
               // play the radio
@@ -81,10 +87,20 @@
             }
           },
 
+          /**
+           * Is the player started ?
+           *
+           * @return true if the player is started, false otherwise.
+           */
           i.prototype.getIsPlaying = function() {
             return isPlaying;
           },
 
+          /**
+           * Is the player muted ?
+           *
+           * @return true if the player is muted, false otherwise.
+           */
           i.prototype.isMuted = function() {
             return isMuted;
           },
@@ -147,12 +163,12 @@
 
             // reset the duration counter if it is a new song
             //TODO Player - replace title with id once the id is correctly sent by server
-            if (this.isSameSong(title, currentSong.title, id, currentSong.id) === false){
+            if (this.isSameSong(title, playingSong.title, id, playingSong.id) === false){
               this.resetProgress();
             }
 
             // build  the song object
-            currentSong = {
+            playingSong = {
               'id' : id,
               'artist' : artist,
               'title' : title,
@@ -160,20 +176,20 @@
             }
 
             // if the player has not been initialized, do it
-            this.setCurrent(rawData);
+            this.setPlayingRawData(rawData);
             if (hasBeenInitialized === false){
-              this.setCurrent(rawData);
+              this.setPlayingRawData(rawData);
               hasBeenInitialized = true;
             }
 
-            return currentSong;
+            return playingSong;
           },
 
           /**
            * This method returns the current song.
            */
           i.prototype.getCurrentSong = function() {
-            return currentSong;
+            return playingSong;
           },
 
           /**
@@ -253,13 +269,13 @@
            * This method checks the current ID/title against the last song
            * ID/title.
            */
-          i.prototype.isSameSong = function(currentSongTitle, lastSongTitle, currentSongId, lastSongId) {
-            if (currentSongId !== undefined && lastSongId !== undefined){
-              if (currentSongId !== lastSongId){
+          i.prototype.isSameSong = function(playingSongTitle, lastSongTitle, playingSongId, lastSongId) {
+            if (playingSongId !== undefined && lastSongId !== undefined){
+              if (playingSongId !== lastSongId){
                 return false;
               }
             } else {
-              if (currentSongTitle !== lastSongTitle){
+              if (playingSongTitle !== lastSongTitle){
                 return false;
               }
             }
@@ -272,7 +288,7 @@
            * then plays it.
            */
           i.prototype.play = function() {
-              return this.current && this.playCurrent(), this;
+              return this.playingRawData && this.playCurrent(), this;
           },
 
           /**
@@ -305,13 +321,13 @@
           },
 
           /**
-           * This method sets the given data into the current variable. It corresponds
-           * to the current song information.
+           * This method sets the given data into the playingRawData variable.
+           * It corresponds to the current song information.
            *
-           * @param data the current song information
+           * @param data the playing song raw data
            */
-          i.prototype.setCurrent = function(data) {
-              this.current = data;
+          i.prototype.setPlayingRawData = function(data) {
+              this.playingRawData = data;
           },
 
           /**
@@ -320,20 +336,19 @@
           i.prototype.playCurrent = function() {
               return this.isReady()
                 .then(function() {
+                  // build the url from the base url and the infos key
                   this.url = BASE_URL + INFOS_KEY;
 
                   // if the player is "ready" then add the current track into it
                   this.song = {
-                      id: this.current.id,
-                      title: this.current.server_name + " " + this.current.genre,
-                      artist: this.current.server_name + "stream",
-                      //url: this.current.url
+                      id: this.playingRawData.id,
+                      title: this.playingRawData.server_name + " " + this.playingRawData.genre,
+                      artist: this.playingRawData.server_name + "stream",
                       url: this.url
                   };
-
                   angularPlayerParam.addTrack(this.song);
 
-                  // play
+                  // start the player
                   angularPlayerParam.play();
                 }.bind(this)), this
           },
