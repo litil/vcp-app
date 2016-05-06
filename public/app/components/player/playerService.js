@@ -22,6 +22,7 @@
           var deferred = a.defer();
           var INFOS_KEY = "/radio_VCP";
           var BASE_URL = "http://radio.vendredicestpermis.com";
+          var MAX_SIZE = 64;
 
           var i = function() {};
           var hasBeenInitialized = false;
@@ -188,7 +189,17 @@
           /**
            * This method returns the current song.
            */
-          i.prototype.getCurrentSong = function() {
+          i.prototype.getCurrentSong = function(maxSize) {
+            maxSize = maxSize || MAX_SIZE;
+
+            // ellipsis artist and song of > 64
+            if (playingSong.artist && playingSong.artist.length > maxSize){
+              playingSong.artist = playingSong.artist.substring(0, maxSize) + '...';
+            }
+            if (playingSong.title && playingSong.title.length > maxSize){
+              playingSong.title = playingSong.title.substring(0, maxSize) + '...';
+            }
+
             return playingSong;
           },
 

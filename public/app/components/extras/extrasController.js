@@ -101,18 +101,7 @@
       this.getCurrentPlaylist();
 
       // call the radio to get current song information
-      var currentSong = PlayerService.getCurrentSong();
-
-      // check title and artist length
-      // ellipsis them of > 48
-      // refactor that so that the view ellipsis it
-      if (currentSong.title > 48){
-        currentSong.title = currentSong.title.substring(0, 48) + ' ... ';
-      }
-      if (currentSong.artist > 48){
-        currentSong.artist = currentSong.artist.substring(0, 48) + ' ... ';
-      }
-      $scope.song = currentSong;
+      $scope.song = PlayerService.getCurrentSong(32);
 
       this.getSongInfosInterval = $interval(function() {
           $scope.song = PlayerService.getCurrentSong();
