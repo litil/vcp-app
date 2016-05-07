@@ -202,7 +202,7 @@
               nextDay : 6
             }
           ],
-          1: [
+          6: [
             {
               key: 'MWE',
               start: 6,
