@@ -183,11 +183,20 @@
        * @return a playlist object
        */
       this.getPlaylist = function(playlistKey) {
-        if (playlists.normal[playlistKey] === undefined) {
-          return playlists.special[playlistKey];
+        var playlist = null;
+
+        if (playlistKey === null) {
+          return null;
         }
 
-        return playlists.normal[playlistKey];
+        if (playlists.normal[playlistKey] === undefined) {
+          playlist = playlists.special[playlistKey];
+        } else {
+          playlist = playlists.normal[playlistKey];
+        }
+
+        playlist.key = playlistKey;
+        return playlist;
       }
 
     }])

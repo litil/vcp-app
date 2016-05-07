@@ -31,6 +31,8 @@
   function ExtrasController($auth, $state, $http, $rootScope, $scope, $interval, PlayerService, PlaylistService) {
       var vm = this;
       vm.playlists = {};
+      vm.playlists.playing = {};{};
+      vm.playlists.current = {};
       // set default value into vm.song
       vm.song = {
         'id' : 0,
@@ -39,14 +41,40 @@
         'duration' : 4*60*1000
       }
 
+      /**
+       * This method gets the current playlist, that means the playlist that
+       * is played when the user follows the live flux.
+       */
       this.getCurrentPlaylist = function() {
         vm.playlists.current = PlaylistService.getCurrentPlaylist();
       }
 
+      /**
+       * This method gets the playlist that is actually playing. It could be
+       * the same as the current (live) playlist if the user follows the live
+       * flux but it could be different he has chosen to listen to another one.
+       *
+       * @return the playing playlist
+       */
+      this.getPlayingPlaylist = function() {
+        var playingPlaylist = PlaylistService.getPlaylist(PlayerService.getPlayingPlaylistKey());
+        if (playingPlaylist == null) {
+          playingPlaylist = PlaylistService.getCurrentPlaylist();
+        }
+
+        return playingPlaylist;
+      };
+
+      /**
+       * This method gets the list of "normal" playlists.
+       */
       this.getNormalPlaylists = function() {
         $scope.normalPlaylists = PlaylistService.getNormalPlaylists();
       };
 
+      /**
+       * his method gets the list of "special" playlists.
+       */
       this.getSpecialPlaylists = function() {
         $scope.specialPlaylists = PlaylistService.getSpecialPlaylists();
       };
@@ -59,6 +87,7 @@
         return PlayerService.isMuted();
       };
       /**
+
        * If the player is not playing, start it.
        *
        * Then if it's playing and muted, unmute it. If it is,
@@ -99,14 +128,21 @@
       this.getNormalPlaylists();
       this.getSpecialPlaylists();
       this.getCurrentPlaylist();
+      vm.playlists.playing = this.getPlayingPlaylist();
 
       // call the radio to get current song information
       $scope.song = PlayerService.getCurrentSong(32);
-
+      $scope.playlists = {};
+      $scope.playlists.playing = this.getPlayingPlaylist();
       this.getSongInfosInterval = $interval(function() {
-          $scope.song = PlayerService.getCurrentSong();
-      }, 5000);
+          var playingPlaylist = PlaylistService.getPlaylist(PlayerService.getPlayingPlaylistKey());
+          if (playingPlaylist == null) {
+            playingPlaylist = PlaylistService.getCurrentPlaylist();
+          }
 
+          $scope.song = PlayerService.getCurrentSong(32);
+          $scope.playlists.playing = playingPlaylist;
+      }, 5000);
 
       /**
        * This method stops the radio and starts it again with the playlist
@@ -116,6 +152,7 @@
        */
       this.switchPlaylist = function(playlistKey) {
         PlayerService.switchPlaylist(playlistKey, PlaylistService.getPlaylist(playlistKey).infoKey);
+        vm.playlists.playing = this.getPlayingPlaylist();
       };
   }
 })();

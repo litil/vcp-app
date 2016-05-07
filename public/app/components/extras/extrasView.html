@@ -10,8 +10,8 @@
 
   <!-- first row : header -->
   <div class="row header">
-    <div class="col-md-2 current-playlist {{extrasController.playlists.current.cls}}-font">
-      {{extrasController.playlists.current.key}}
+    <div class="col-md-2 current-playlist {{extrasController.playlists.playing.cls}}-font">
+      {{extrasController.playlists.playing.key}}
     </div>
 
     <div class="col-md-8 text-left" id="about-header-song-info">
@@ -49,7 +49,7 @@
       <div class="row progress-bar-container">
         <div class="col-md-12 progress-label-container">
           <label>
-            {{extrasController.getCurrentPosition() | time}} / {{song.duration | time}}
+            {{extrasController.getCurrentPosition.html | time}} / {{song.duration | time}}
           </label>
         </div>
         <div class="col-md-12 progress-info-container">

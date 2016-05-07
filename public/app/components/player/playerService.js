@@ -33,7 +33,7 @@
 
           var song = {};
           var playingSong = {};
-          var playingPlaylist = null;
+          var playingPlaylistKey = null;
 
           rootScopeParam.$on("angularPlayer:ready", function() {
               deferred.resolve();
@@ -216,8 +216,8 @@
            * This method gets the playlist that is being played. It returns
            * null if we're playing the live flux.
            */
-          i.prototype.getPlayingPlaylist = function() {
-            return playingPlaylist;
+          i.prototype.getPlayingPlaylistKey = function() {
+            return playingPlaylistKey;
           },
 
           /**
@@ -229,9 +229,12 @@
            */
           i.prototype.switchPlaylist = function(playlistKey, infoKey) {
             // check we're not switching to the current playlist
-            if (this.getPlayingPlaylist() !== null  && this.getPlayingPlaylist() === playlistKey){
+            if (playingPlaylistKey !== null  && playingPlaylistKey === playlistKey){
               return;
             }
+
+            // set the future playlistKey
+            playingPlaylistKey = playlistKey;
 
             // stop the actual playlist and remove the time
             this.stopAndClean();
@@ -239,16 +242,6 @@
             // start the playlist corresponding to the key
             INFOS_KEY = infoKey;
             this.play();
-          },
-
-          /**
-           * This method sets the new playlist that is being played.
-           *
-           * param playlistKey
-           */
-          i.prototype.setPlayingPlaylist = function(playlistKey) {
-            playingPlaylist = playlistKey;
-            return playingPlaylist;
           },
 
           /**
