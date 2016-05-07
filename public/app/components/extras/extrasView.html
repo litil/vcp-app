@@ -63,7 +63,8 @@
     </div>
 
     <div class="col-md-2" id="about-header-connexion">
-      <div class="col-md-12 back-to-live-button text-left {{extrasController.playlists.current.cls}}">
+      <div class="col-md-12 back-to-live-button text-left {{extrasController.playlists.playing.cls}}"
+        ng-if="extrasController.playlists.playing.key !== extrasController.playlists.current.key">
         <a>Retour au live</a>
       </div>
       <div class="col-md-12 text-left fa-container no-gutter-left">
