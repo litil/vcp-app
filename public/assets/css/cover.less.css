@@ -667,6 +667,27 @@ body {
       &.after-font {
         color: @after;
       }
+      &.girls-night-font {
+        color: @girls-night;
+      }
+      &.on-road-font {
+        color: @on-road;
+      }
+      &.depressed-font {
+        color: @depressed;
+      }
+      &.kids-font {
+        color: @kids;
+      }
+      &.sports-font {
+        color: @sports;
+      }
+      &.eighties-font {
+        color: @eighties;
+      }
+      &.hip-hop-font {
+        color: @hip-hop;
+      }
     }
 
     .info-container, .label-container {
@@ -967,6 +988,27 @@ body {
 }
 .after {
   background-color: @after !important;
+}
+.girls-night {
+  background-color: @girls-night;
+}
+.on-road {
+  background-color: @on-road;
+}
+.depressed {
+  background-color: @depressed;
+}
+.kids {
+  background-color: @kids;
+}
+.sports {
+  background-color: @sports;
+}
+.eighties {
+  background-color: @eighties;
+}
+.hip-hop {
+  background-color: @hip-hop;
 }
 .inactive {
   background-color: @body-bg-color !important;

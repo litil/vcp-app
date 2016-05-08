@@ -97,8 +97,6 @@
             playlistTemp.cls = playingPlaylist.cls;
           }
         }
-
-        debugger;
       };
 
       // TO BE REFACTORED
@@ -176,6 +174,7 @@
         PlayerService.switchPlaylist(playlistKey, PlaylistService.getPlaylist(playlistKey).infoKey);
         vm.playlists.playing = this.getPlayingPlaylist();
         this.getNormalPlaylists();
+        this.getSpecialPlaylists();
       };
   }
 })();
