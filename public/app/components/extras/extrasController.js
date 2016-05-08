@@ -66,17 +66,39 @@
       };
 
       /**
-       * This method gets the list of "normal" playlists.
+       * This method gets the list of "normal" playlists. It also set the
+       * correct css class to the playing playlist.
        */
       this.getNormalPlaylists = function() {
+        var playingPlaylist = this.getPlayingPlaylist();
         $scope.normalPlaylists = PlaylistService.getNormalPlaylists();
+
+        var playlistTemp = null;
+        for(var nPlaylistKey in $scope.normalPlaylists){
+          playlistTemp = $scope.normalPlaylists[nPlaylistKey];
+          if (playingPlaylist.key === playlistTemp.key) {
+            playlistTemp.cls = playingPlaylist.cls;
+          }
+        }
       };
 
       /**
-       * his method gets the list of "special" playlists.
+       * This method gets the list of "special" playlists. It also set the
+       * correct css class to the playing playlist.
        */
       this.getSpecialPlaylists = function() {
+        var playingPlaylist = this.getPlayingPlaylist();
         $scope.specialPlaylists = PlaylistService.getSpecialPlaylists();
+
+        var playlistTemp = null;
+        for(var nPlaylistKey in $scope.specialPlaylists){
+          playlistTemp = $scope.specialPlaylists[nPlaylistKey];
+          if (playingPlaylist.key === playlistTemp.key) {
+            playlistTemp.cls = playingPlaylist.cls;
+          }
+        }
+
+        debugger;
       };
 
       // TO BE REFACTORED
@@ -153,6 +175,7 @@
       this.switchPlaylist = function(playlistKey) {
         PlayerService.switchPlaylist(playlistKey, PlaylistService.getPlaylist(playlistKey).infoKey);
         vm.playlists.playing = this.getPlayingPlaylist();
+        this.getNormalPlaylists();
       };
   }
 })();

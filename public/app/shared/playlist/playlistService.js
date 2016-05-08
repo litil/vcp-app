@@ -36,7 +36,7 @@
         var playlist;
 
         // first get the current playlist to add the correct class
-        var currentPlaylist = this.getCurrentPlaylist();
+        //var currentPlaylist = this.getCurrentPlaylist();
 
         for(var playlistKey in playlists.normal){
           playlistConst = playlists.normal[playlistKey];
@@ -44,7 +44,8 @@
           playlistsArray.push({
             key: playlistKey,
             label: playlistConst.label,
-            cls: (playlistKey === currentPlaylist.key) ? playlistConst.cls : "inactive",
+            //cls: (playlistKey === currentPlaylist.key) ? playlistConst.cls : "inactive",
+            cls: "inactive",
             description: playlistConst.description
           });
         }
