@@ -28,7 +28,7 @@
   /**
    * Constructor
    */
-  function ExtrasController($auth, $state, $http, $rootScope, $scope, $interval, $uibModal, $log, PlayerService, PlaylistService) {
+  function ExtrasController($auth, $state, $http, $rootScope, $scope, $interval, $window, $uibModal, $log, PlayerService, PlaylistService) {
       var vm = this;
       vm.playlists = {};
       vm.playlists.playing = {};{};
@@ -178,51 +178,33 @@
       };
 
 
-      $scope.items = ['item1', 'item2', 'item3'];
-      $scope.animationsEnabled = false;
 
       $scope.open = function (size) {
         var modalInstance = $uibModal.open({
-          animation: $scope.animationsEnabled,
+          animation: false,
           templateUrl: 'myModalContent.html',
-          controller: 'ModalInstanceCtrl',
+          controller: 'BackToLiveModalController',
           size: size,
           resolve: {
             items: function () {
-              return $scope.items;
+              return [];
             }
           }
         });
 
+        // handle yes/no answer
         modalInstance.result.then(function (selectedItem) {
-          $scope.selected = selectedItem;
+          // the user wants to go back to the live playlist
+          // switch the playlist
+          var livePlaylist = PlaylistService.getCurrentPlaylist();
+          PlayerService.switchPlaylist(livePlaylist.key, livePlaylist.infoKey);
+
+          // display the home
+          $window.location.href = '/#/ticket';
         }, function () {
-          $log.info('Modal dismissed at: ' + new Date());
+          // the user wants to stay in manual mode, do nothing
         });
       };
-
-      $scope.toggleAnimation = function () {
-        $scope.animationsEnabled = !$scope.animationsEnabled;
-      };
   }
-
-  // Please note that $uibModalInstance represents a modal window (instance) dependency.
-  // It is not the same as the $uibModal service used above.
-
-  angular.module('vcpProject').controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, items) {
-
-    $scope.items = items;
-    $scope.selected = {
-      item: $scope.items[0]
-    };
-
-    $scope.ok = function () {
-      $uibModalInstance.close($scope.selected.item);
-    };
-
-    $scope.cancel = function () {
-      $uibModalInstance.dismiss('cancel');
-    };
-  });
 
 })();

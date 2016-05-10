@@ -115,6 +115,7 @@
 
                   currPlaylist = {
                     key: currentPlaylistKey,
+                    infoKey: currPlaylistConst.infoKey,
                     label: currPlaylistConst.label,
                     description: currPlaylistConst.description,
                     start: dayValue.start, //TODO create a method converting it into HH:MM AM|PM
