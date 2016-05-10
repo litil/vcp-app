@@ -748,6 +748,7 @@ body {
         padding-top: 4px;
         padding-left: 7px;
         line-height: @important-font-size + 3px;
+        cursor: pointer;
         a {
           color: @body-bg-color-light;
           font-family: @KO51;
