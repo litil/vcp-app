@@ -17,7 +17,8 @@
   9- About Page
   10- Terms of Use and Privacy Policy
   11- Footer
-  12- Responsiveness
+  12- Modal
+  13- Responsiveness
 */
 
 /*****************************************************************************/
@@ -128,6 +129,8 @@
 }
 @body-bg-color: #3E3D40;
 @body-bg-color-light: rgba(228, 228, 228, 1);
+@button-bg-color: rgba(124, 122, 128, 1);
+@button-bg-hover-color: #3E3D40;
 @timetable-slot-bg-color: rgba(215, 215, 215, 1);
 @font-grey-color: #3E3D40;
 @morning-weekend: rgba(225, 120, 30, 1);
@@ -991,25 +994,25 @@ body {
   background-color: @after !important;
 }
 .girls-night {
-  background-color: @girls-night;
+  background-color: @girls-night !important;
 }
 .on-road {
-  background-color: @on-road;
+  background-color: @on-road !important;
 }
 .depressed {
-  background-color: @depressed;
+  background-color: @depressed !important;
 }
 .kids {
-  background-color: @kids;
+  background-color: @kids !important;
 }
 .sports {
-  background-color: @sports;
+  background-color: @sports !important;
 }
 .eighties {
-  background-color: @eighties;
+  background-color: @eighties !important;
 }
 .hip-hop {
-  background-color: @hip-hop;
+  background-color: @hip-hop !important;
 }
 .inactive {
   background-color: @body-bg-color !important;
@@ -1114,7 +1117,71 @@ footer {
 /*****************************************************************************/
 
 
-/*                           12- Responsiveness                              */
+/*                               12- Modal                                   */
+
+
+/*****************************************************************************/
+.modal-backdrop{
+  background-color: #fff;
+  &.in {
+    opacity: 0.9;
+  }
+}
+
+.modal-dialog {
+  width: 550px;
+  margin-top: 130px;
+
+  .modal-content{
+    background-color: transparent;
+    border: none;
+    border-radius: 0px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+
+  .modal-body {
+    font-family: @KO31;
+    color: @font-grey-color;
+    text-transform: uppercase;
+
+    h1 {
+      font-size: @bigger-font-size;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: @important-font-size;
+    }
+  }
+
+  .modal-footer {
+    border: none;
+    text-align: center;
+
+    button {
+      font-family: @KO51;
+      font-size: @main-font-size;
+      background-color: @button-bg-color;
+      text-transform: uppercase;
+      margin: 0px 25px !important;
+      padding: 3px 12px 0px 12px;
+      border: none;
+      border-radius: 0px;
+
+      &:hover {
+        background-color: @button-bg-hover-color;
+        color: #fff;
+      }
+    }
+  }
+}
+
+/*****************************************************************************/
+
+
+/*                           13- Responsiveness                              */
 
 
 /*****************************************************************************/
@@ -1134,7 +1201,15 @@ footer {
     width: 100%;
     height: 50px;
   }
+
+  .modal-dialog {
+    .modal-content{
+      /*-webkit-box-shadow: none;*/
+      /*box-shadow: none;*/
+    }
+  }
 }
+
 @media (min-width: 992px) {
   .masthead, .mastfoot, .cover-container {
     width: 992px;
