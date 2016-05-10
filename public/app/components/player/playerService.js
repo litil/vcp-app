@@ -237,7 +237,9 @@
             playingPlaylistKey = playlistKey;
 
             // stop the actual playlist and remove the time
-            this.stopAndClean();
+            if (playingPlaylistKey === null){
+              this.stopAndClean();
+            }
 
             // start the playlist corresponding to the key
             INFOS_KEY = infoKey;
