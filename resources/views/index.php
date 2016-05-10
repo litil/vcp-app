@@ -9,7 +9,9 @@ Based on https://scotch.io/tutorials/token-based-authentication-for-angularjs-an
         <!-- Firefox, Chrome, Safari, IE 11+ and Opera. 196x196 pixels in size. -->
         <link rel="icon" href="favicon.png">
 
+        <!-- bootstrap and bootstrap-ui style -->
         <link rel="stylesheet" href="assets/node_modules/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="assets/node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css">
 
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
         <link rel="stylesheet" href="assets/css/ie10-viewport-bug-workaround.css">
@@ -43,6 +45,7 @@ Based on https://scotch.io/tutorials/token-based-authentication-for-angularjs-an
     <script src="assets/node_modules/angular-ui-router/build/angular-ui-router.js"></script>
     <script src="assets/node_modules/satellizer/satellizer.js"></script>
     <script src="assets/node_modules/angular-soundmanager2.js"></script>
+    <script src="assets/node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
     <!-- Application Scripts - Controllers -->

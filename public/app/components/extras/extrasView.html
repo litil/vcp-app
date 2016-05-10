@@ -5,6 +5,26 @@
   the a list of playlists. The active one will be coloured.
 -->
 
+
+<script type="text/ng-template" id="myModalContent.html">
+    <div class="retour-au-live-modal">
+      <div class="modal-body">
+        <h1>Avertissement</h1>
+        <p>
+          Vous etes sur le point de quitter le mode manuel pour revenir a la diffusion live.
+        </p>
+        <p>
+          Est-ce bien votre intention ?
+        </p>
+      </div>
+      <div class="modal-footer">
+          <button class="btn btn-primary" type="button" ng-click="ok()">Oui</button>
+          <button class="btn btn-warning" type="button" ng-click="cancel()">Non</button>
+      </div>
+    </div>
+</script>
+
+
 <!-- INNER BODY -->
 <div class="inner-body extras">
 
@@ -65,7 +85,7 @@
     <div class="col-md-2" id="about-header-connexion">
       <div class="col-md-12 back-to-live-button text-left {{extrasController.playlists.playing.cls}}"
         ng-if="extrasController.playlists.playing.key !== extrasController.playlists.current.key"
-        ng-click="extrasController.switchPlaylist(extrasController.playlists.current.key)">
+        ng-click="open('lg')">
         <a>Retour au live</a>
       </div>
       <div class="col-md-12 text-left fa-container no-gutter-left">
@@ -128,4 +148,4 @@
 
 
 </div>
-<!-- end of INNER BODY>
+<!-- end of INNER BODY> -->
