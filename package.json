@@ -1,4 +1,7 @@
 {
+  "name": "VCP",
+  "version": "0.0.1",
+  "description": "Vendredi C'est Permis - Web Radio",
   "private": true,
   "devDependencies": {
     "gulp": "^3.8.8"
