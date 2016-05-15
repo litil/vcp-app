@@ -28,7 +28,8 @@ module.exports = function(config) {
       'public/assets/node_modules/angular-soundmanager2.js',
       'public/app/*.js',
       'public/app/**/*.js',
-      'public/tests/*.test.js'
+      'public/app/**/**/*.js',
+      'public/tests/*Test.js'
     ],
 
 
