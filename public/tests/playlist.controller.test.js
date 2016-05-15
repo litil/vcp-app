@@ -8,14 +8,11 @@ describe('calculator', function () {
     $controller = _$controller_;
   }));
 
-  describe('sum', function () {
-		it('1 + 1 should equal 2', function () {
+  describe('getCurrentPlaylist', function () {
+		it('Current playlist should not be null', function () {
 			var $scope = {};
 			var controller = $controller('ExtrasController', { $scope: $scope });
-			$scope.x = 1;
-			$scope.y = 2;
-			$scope.sum();
-			expect(x+y).toBe(3);
+			expect(controller.getCurrentPlaylist()).not.toBe(null);
 		});
 	});
 

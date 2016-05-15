@@ -4,7 +4,16 @@
   "description": "Vendredi C'est Permis - Web Radio",
   "private": true,
   "devDependencies": {
-    "gulp": "^3.8.8"
+    "angular": "^1.5.5",
+    "angular-mocks": "^1.5.0",
+    "gulp": "^3.8.8",
+    "jasmine-core": "^2.4.1",
+    "karma": "^0.13.22",
+    "karma-chrome-launcher": "^1.0.1",
+    "karma-jasmine": "^1.0.2"
+  },
+  "scripts": {
+    "test": "karma start karma.conf.js"
   },
   "dependencies": {
     "angular-ui-bootstrap": "^1.3.2",
