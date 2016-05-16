@@ -108,4 +108,54 @@ describe('calculator', function () {
 		});
 	});
 
+  /**
+   * This test checks the current playlist on Wednesdays, for the Paris schedule.
+   */
+  describe('getCurrentPlaylist', function () {
+		it('Paris\'s shedule - Wednesday ', function () {
+      var currentPlaylist;
+      var baseTime;
+
+      // WEDNESDAY
+      // 1am => CRG
+      baseTime = new Date(2016, 4, 18, 1, 0, 0);
+      jasmine.clock().mockDate(baseTime);
+      expect(baseTime.getDay()).toEqual(3);
+      currentPlaylist = playlistService.getCurrentPlaylist();
+      expect(currentPlaylist.key).toBe('CRG');
+
+      // WEDNESDAY
+      // 3am => AFR
+      baseTime = new Date(2016, 4, 18, 3, 0, 0);
+      jasmine.clock().mockDate(baseTime);
+      expect(baseTime.getDay()).toEqual(3);
+      currentPlaylist = playlistService.getCurrentPlaylist();
+      expect(currentPlaylist.key).toBe('AFR');
+
+      // WEDNESDAY
+      // 7am => CRG
+      baseTime = new Date(2016, 4, 18, 7, 0, 0);
+      jasmine.clock().mockDate(baseTime);
+      expect(baseTime.getDay()).toEqual(3);
+      currentPlaylist = playlistService.getCurrentPlaylist();
+      expect(currentPlaylist.key).toBe('MRN');
+
+      // WEDNESDAY
+      // 1pm => CRG
+      baseTime = new Date(2016, 4, 18, 13, 0, 0);
+      jasmine.clock().mockDate(baseTime);
+      expect(baseTime.getDay()).toEqual(3);
+      currentPlaylist = playlistService.getCurrentPlaylist();
+      expect(currentPlaylist.key).toBe('CRG');
+
+      // WEDNESDAY
+      // 11pm => CRG
+      baseTime = new Date(2016, 4, 18, 23, 0, 0);
+      jasmine.clock().mockDate(baseTime);
+      expect(baseTime.getDay()).toEqual(3);
+      currentPlaylist = playlistService.getCurrentPlaylist();
+      expect(currentPlaylist.key).toBe('CRG');
+		});
+	});
+
 });
