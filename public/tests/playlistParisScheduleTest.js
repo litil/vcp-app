@@ -1,4 +1,4 @@
-describe('calculator', function () {
+describe('Playlist', function () {
 
   beforeEach(module('vcpProject'));
 
