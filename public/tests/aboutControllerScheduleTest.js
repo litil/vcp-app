@@ -1,4 +1,4 @@
-describe('getCurrentSlotCls', function () {
+describe('Paris\'s shedule', function () {
 
   beforeEach(module('vcpProject'));
 
@@ -17,11 +17,10 @@ describe('getCurrentSlotCls', function () {
    * playlist is the current one (depending on the schedule) or '' if it's not
    * the current one.
    */
-  describe('getCurrentSlotCls', function () {
-		it('Paris\'s shedule - get current slot ', function () {
+  describe('Get current slot', function () {
+		it('Monday -> Friday - Morning', function () {
       var cssClass;
       var baseTime;
-
 
       // Monday -> Friday
       // 6am -> 11am
@@ -29,14 +28,59 @@ describe('getCurrentSlotCls', function () {
       jasmine.clock().mockDate(baseTime);
       expect(baseTime.getDay()).toEqual(1);
 
+      // get the about controller with the correct current playlist in the scope
       var $scope = {};
       $scope.playlists = {};
       $scope.playlists.current = playlistService.getCurrentPlaylist();
       var aboutController = $controller('AboutController', { $scope: $scope });
 
+      // get the CSS class for the given slot
       cssClass = aboutController.getCurrentSlotCls([1, 2, 3, 4, 5], 6, 11);
       expect(cssClass).toBe('morning');
 		});
+
+    it('Monday -> Wenesday - Cruising', function () {
+      var cssClass;
+      var baseTime;
+
+      // Monday -> Wenesday
+      // 11am -> 2am
+      baseTime = new Date(2016, 4, 16, 12, 0, 0);
+      jasmine.clock().mockDate(baseTime);
+      expect(baseTime.getDay()).toEqual(1);
+
+      // get the about controller with the correct current playlist in the scope
+      var $scope = {};
+      $scope.playlists = {};
+      $scope.playlists.current = playlistService.getCurrentPlaylist();
+      var aboutController = $controller('AboutController', { $scope: $scope });
+
+      // get the CSS class for the given slot
+      cssClass = aboutController.getCurrentSlotCls([1, 2, 3], 11, 2);
+      expect(cssClass).toBe('cruising');
+		});
+
+    it('Thursday -> Friday - Cruising', function () {
+      var cssClass;
+      var baseTime;
+
+      // Thursday -> Friday
+      // 11am -> 11pm
+      baseTime = new Date(2016, 4, 19, 12, 0, 0);
+      jasmine.clock().mockDate(baseTime);
+      expect(baseTime.getDay()).toEqual(4);
+
+      // get the about controller with the correct current playlist in the scope
+      var $scope = {};
+      $scope.playlists = {};
+      $scope.playlists.current = playlistService.getCurrentPlaylist();
+      var aboutController = $controller('AboutController', { $scope: $scope });
+
+      // get the CSS class for the given slot
+      cssClass = aboutController.getCurrentSlotCls([4, 5], 11, 23);
+      expect(cssClass).toBe('cruising');
+		});
+
 	});
 
 });
