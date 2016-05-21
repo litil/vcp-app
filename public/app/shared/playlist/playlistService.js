@@ -109,7 +109,6 @@
             if (currentPlaylistDay == day) {
               // we're in the current day
               angular.forEach(playlistValue, function(dayValue) {
-                debugger;
                 if (time >= dayValue.start && time < dayValue.end) {
                   // we're in the correct time slot
                   var currPlaylistConst = playlists.normal[currentPlaylistKey];

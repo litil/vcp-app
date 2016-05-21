@@ -3,18 +3,14 @@ describe('getCurrentSlotCls', function () {
   beforeEach(module('vcpProject'));
 
   var $controller;
-
-    beforeEach(inject(function(_$controller_){
-      // The injector unwraps the underscores (_) from around the parameter names when matching
-      $controller = _$controller_;
-    }));
-
-/*
-  var aboutController;
-  beforeEach(inject(function($injector) {
-    aboutController = $injector.get('AboutController');
+  beforeEach(inject(function(_$controller_){
+    $controller = _$controller_;
   }));
-*/
+
+  var playlistService;
+  beforeEach(inject(function($injector) {
+    playlistService = $injector.get('PlaylistService');
+  }));
 
   /**
    * This test checks the method returning the playlist CSS class if the
@@ -26,14 +22,18 @@ describe('getCurrentSlotCls', function () {
       var cssClass;
       var baseTime;
 
-      var $scope = {};
-      var aboutController = $controller('AboutController', { $scope: $scope });
 
       // Monday -> Friday
       // 6am -> 11am
       baseTime = new Date(2016, 4, 16, 8, 0, 0);
       jasmine.clock().mockDate(baseTime);
       expect(baseTime.getDay()).toEqual(1);
+
+      var $scope = {};
+      $scope.playlists = {};
+      $scope.playlists.current = playlistService.getCurrentPlaylist();
+      var aboutController = $controller('AboutController', { $scope: $scope });
+
       cssClass = aboutController.getCurrentSlotCls([1, 2, 3, 4, 5], 6, 11);
       expect(cssClass).toBe('morning');
 		});
