@@ -319,7 +319,9 @@
            */
           i.prototype.stopAndClean = function() {
               angularPlayerParam.stop();
-              angularPlayerParam.removeSong(this.song.id, 0);
+              if(this.song !== undefined){
+                angularPlayerParam.removeSong(this.song.id, 0);
+              }
           },
 
           /**

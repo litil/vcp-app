@@ -245,6 +245,7 @@ body {
 
 @header-delta-text-filet: 2px;
 .logo {
+  cursor: pointer;
   border-bottom: @header-filet;
   padding: 0px 30px 0px 0px;
   fill: @morning-weekend;
