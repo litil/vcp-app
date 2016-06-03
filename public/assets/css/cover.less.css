@@ -500,29 +500,39 @@ body {
     .ticket-cover {
       width: @cover-width;
       height: @ticket-height;
-      img {
+
+      .ticket-cover-with-img {
+        img {
+          width: @cover-width;
+          height: @ticket-height;
+        }
+        .ticket-cover-overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-size: contain;
+          opacity: .4;
+        }
+        .ticket-cover-overlay-black {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-size: contain;
+          opacity: .4;
+          background-color: #000;
+        }
+      }
+
+      .ticket-cover-default {
         width: @cover-width;
         height: @ticket-height;
       }
-      .ticket-cover-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-size: contain;
-        opacity: .4;
-      }
-      .ticket-cover-overlay-black {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-size: contain;
-        opacity: .4;
-        background-color: #000;
-      }
+
+
     }
     .ticket-right-play {
       position: absolute;
