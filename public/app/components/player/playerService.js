@@ -153,6 +153,7 @@
             var artistTitleArray = artistTitle.split(" - ");
             var artist = artistTitleArray[0];
             var title = artistTitleArray[1];
+            var img = null;
 
             // check title and artist length
             // ellipsis them of > 64
@@ -174,6 +175,11 @@
               } else {
                 isFirstSong = false;
               }
+
+              // get the song image
+              if(id !== undefined && id !== '00000000000000000000000000000000'){
+                img = 'http://player.vendredicestpermis.com/img/covers/' + id;
+              }
             }
 
             // build  the song object
@@ -182,7 +188,8 @@
               'artist' : artist,
               'title' : title,
               'duration' : rawData.duration * 1000,
-              'first' : isFirstSong
+              'first' : isFirstSong,
+              'img': img
             }
 
             // if the player has not been initialized, do it
