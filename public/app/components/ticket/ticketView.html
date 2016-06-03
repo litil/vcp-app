@@ -83,7 +83,7 @@
             <!-- PROGRESS BAR -->
             <div
               class="row progress-bar-container"
-              ng-if="ticketController.song.first === false">
+              ng-class="{'show': ticketController.song.first === false, 'hidden': ticketController.song.first === true}">
               <div class="col-md-12 ticket-label-container">
                 <label>{{ticketController.getCurrentPosition() | time}} / {{ticketController.song.duration | time}}</label>
               </div>
@@ -97,7 +97,9 @@
             </div>
 
             <!-- DATE & BARCODE -->
-            <div class="row ticket-footer-container">
+            <div
+              class="row ticket-footer-container"
+              ng-class="{'progress-hidden': ticketController.song.first === true}">
               <div class="col-md-8 ticket-label-container">
                 <label>SAT 1ST NOV. 5:19 AM</label>
                 <div barcode class="svg-code"></div><!-- see svgCodeDirective -->

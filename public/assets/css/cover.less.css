@@ -449,6 +449,10 @@ body {
       padding-left: 0px;
     }
     .ticket-footer-container {
+      &.progress-hidden {
+        margin-top: 185px;
+      }
+
       .ticket-label-container {
         margin-top: 15px;
       }
