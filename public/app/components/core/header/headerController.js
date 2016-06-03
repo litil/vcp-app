@@ -20,6 +20,7 @@
    */
   function HeaderController($auth, $state, $http, $rootScope, $scope, $location, $window, $uibModal, PlayerService, PlaylistService) {
     var vm = this;
+    $rootScope.location = $location;
 
     $scope.isActive = function (viewLocation) {
       if (viewLocation === $location.path()){
@@ -30,6 +31,9 @@
     };
 
     $scope.open = function (size) {
+      if (this.location.path() === '/ticket') {
+        return;
+      }
       var modalInstance = $uibModal.open({
         animation: false,
         templateUrl: 'myModalContent.html',
