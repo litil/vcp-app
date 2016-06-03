@@ -30,6 +30,7 @@
           var isPlaying = false;  // when we arrive on the application, the player is not playing
           var isMuted = false;
           var lastReset = 0;
+          var isFirstSong = null;
 
           var song = {};
           var playingSong = {};
@@ -166,6 +167,13 @@
             //TODO Player - replace title with id once the id is correctly sent by server
             if (this.isSameSong(title, playingSong.title, id, playingSong.id) === false){
               this.resetProgress();
+
+              // init isFirstSong
+              if (isFirstSong == null){
+                isFirstSong = true;
+              } else {
+                isFirstSong = false;
+              }
             }
 
             // build  the song object
@@ -173,7 +181,8 @@
               'id' : id,
               'artist' : artist,
               'title' : title,
-              'duration' : rawData.duration * 1000
+              'duration' : rawData.duration * 1000,
+              'first' : isFirstSong
             }
 
             // if the player has not been initialized, do it

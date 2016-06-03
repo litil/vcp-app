@@ -107,7 +107,6 @@
 
       return percentage;
     };
-
     /**
      * This method gets the current date from the beginning of the current song.
      * It gets it from the PlayerService.
@@ -129,7 +128,7 @@
     };
     this.isMuted = function() {
       return PlayerService.isMuted();
-    }
+    };
 
     /**
      * If the player is not playing, start it.

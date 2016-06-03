@@ -81,7 +81,9 @@
             <!-- end of PLAYISTS -->
 
             <!-- PROGRESS BAR -->
-            <div class="row progress-bar-container">
+            <div
+              class="row progress-bar-container"
+              ng-if="ticketController.song.first === false">
               <div class="col-md-12 ticket-label-container">
                 <label>{{ticketController.getCurrentPosition() | time}} / {{ticketController.song.duration | time}}</label>
               </div>
