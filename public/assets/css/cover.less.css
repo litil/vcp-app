@@ -170,6 +170,7 @@
 @big-header-filet-dark: @big-filet-size solid @body-bg-color;
 @ticket-filet: @small-filet-size solid @body-bg-color;
 @about-filet: @small-filet-size solid @body-bg-color;
+@cover-filet: @main-filet-size solid @body-bg-color;
 
 /* misc */
 
@@ -530,9 +531,33 @@ body {
       .ticket-cover-default {
         width: @cover-width;
         height: @ticket-height;
+
+        #ticket-cover-default-container {
+          padding: 20px;
+
+          #title, #artist {
+            font-family: @KO48;
+            font-size: 60px;
+            color: @body-bg-color;
+            text-align: left;
+            text-transform: uppercase;
+            line-height: 0.9;
+            overflow: hidden;
+            white-space: nowrap;
+          }
+          #artist {
+            border-bottom: @cover-filet;
+          }
+          #logo {
+            font-size: @main-font-size;
+            font-family: @KO48;
+            color: @body-bg-color;
+            text-align: left;
+            text-transform: uppercase;
+            margin-top: 10px;
+          }
+        }
       }
-
-
     }
     .ticket-right-play {
       position: absolute;
