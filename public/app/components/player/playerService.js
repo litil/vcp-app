@@ -323,16 +323,23 @@
            * mute/unmute it, so this method would disappear.
            */
           i.prototype.pause = function() {
-              angularPlayerParam.pause();
+              timeoutWrapper(function() {
+                 angularPlayerParam.pause();
+              }, 0);
           },
 
           /**
            * This method stops the player and remove the existing track.
            */
           i.prototype.stopAndClean = function() {
-              angularPlayerParam.stop();
+              timeoutWrapper(function() {
+                 angularPlayerParam.stop();
+              }, 0);
+              
               if(this.song !== undefined){
-                angularPlayerParam.removeSong(this.song.id, 0);
+                timeoutWrapper(function(songId) {
+                   angularPlayerParam.removeSong(songId, 0);
+                }, 0, true, this.song.id);
               }
           },
 
