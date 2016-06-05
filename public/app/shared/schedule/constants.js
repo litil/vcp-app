@@ -39,7 +39,7 @@
               key: 'CRG',
               start : 0,
               end : 2,
-              displayStart : 11,
+              displayStart : 13,
               displayEnd : 2,
               nextKey : 'AFR',
               nextDay : 1
@@ -126,7 +126,7 @@
               key: 'CRG',
               start : 13,
               end : 24,
-              displayStart : 11,
+              displayStart : 13,
               displayEnd : 2,
               nextKey : 'AFR',
               nextDay : 0

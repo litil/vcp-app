@@ -47,7 +47,9 @@
         var activeSlotCls = '';
 
         angular.forEach(days, function(value) {
+          debugger;
           if(playlistDay == value) {
+            debugger;
             if (start === playlistStart && end === playlistEnd ) {
               // TODO prolem when day + 1 (maybe do 24 + 2h for example ?)
               activeSlotCls = playlistCls;

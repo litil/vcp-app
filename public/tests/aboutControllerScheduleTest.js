@@ -18,7 +18,6 @@ describe('Paris\'s shedule', function () {
    * the current one.
    */
   describe('Get current slot', function () {
-    /*
 		it('Monday -> Friday - Morning', function () {
       var cssClass;
       var baseTime;
@@ -113,7 +112,7 @@ describe('Paris\'s shedule', function () {
       var aboutController = $controller('AboutController', { $scope: $scope });
 
       // get the CSS class for the given slot
-      cssClass = aboutController.getCurrentSlotCls([4, 5], 23, 2);
+      cssClass = aboutController.getCurrentSlotCls([4, 5, 6], 23, 2);
       expect(cssClass).toBe('before');
 
       // Thursday -> Friday
@@ -129,10 +128,9 @@ describe('Paris\'s shedule', function () {
       var aboutController = $controller('AboutController', { $scope: $scope });
 
       // get the CSS class for the given slot
-      cssClass = aboutController.getCurrentSlotCls([4, 5], 23, 2);
+      cssClass = aboutController.getCurrentSlotCls([4, 5, 6], 23, 2);
       expect(cssClass).toBe('before');
 		});
-    */
 
     it('Thursday -> Friday - Before - Test Saturday 1am', function () {
       var cssClass;
@@ -155,6 +153,89 @@ describe('Paris\'s shedule', function () {
       expect(cssClass).toBe('before');
 		});
 
+    it('Saturday -> Sunday - Morning Weekend', function () {
+      var cssClass;
+      var baseTime;
+
+      // Saturday -> Sunday
+      // 6am -> 1pm
+      baseTime = new Date(2016, 5, 4, 8, 30, 0);
+      jasmine.clock().mockDate(baseTime);
+      expect(baseTime.getDay()).toEqual(6);
+
+      // get the about controller with the correct current playlist in the scope
+      var $scope = {};
+      $scope.playlists = {};
+      $scope.playlists.current = playlistService.getCurrentPlaylist();
+      var aboutController = $controller('AboutController', { $scope: $scope });
+
+      // get the CSS class for the given slot
+      cssClass = aboutController.getCurrentSlotCls([0, 6], 6, 13);
+      expect(cssClass).toBe('morning-weekend');
+		});
+
+    it('Saturday -> Sunday - Cruising', function () {
+      var cssClass;
+      var baseTime;
+
+      // Saturday -> Sunday
+      // 1pm -> 2am
+      baseTime = new Date(2016, 5, 4, 15, 30, 0);
+      jasmine.clock().mockDate(baseTime);
+      expect(baseTime.getDay()).toEqual(6);
+
+      // get the about controller with the correct current playlist in the scope
+      var $scope = {};
+      $scope.playlists = {};
+      $scope.playlists.current = playlistService.getCurrentPlaylist();
+      var aboutController = $controller('AboutController', { $scope: $scope });
+
+      // get the CSS class for the given slot
+      cssClass = aboutController.getCurrentSlotCls([0, 6], 13, 2);
+      expect(cssClass).toBe('cruising');
+    });
+
+    it('Saturday -> Sunday - Monday Morning - Cruising', function () {
+      var cssClass;
+      var baseTime;
+
+      // Saturday -> Sunday
+      // 1pm -> 2am
+      baseTime = new Date(2016, 5, 6, 1, 30, 0);
+      jasmine.clock().mockDate(baseTime);
+      expect(baseTime.getDay()).toEqual(1);
+
+      // get the about controller with the correct current playlist in the scope
+      var $scope = {};
+      $scope.playlists = {};
+      $scope.playlists.current = playlistService.getCurrentPlaylist();
+      var aboutController = $controller('AboutController', { $scope: $scope });
+
+      // get the CSS class for the given slot
+      cssClass = aboutController.getCurrentSlotCls([0, 1, 6], 13, 2);
+      expect(cssClass).toBe('cruising');
+    });
+
+    it('Monday -> Sunday - Cruising', function () {
+      var cssClass;
+      var baseTime;
+
+      // Monday -> Sunday
+      // 2am -> 6am
+      baseTime = new Date(2016, 5, 4, 3, 30, 0);
+      jasmine.clock().mockDate(baseTime);
+      expect(baseTime.getDay()).toEqual(6);
+
+      // get the about controller with the correct current playlist in the scope
+      var $scope = {};
+      $scope.playlists = {};
+      $scope.playlists.current = playlistService.getCurrentPlaylist();
+      var aboutController = $controller('AboutController', { $scope: $scope });
+
+      // get the CSS class for the given slot
+      cssClass = aboutController.getCurrentSlotCls([0, 1, 2, 3, 4, 5, 6], 2, 6);
+      expect(cssClass).toBe('after');
+    });
 	});
 
 });
