@@ -65,7 +65,9 @@
       </div>
 
       <!-- PROGRESS BAR -->
-      <div class="row progress-bar-container">
+      <div
+        class="row progress-bar-container"
+        ng-class="{'show': song.first === false, 'hidden': song.first === true}">
         <div class="col-md-12 progress-label-container">
           <label>
             {{extrasController.getCurrentPosition.html | time}} / {{song.duration | time}}
@@ -87,7 +89,8 @@
         ng-click="open('lg')">
         <a>Retour au live</a>
       </div>
-      <div class="col-md-12 text-left fa-container no-gutter-left">
+      <div
+        class="col-md-12 text-left fa-container no-gutter-left">
         <i
           class="fa fa-volume-off"
           ng-class="{'show': extrasController.isMuted(), 'hidden': !extrasController.isPlaying() || !extrasController.isMuted()}"
