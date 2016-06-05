@@ -785,6 +785,7 @@ body {
 
         .fa {
           font-size: @bigger-font-size;
+          cursor: pointer;
         }
       }
 

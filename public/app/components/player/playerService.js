@@ -277,7 +277,9 @@
            * mute/unmute it.
            */
           i.prototype.mute = function() {
-              return angularPlayerParam.mute();
+            timeoutWrapper(function() {
+               angularPlayerParam.mute();
+            }, 0);
           },
 
           /**
@@ -285,7 +287,9 @@
            * mute/unmute it.
            */
           i.prototype.unmute = function() {
-              return angularPlayerParam.unmute();
+            timeoutWrapper(function() {
+               angularPlayerParam.unmute();
+            }, 0);
           },
 
           /**
