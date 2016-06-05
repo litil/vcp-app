@@ -24,7 +24,7 @@
 						// Loop through each rejection reason and redirect to the login
 						// state if one is encountered
 						angular.forEach(rejectionReasons, function(value, key) {
-							if(rejection.data.error === value) {
+							if(rejection.data != undefined && rejection.data.error === value) {
 								// If we get a rejection corresponding to one of the reasons
 								// in our array, we know we need to authenticate the user so
 								// we can remove the current user from local storage
