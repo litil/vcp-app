@@ -371,10 +371,18 @@
                       artist: this.playingRawData.server_name + "stream",
                       url: this.url
                   };
-                  angularPlayerParam.addTrack(this.song);
+
+                  // to prevent digest $apply error in console, call addTrack and
+                  // play methods inside $timeout
+                  // see https://github.com/perminder-klair/angular-soundmanager2/issues/53
+                  timeoutWrapper(function(song) {
+                     angularPlayerParam.addTrack(song);
+                  }, 0, true, this.song);
 
                   // start the player
-                  angularPlayerParam.play();
+                  timeoutWrapper(function() {
+                     angularPlayerParam.play();
+                  }, 0);
                 }.bind(this)), this
           },
 
