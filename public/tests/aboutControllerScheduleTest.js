@@ -37,6 +37,15 @@ describe('Paris\'s shedule', function () {
       // get the CSS class for the given slot
       cssClass = aboutController.getCurrentSlotCls([1, 2, 3, 4, 5], 6, 11);
       expect(cssClass).toBe('morning');
+
+      // check that the other slots are not active
+      expect(aboutController.getCurrentSlotCls([1, 2, 3], 11, 2)).toBe('');
+      expect(aboutController.getCurrentSlotCls([4, 5], 11, 23)).toBe('');
+      expect(aboutController.getCurrentSlotCls([4, 5, 6], 23, 2)).toBe('');
+      expect(aboutController.getCurrentSlotCls([0, 6], 6, 13)).toBe('');
+      expect(aboutController.getCurrentSlotCls([0, 1, 6], 13, 2)).toBe('');
+      expect(aboutController.getCurrentSlotCls([0, 6], 13, 2)).toBe('');
+      expect(aboutController.getCurrentSlotCls([0, 1, 6], 13, 2)).toBe('');
 		});
 
     it('Monday -> Wenesday - Cruising', function () {
@@ -72,6 +81,15 @@ describe('Paris\'s shedule', function () {
       // get the CSS class for the given slot
       cssClass = aboutController.getCurrentSlotCls([1, 2, 3], 11, 2);
       expect(cssClass).toBe('cruising');
+
+      // check that the other slots are not active
+      expect(aboutController.getCurrentSlotCls([1, 2, 3, 4, 5], 6, 11)).toBe('');
+      expect(aboutController.getCurrentSlotCls([4, 5], 11, 23)).toBe('');
+      expect(aboutController.getCurrentSlotCls([4, 5, 6], 23, 2)).toBe('');
+      expect(aboutController.getCurrentSlotCls([0, 6], 6, 13)).toBe('');
+      expect(aboutController.getCurrentSlotCls([0, 1, 6], 13, 2)).toBe('');
+      expect(aboutController.getCurrentSlotCls([0, 1, 2, 3, 4, 5, 6], 2, 6)).toBe('');
+      expect(aboutController.getCurrentSlotCls([0, 6], 13, 2)).toBe('');
 		});
 
     it('Thursday -> Friday - Cruising', function () {
@@ -93,6 +111,15 @@ describe('Paris\'s shedule', function () {
       // get the CSS class for the given slot
       cssClass = aboutController.getCurrentSlotCls([4, 5], 11, 23);
       expect(cssClass).toBe('cruising');
+
+      // check that the other slots are not active
+      expect(aboutController.getCurrentSlotCls([1, 2, 3, 4, 5], 6, 11)).toBe('');
+      expect(aboutController.getCurrentSlotCls([1, 2, 3], 11, 2)).toBe('');
+      expect(aboutController.getCurrentSlotCls([4, 5, 6], 23, 2)).toBe('');
+      expect(aboutController.getCurrentSlotCls([0, 6], 6, 13)).toBe('');
+      expect(aboutController.getCurrentSlotCls([0, 1, 6], 13, 2)).toBe('');
+      expect(aboutController.getCurrentSlotCls([0, 1, 2, 3, 4, 5, 6], 2, 6)).toBe('');
+      expect(aboutController.getCurrentSlotCls([0, 6], 13, 2)).toBe('');
 		});
 
     it('Thursday -> Friday - Before', function () {
@@ -130,6 +157,15 @@ describe('Paris\'s shedule', function () {
       // get the CSS class for the given slot
       cssClass = aboutController.getCurrentSlotCls([4, 5, 6], 23, 2);
       expect(cssClass).toBe('before');
+
+      // check that the other slots are not active
+      expect(aboutController.getCurrentSlotCls([1, 2, 3, 4, 5], 6, 11)).toBe('');
+      expect(aboutController.getCurrentSlotCls([1, 2, 3], 11, 2)).toBe('');
+      expect(aboutController.getCurrentSlotCls([4, 5], 11, 23)).toBe('');
+      expect(aboutController.getCurrentSlotCls([0, 6], 6, 13)).toBe('');
+      expect(aboutController.getCurrentSlotCls([0, 1, 6], 13, 2)).toBe('');
+      expect(aboutController.getCurrentSlotCls([0, 1, 2, 3, 4, 5, 6], 2, 6)).toBe('');
+      expect(aboutController.getCurrentSlotCls([0, 6], 13, 2)).toBe('');
 		});
 
     it('Thursday -> Friday - Before - Test Saturday 1am', function () {
@@ -151,6 +187,15 @@ describe('Paris\'s shedule', function () {
       // get the CSS class for the given slot
       cssClass = aboutController.getCurrentSlotCls([4, 5, 6], 23, 2);
       expect(cssClass).toBe('before');
+
+      // check that the other slots are not active
+      expect(aboutController.getCurrentSlotCls([1, 2, 3, 4, 5], 6, 11)).toBe('');
+      expect(aboutController.getCurrentSlotCls([1, 2, 3], 11, 2)).toBe('');
+      expect(aboutController.getCurrentSlotCls([4, 5], 11, 23)).toBe('');
+      expect(aboutController.getCurrentSlotCls([0, 6], 6, 13)).toBe('');
+      expect(aboutController.getCurrentSlotCls([0, 1, 6], 13, 2)).toBe('');
+      expect(aboutController.getCurrentSlotCls([0, 1, 2, 3, 4, 5, 6], 2, 6)).toBe('');
+      expect(aboutController.getCurrentSlotCls([0, 6], 13, 2)).toBe('');
 		});
 
     it('Saturday -> Sunday - Morning Weekend', function () {
@@ -172,6 +217,15 @@ describe('Paris\'s shedule', function () {
       // get the CSS class for the given slot
       cssClass = aboutController.getCurrentSlotCls([0, 6], 6, 13);
       expect(cssClass).toBe('morning-weekend');
+
+      // check that the other slots are not active
+      expect(aboutController.getCurrentSlotCls([1, 2, 3, 4, 5], 6, 11)).toBe('');
+      expect(aboutController.getCurrentSlotCls([1, 2, 3], 11, 2)).toBe('');
+      expect(aboutController.getCurrentSlotCls([4, 5], 11, 23)).toBe('');
+      expect(aboutController.getCurrentSlotCls([4, 5, 6], 23, 2)).toBe('');
+      expect(aboutController.getCurrentSlotCls([0, 1, 6], 13, 2)).toBe('');
+      expect(aboutController.getCurrentSlotCls([0, 1, 2, 3, 4, 5, 6], 2, 6)).toBe('');
+      expect(aboutController.getCurrentSlotCls([0, 6], 13, 2)).toBe('');
 		});
 
     it('Saturday -> Sunday - Cruising', function () {
@@ -191,8 +245,16 @@ describe('Paris\'s shedule', function () {
       var aboutController = $controller('AboutController', { $scope: $scope });
 
       // get the CSS class for the given slot
-      cssClass = aboutController.getCurrentSlotCls([0, 6], 13, 2);
+      cssClass = aboutController.getCurrentSlotCls([0, 1, 6], 13, 2);
       expect(cssClass).toBe('cruising');
+
+      // check that the other slots are not active
+      expect(aboutController.getCurrentSlotCls([1, 2, 3, 4, 5], 6, 11)).toBe('');
+      expect(aboutController.getCurrentSlotCls([1, 2, 3], 11, 2)).toBe('');
+      expect(aboutController.getCurrentSlotCls([4, 5], 11, 23)).toBe('');
+      expect(aboutController.getCurrentSlotCls([4, 5, 6], 23, 2)).toBe('');
+      expect(aboutController.getCurrentSlotCls([0, 6], 6, 13)).toBe('');
+      expect(aboutController.getCurrentSlotCls([0, 1, 2, 3, 4, 5, 6], 2, 6)).toBe('');
     });
 
     it('Saturday -> Sunday - Monday Morning - Cruising', function () {
@@ -214,6 +276,14 @@ describe('Paris\'s shedule', function () {
       // get the CSS class for the given slot
       cssClass = aboutController.getCurrentSlotCls([0, 1, 6], 13, 2);
       expect(cssClass).toBe('cruising');
+
+      // check that the other slots are not active
+      expect(aboutController.getCurrentSlotCls([1, 2, 3, 4, 5], 6, 11)).toBe('');
+      expect(aboutController.getCurrentSlotCls([1, 2, 3], 11, 2)).toBe('');
+      expect(aboutController.getCurrentSlotCls([4, 5], 11, 23)).toBe('');
+      expect(aboutController.getCurrentSlotCls([4, 5, 6], 23, 2)).toBe('');
+      expect(aboutController.getCurrentSlotCls([0, 6], 6, 13)).toBe('');
+      expect(aboutController.getCurrentSlotCls([0, 1, 2, 3, 4, 5, 6], 2, 6)).toBe('');
     });
 
     it('Monday -> Sunday - Cruising', function () {
@@ -235,6 +305,14 @@ describe('Paris\'s shedule', function () {
       // get the CSS class for the given slot
       cssClass = aboutController.getCurrentSlotCls([0, 1, 2, 3, 4, 5, 6], 2, 6);
       expect(cssClass).toBe('after');
+
+      // check that the other slots are not active
+      expect(aboutController.getCurrentSlotCls([1, 2, 3, 4, 5], 6, 11)).toBe('');
+      expect(aboutController.getCurrentSlotCls([1, 2, 3], 11, 2)).toBe('');
+      expect(aboutController.getCurrentSlotCls([4, 5], 11, 23)).toBe('');
+      expect(aboutController.getCurrentSlotCls([4, 5, 6], 23, 2)).toBe('');
+      expect(aboutController.getCurrentSlotCls([0, 6], 6, 13)).toBe('');
+      expect(aboutController.getCurrentSlotCls([0, 1, 6], 13, 2)).toBe('');
     });
 	});
 
