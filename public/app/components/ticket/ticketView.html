@@ -38,7 +38,7 @@
             </div>
             <div class="row">
               <div class="col-md-12 ticket-content-container">
-                <div class="row-content fake-input">{{ticketController.song.title}}</div>
+                <div class="row-content fake-input">{{ticketController.song.title | title}}</div>
               </div>
             </div>
 
@@ -83,7 +83,7 @@
             <!-- PROGRESS BAR -->
             <div
               class="row progress-bar-container"
-              ng-class="{'show': ticketController.song.first === false, 'hidden': ticketController.song.first === true}">
+              ng-class="{'show': ticketController.song.first === false, '': ticketController.song.first === true}">
               <div class="col-md-12 ticket-label-container">
                 <label>{{ticketController.getCurrentPosition() | time}} / {{ticketController.song.duration | time}}</label>
               </div>
@@ -146,7 +146,7 @@
                     ng-class="{'show': ticketController.song.img === null, 'hidden': ticketController.song.img !== null}">
                     <div id="ticket-cover-default-container">
                       <div id="title">{{ticketController.song.artist}}</div>
-                      <div id="artist">{{ticketController.song.title}}</div>
+                      <div id="artist">{{ticketController.song.title | title}}</div>
                       <div id="logo">vcp</div>
                     </div>
                   </div>

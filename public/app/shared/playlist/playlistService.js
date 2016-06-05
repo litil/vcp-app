@@ -4,6 +4,29 @@
 
   'use strict';
 
+    // time provider to display song progress
+    angular.module("vcpProject").filter("time", function() {
+        return function(a) {
+            var b = "",
+                c = 0,
+                d = 0;
+            return a && angular.isNumber(a) && (a /= 1e3, d = Math.floor(a / 60), c = Math.round(a - 60 * d)), d = 10 > d ? "0" + d : d, d > 0 && (b = d + "' "), c = 10 > c ? "0" + c : c, b += c + '"'
+        }
+    });
+
+    // title provider to better display songs' title
+    angular.module("vcpProject").filter("title", function() {
+        return function(title) {
+          if (title != undefined && title.length > 0) {
+            if (title.indexOf('[') > -1){
+              title = title.substring(0, title.indexOf('['));
+            }
+          }
+
+          return title;
+        }
+    });
+
     /**
      * This service is used to handle all player/radio events.
      *
