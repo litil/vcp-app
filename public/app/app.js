@@ -107,12 +107,20 @@
           	cssClassnames : 'background-light'
        		}
 				})
-				.state('auth', {
-					url: '/auth',
-					templateUrl: '../app/components/auth/authView.html',
+				.state('signin', {
+					url: '/signin',
+					templateUrl: '../app/components/auth/signinView.html',
 					controller: 'AuthController as auth',
 					data : {
-          	cssClassnames : 'background-light'
+          	cssClassnames : 'background-dark'
+       		}
+				})
+				.state('signup', {
+					url: '/signup',
+					templateUrl: '../app/components/auth/signupView.html',
+					controller: 'AuthController as auth',
+					data : {
+          	cssClassnames : 'background-dark'
        		}
 				})
 				.state('users', {

@@ -16,7 +16,6 @@
 		vm.error;
 
 		vm.getUsers = function() {
-
 			//Grab the list of users from the API
 			$http.get('api/authenticate').success(function(users) {
 				vm.users = users;
@@ -29,9 +28,7 @@
 		// spot as the login method, ideally extracted out into
 		// a service. For this simpler example we'll leave it here
 		vm.logout = function() {
-
 			$auth.logout().then(function() {
-
 				// Remove the authenticated user from local storage
 				localStorage.removeItem('user');
 

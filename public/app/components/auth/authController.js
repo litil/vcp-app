@@ -10,21 +10,19 @@
 
 
     function AuthController($auth, $state, $http, $rootScope) {
-
         var vm = this;
 
         vm.loginError = false;
         vm.loginErrorText;
 
         vm.login = function() {
-
+            // get crendetials from the scope
             var credentials = {
                 email: vm.email,
                 password: vm.password
             }
 
             $auth.login(credentials).then(function() {
-
                 // Return an $http request for the now authenticated
                 // user so that we can flatten the promise chain
                 return $http.get('api/authenticate/user');
@@ -37,7 +35,6 @@
             // Because we returned the $http.get request in the $auth.login
             // promise, we can chain the next promise to the end here
             }).then(function(response) {
-
                 // Stringify the returned data to prepare it
                 // to go into local storage
                 var user = JSON.stringify(response.data.user);

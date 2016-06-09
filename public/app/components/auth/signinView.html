@@ -1,0 +1,112 @@
+<!--
+  public/app/components/auth/signupView.html
+
+  This view will show the BOARDING part of the authentication. It displays 2 fields
+  so that users can authenticate and one link to the signup part.
+-->
+
+<!--
+<div class="col-sm-4 col-sm-offset-4">
+    <div class="well">
+        <h3>Login</h3>
+        <form>
+            <div class="form-group">
+                <input type="email" class="form-control" placeholder="Email" ng-model="auth.email">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="Password" ng-model="auth.password">
+            </div>
+            <button class="btn btn-primary" ng-click="auth.login()">Submit</button>
+        </form>
+    </div>
+</div>
+-->
+
+
+
+<!-- INNER BODY -->
+<div class="inner cover">
+  <div class="row">
+    <div class="ticket col-md-4 col-md-offset-4">
+
+      <div class="row row-eq-height main-row-login">
+
+        <div class="ticket-nick ticket-nick-left"></div>
+        <div class="ticket-nick ticket-nick-right"></div>
+
+        <!-- TICKET LEFT -->
+        <div class="ticket-left">
+          <div class="ticket-login-wrapper">
+            <!-- ARTIST -->
+            <div class="row login" id="row-welcome">
+              <div class="col-md-12">
+                <h4>Boarding</h4>
+              </div>
+            </div>
+            <div class="row" id="row-login-social">
+              <div class="col-md-12">
+                <span class="login-label">
+                  Login:
+                </span>
+              </div>
+              <div class="col-md-12" id="login-social-container">
+                <i class="fa fa-facebook-square"></i>
+                <i class="fa fa-twitter-square"></i>
+              </div>
+            </div>
+
+            <div class="row" id="row-login-basic">
+              <div class="col-md-12">
+                <label class="login-label">
+                  E-mail
+                  </span>
+              </div>
+              <div class="col-md-12 login-input">
+                <input type="text" name="email">
+              </div>
+              <div class="col-md-12">
+                <label class="login-label">
+                  Password
+                  </span>
+              </div>
+              <div class="col-md-12 login-input">
+                <input type="password" name="password">
+              </div>
+            </div>
+
+            <div class="row">
+              <div id="signin-button" class="col-md-12 ticket-content-container login-button">
+                <a href="#/connexion_boarding.html">
+                    OK
+                  </span>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12 ticket-content-container signup-button">
+                  <a href="#/signup">
+                    Nouveau ? Enregistrement ici
+                  </span>
+                </div>
+              </div>
+
+            </div> <!-- end of ticket info wrapper -->
+          </div> <!-- end of TICKET LEFT -->
+
+
+          <!-- TICKET RIGHT -->
+          <div class="ticket-right">
+            <div class="row">
+              <div id="logo-container" class="col-md-12">
+                <span>
+                  VCP
+                </span>
+
+              </div>
+            </div>
+          </div> <!-- end of TICKET RIGHT -->
+
+        </div>
+      </div>
+    </div>
+  </div> <!-- end of INNER BODY>
