@@ -23,11 +23,15 @@
     $rootScope.location = $location;
 
     $scope.isActive = function (viewLocation) {
-      if (viewLocation === $location.path()){
+      var locationPath = $location.path();
+      if (viewLocation === locationPath){
         return 'active';
-      } else {
-        return '';
+      } else if (viewLocation === '/auth' &&
+          (locationPath === '/signin' || locationPath === '/signup' || locationPath === '/welcome')) {
+        return 'active';
       }
+
+      return '';
     };
 
     /**
