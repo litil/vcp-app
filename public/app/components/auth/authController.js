@@ -9,13 +9,34 @@
         .controller('AuthController', AuthController);
 
 
-    function AuthController($auth, $state, $http, $rootScope) {
+    function AuthController($auth, $state, $http, $rootScope, PlayerService, PlaylistService) {
         var vm = this;
 
         vm.loginError = false;
         vm.loginErrorText;
 
+        /**
+         * This method gets the playing playlist or the one supposed to be played
+         * and then returns its CSS class.
+         *
+         * @param the CSS class of the playing playing playlist
+         *
+         */
+        vm.getPlayingPlaylistCls = function() {
+          var playingPlaylist = null;
+          if (PlayerService.getPlayingPlaylistKey() === null) {
+            playingPlaylist = PlaylistService.getCurrentPlaylist();
+          } else {
+            playingPlaylist = PlaylistService.getPlaylist(PlayerService.getPlayingPlaylistKey());
+          }
+
+          return playingPlaylist.cls;
+        }
+
+
         vm.login = function() {
+            debugger;
+
             // get crendetials from the scope
             var credentials = {
                 email: vm.email,

@@ -18,7 +18,7 @@
         <div class="ticket-nick ticket-nick-right"></div>
 
         <!-- TICKET LEFT -->
-        <div class="ticket-left">
+        <div class="ticket-left {{authController.getPlayingPlaylistCls()}}">
           <div class="ticket-login-wrapper">
             <!-- ARTIST -->
             <div class="row login" id="row-welcome">
@@ -58,8 +58,9 @@
             </div>
 
             <div class="row">
-              <div id="signup-button" class="col-md-12 ticket-content-container login-button">
-                <a href="#/connexion_boarding.html">
+              <div
+                id="signup-button" class="col-md-12 ticket-content-container login-button">
+                <a href="#/connexion_boarding.html" class="{{authController.getPlayingPlaylistCls()}}-font">
                     creer un compte
                   </span>
                 </div>
@@ -70,7 +71,7 @@
 
 
           <!-- TICKET RIGHT -->
-          <div class="ticket-right">
+          <div class="ticket-right {{authController.getPlayingPlaylistCls()}}">
             <div class="row">
               <div id="logo-container" class="col-md-12">
                 <span>

@@ -654,6 +654,42 @@ body {
           font-size: @big-font-size;
           text-transform: uppercase;
           text-decoration: none;
+          &.morning-weekend-font {
+            color: @morning-weekend;
+          }
+          &.morning-font {
+            color: @morning;
+          }
+          &.cruising-font {
+            color: @cruising;
+          }
+          &.before-font {
+            color: @before;
+          }
+          &.after-font {
+            color: @after;
+          }
+          &.girls-night-font {
+            color: @girls-night;
+          }
+          &.on-road-font {
+            color: @on-road;
+          }
+          &.depressed-font {
+            color: @depressed;
+          }
+          &.kids-font {
+            color: @kids;
+          }
+          &.sports-font {
+            color: @sports;
+          }
+          &.eighties-font {
+            color: @eighties;
+          }
+          &.hip-hop-font {
+            color: @hip-hop;
+          }
         }
       }
       #signin-button {

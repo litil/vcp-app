@@ -110,7 +110,7 @@
 				.state('signin', {
 					url: '/signin',
 					templateUrl: '../app/components/auth/signinView.html',
-					controller: 'AuthController as auth',
+					controller: 'AuthController as authController',
 					data : {
           	cssClassnames : 'background-dark'
        		}
@@ -118,7 +118,7 @@
 				.state('signup', {
 					url: '/signup',
 					templateUrl: '../app/components/auth/signupView.html',
-					controller: 'AuthController as auth',
+					controller: 'AuthController as authController',
 					data : {
           	cssClassnames : 'background-dark'
        		}
