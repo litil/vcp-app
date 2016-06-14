@@ -19,8 +19,7 @@ class DatabaseSeeder extends Seeder
 
       $users = array(
               ['name' => 'Guillaume L', 'email' => 'guillaume@vcp.com', 'password' => Hash::make('secretg')],
-              ['name' => 'Charles N', 'email' => 'charles@vcp.com', 'password' => Hash::make('secretc')],
-              ['name' => 'Daphne DCC', 'email' => 'daphne@vcp.com', 'password' => Hash::make('secretd')],
+              ['name' => 'Charles N', 'email' => 'charles@vcp.com', 'password' => Hash::make('secretc')]
       );
 
       // Loop through each user above and create the record for them in the database

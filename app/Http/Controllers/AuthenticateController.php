@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use App\User;
+use Illuminate\Support\Facades\Hash;
 
 
 class AuthenticateController extends Controller
@@ -21,7 +22,7 @@ class AuthenticateController extends Controller
        // Apply the jwt.auth middleware to all methods in this controller
        // except for the authenticate method. We don't want to prevent
        // the user from retrieving their token if they don't already have it
-       $this->middleware('jwt.auth', ['except' => ['authenticate']]);
+       $this->middleware('jwt.auth', ['except' => ['authenticate', 'register']]);
      }
 
     public function index()
@@ -31,8 +32,24 @@ class AuthenticateController extends Controller
       return $users;
     }
 
-    public function authenticate(Request $request)
-    {
+    /**
+     * This method tries to create a user corresponding to the email/password
+     * given in the request.
+     */
+    public function register(Request $request) {
+      $newuser = $request->all();
+      $password = Hash::make($request->input('password'));
+
+      $newuser['password'] = $password;
+
+      return User::create($newuser);
+    }
+
+    /**
+     * This method autenticates the user corresponding to the email given in
+     * the request.
+     */
+    public function authenticate(Request $request) {
         $credentials = $request->only('email', 'password');
 
         try {
