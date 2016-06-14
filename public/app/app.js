@@ -47,6 +47,7 @@
 			$httpProvider.interceptors.push('redirectWhenLoggedOut');
 
 			$authProvider.loginUrl = '/api/authenticate';
+			$authProvider.signupUrl = '/api/register';
 
 			$urlRouterProvider.otherwise('/404');
 

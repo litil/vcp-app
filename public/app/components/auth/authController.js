@@ -9,7 +9,7 @@
         .controller('AuthController', AuthController);
 
 
-    function AuthController($auth, $state, $http, $rootScope, PlayerService, PlaylistService) {
+    function AuthController($auth, $state, $http, $rootScope, $location, PlayerService, PlaylistService) {
         var vm = this;
 
         vm.loginError = false;
@@ -35,8 +35,6 @@
 
 
         vm.login = function() {
-            debugger;
-
             // get crendetials from the scope
             var credentials = {
                 email: vm.email,
@@ -74,36 +72,25 @@
 
                 // Everything worked out so we can now redirect to
                 // the users state to view the data
-                $state.go('users');
+                console.log("User " + response.data.user.email + " is authenticated!");
+                $location.path('/ticket');
             });
-        }
-
-
-        $scope.register = function () {
-
-                    $http.post('/api/register',$scope.newUser)
-                        .success(function(data){
-                            $scope.email=$scope.newUser.email;
-                            $scope.password=$scope.newUser.password;
-                            $scope.login();
-                    })
-
-                };
+        };
 
         /**
          * This method signs up a user.
          */
         vm.register = function() {
-            debugger;
-
             // get crendetials from the scope
             var credentials = {
                 email: vm.email,
                 password: vm.password
             }
 
-            $auth.register(credentials).then(function() {
-                debugger;
+            $auth.signup(credentials).then(function() {
+              // Return an $http request for the now authenticated
+              // user so that we can flatten the promise chain
+              return $http.get('api/authenticate/user');
 
             // Handle errors
             }, function(error) {
@@ -132,9 +119,10 @@
 
                 // Everything worked out so we can now redirect to
                 // the users state to view the data
-                $state.go('users');
+                console.log("User " + response.data.user.email + " has been created and is authenticated!");
+                $location.path('/ticket');
             });
-        }
+        };
     }
 
 })();

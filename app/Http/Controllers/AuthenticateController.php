@@ -42,7 +42,8 @@ class AuthenticateController extends Controller
 
       $newuser['password'] = $password;
 
-      return User::create($newuser);
+      // return User::create($newuser);
+      return authenticate($request);
     }
 
     /**

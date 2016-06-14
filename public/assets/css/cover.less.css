@@ -648,6 +648,7 @@ body {
       }
       .login-button {
         background-color: @body-bg-color;
+        cursor: pointer;
         a {
           color: @morning-weekend;
           font-family: @KO51;
