@@ -18,7 +18,14 @@
           <ul class="nav masthead-nav col-md-12">
             <li class="col-md-4 {{isActive('/about')}}"><a href="#/about">About</a></li>
             <li class="col-md-4 {{isActive('/extras')}}"><a href="#/extras">Extras</a></li>
-            <li class="col-md-4 {{isActive('/auth')}}"><a href="#/signin">Connexion</a></li>
+            <li class="col-md-4 {{isActive('/auth')}}">
+              <a ng-if="!$root.currentUser.email" href="#/signin" id="header-signin">
+                Connexion
+              </a>
+              <a ng-if="$root.currentUser.email" href="#/logout" id="header-logout">
+                {{$root.currentUser.email | limitTo: 3}}
+              </a>
+            </li>
           </ul>
         </nav>
       </div>

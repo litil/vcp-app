@@ -284,6 +284,10 @@ body {
     &:hover, &:focus {
       background-color: transparent;
     }
+
+    &#header-logout {
+      text-transform: uppercase;
+    }
   }
   &.active {
     & > a {
