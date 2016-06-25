@@ -287,6 +287,9 @@ body {
 
     &#header-logout {
       text-transform: uppercase;
+      i {
+        float: right;
+      }
     }
   }
   &.active {
