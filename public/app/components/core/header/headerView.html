@@ -22,7 +22,7 @@
               <a ng-if="!$root.currentUser.email" href="#/signin" id="header-signin">
                 Connexion
               </a>
-              <a ng-if="$root.currentUser.email" href="#/logout" id="header-logout">
+              <a ng-if="$root.currentUser.email" ng-click="logout()" id="header-logout">
                 {{$root.currentUser.email | limitTo: 3}}
                 <i class="fa fa-sign-out" aria-hidden="true"></i>
               </a>

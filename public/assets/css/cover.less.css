@@ -286,6 +286,7 @@ body {
     }
 
     &#header-logout {
+      cursor: pointer;
       text-transform: uppercase;
       i {
         float: right;

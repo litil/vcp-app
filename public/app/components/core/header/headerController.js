@@ -22,6 +22,12 @@
     var vm = this;
     $rootScope.location = $location;
 
+    //TODO find a way to check the rootscope from the view
+    $scope.isAuthenticated = $rootScope.authenticated;
+    if($scope.isAuthenticated) {
+      $scope.currentUser = $rootScope.currentUser;
+    }
+
     $scope.isActive = function (viewLocation) {
       var locationPath = $location.path();
       if (viewLocation === locationPath){
@@ -77,6 +83,30 @@
         // the user wants to stay in manual mode, do nothing
       });
     };
+
+
+    /**
+     * This method logs out the user and redirects him to the ticket view
+     * if he's not already on this view.
+     */
+    $scope.logout = function() {
+
+      $auth.logout().then(function() {
+        // remove user in local storage
+        localStorage.removeItem('user');
+
+        // set authenticated flag to false
+        $rootScope.authenticated = false;
+
+        // set $rootScope.currentUser to null
+        $rootScope.currentUser = null;
+
+        // redirect to ticket view if we're not already there
+        $location.path('/ticket');
+      });
+
+    };
+
   }
 
 })();
