@@ -302,7 +302,12 @@
                 return false;
               }
             } else {
-              if (playingSongTitle !== lastSongTitle){
+              if (lastSongTitle === undefined || playingSongTitle === undefined) {
+                return false;
+              }
+
+              // for some reason, these 2 titles might not be truncated the same way
+              if (playingSongTitle.substring(0, 24) !== lastSongTitle.substring(0, 24)){
                 return false;
               }
             }
@@ -335,7 +340,7 @@
               timeoutWrapper(function() {
                  angularPlayerParam.stop();
               }, 0);
-              
+
               if(this.song !== undefined){
                 timeoutWrapper(function(songId) {
                    angularPlayerParam.removeSong(songId, 0);
