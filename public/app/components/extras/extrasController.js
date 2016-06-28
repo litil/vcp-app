@@ -135,9 +135,8 @@
        */
       this.getCurrentPercentage = function() {
         // vm.song.duration is already in ms
-        //TODO understand why it goes from 2% to 97%
+        //TODO understand why it goes from 0% to 97%
         var percentage = PlayerService.getCurrentPosition() * 95 / (vm.song.duration);
-        percentage += 2;
         if (Math.ceil(percentage) > 97) {
           percentage = 97;
         }
