@@ -16,15 +16,18 @@ post :
 
 Then deploy manually :
   cd /var/www
+  sudo rm -rf *
   git clone https://github.com/litil/vcp-app.git
   sudo chown -R ec2-user:ec2-user vcp-app/
-  cd vcp-app/ && mv * ../ && cd ..
-  # create .env file if it does not exist
+  cd vcp-app/ && mv * ../ && mv .git/ ../ && vm .env.example ../ && cd ..
+  vim .env
   sudo service httpd restart
   composer install
   sudo chmod -R 777 storage
   sudo chmod -R 777 bootstrap
+  php artisan migrate
   sudo service httpd restart
+  
 
 ## AUTOMATED DEPLOYMENT
 
