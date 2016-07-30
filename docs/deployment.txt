@@ -1,0 +1,36 @@
+# DEPLOYMENT
+
+The goal is to deploy from Rocketeer with only one command line but it still
+does not work.
+
+
+## MANUAL DEPLOYMENT
+
+For now, we can deploy on an EC2 instance (staging environment) manually. First,
+log on into the machine :
+
+  ssh -i guillaume-key-pair-virginia.pem ec2-user@ec2-54-235-28-122.compute-1.amazonaws.com
+
+Then deploy manually :
+  cd /var/www
+  git clone https://github.com/litil/vcp-app.git
+  sudo chown -R ec2-user:ec2-user vcp-app/
+  cd vcp-app/ && mv * ../ && cd ..
+  # create .env file if it does not exist
+  sudo service httpd restart
+  composer install
+  sudo chmod -R 777 storage
+  sudo chmod -R 777 bootstrap
+  sudo service httpd restart
+
+## AUTOMATED DEPLOYMENT
+
+ With Rocketeer, we can deploy from our codeing environment automatically by
+ running :
+  rocketeer deploy
+
+This works and it deploys the Laravel app into /home/guillaume. By default, it
+uses the staging environment, so now it deploys it on the EC2 instance.
+
+We have an issue when copying files from the current folder into the /var/www
+folder. For some reason, we get a 403 error.
