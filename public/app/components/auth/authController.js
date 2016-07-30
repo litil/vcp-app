@@ -99,6 +99,14 @@
                 vm.loginErrorText = error.data.error;
             });
         };
+
+        /**
+         * This method authenticates the user with the given
+         * provider (ex : Facebook, Twitter ...).
+         */
+        vm.authenticate = function(provider) {
+          $auth.authenticate(provider);
+        };
     }
 
 })();

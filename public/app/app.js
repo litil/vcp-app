@@ -6,6 +6,12 @@
 		.module('vcpProject', ['ui.router', 'satellizer', 'angularSoundManager', 'ui.bootstrap'])
 		.config(function($stateProvider, $urlRouterProvider, $authProvider, $httpProvider, $provide) {
 
+			// social authentication setup
+			// no additional setup required for Twitter
+			$authProvider.facebook({
+	      clientId: 'Facebook App ID'
+	    });
+
 			/**
 			 * This method redirects the user
  			 */
