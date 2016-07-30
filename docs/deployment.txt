@@ -8,8 +8,11 @@ does not work.
 
 For now, we can deploy on an EC2 instance (staging environment) manually. First,
 log on into the machine :
-
   ssh -i guillaume-key-pair-virginia.pem ec2-user@ec2-54-235-28-122.compute-1.amazonaws.com
+
+Most of the following command lines have been written by following this blog
+post :
+  http://www.bybigs.com/?p=35
 
 Then deploy manually :
   cd /var/www
