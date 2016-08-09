@@ -867,6 +867,7 @@ body {
 
       .back-to-live-button {
         background-color: @body-bg-color;
+        margin-top: 6px;
         padding-top: 4px;
         padding-left: 7px;
         line-height: @important-font-size + 3px;
