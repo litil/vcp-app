@@ -45,10 +45,57 @@
       }
   });
 
+  // clock filter to be used in the ticket view
+  angular.module("vcpProject").filter("clockFilter", function() {
+      return function(datetime) {
+        if (datetime.getDate === undefined) {
+          return datetime;
+        }
+
+        var month = datetime.getMonth();      // 0 - 11
+        var day = datetime.getDate();         // 1 - 31
+        var hours = datetime.getHours();      // 0 - 23
+        var minutes = datetime.getMinutes();  // 0 - 59
+        var dayOfWeek = datetime.getDay();    // 0 - 6
+
+        // build string for month
+        var monthNames = ["January", "February", "March", "April", "May", "June",
+          "July", "August", "September", "October", "November", "December"
+        ];
+        var monthStr = monthNames[month].substring(0, 3);
+
+        // build string for day
+        var daySuffix = "th";
+        if (day == 1) daySuffix = "st";
+        if (day == 2) daySuffix = "nd";
+        if (day == 3) daySuffix = "rd";
+        var dayStr = day + daySuffix;
+
+        // build string for day of week
+        var days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+        var dayOfWeekStr = days[dayOfWeek].substring(0, 3);
+
+        // build string for minutes
+        var minutesStr = (minutes < 10) ? '0' + minutes : minutes;
+
+        // build string for hours
+        // TODO we could create a function and use it for the playlistBounds filter
+        var hoursSuffix = (hours >= 12) ? 'PM' : 'AM';
+        hours = (hours > 12) ? hours -12 : hours;
+        hours = (hours == '00') ? 12 : hours;
+        var hoursStr = hours + ':' + minutesStr + hoursSuffix;
+
+
+        var fullDateStr = dayOfWeekStr + ' ' + dayStr + ' ' + monthStr + '. ' + hoursStr;
+        return fullDateStr.toUpperCase();
+      }
+  });
+
+
   /**
    * Constructor
    */
-  function TicketController($auth, $state, $http, $rootScope, $interval, PlayerService, PlaylistService) {
+  function TicketController($auth, $state, $http, $rootScope, $interval, $timeout, PlayerService, PlaylistService) {
       var vm = this;
 
     // set default value into vm.song
@@ -59,6 +106,15 @@
       'duration' : 4*60*1000
     }
 
+    // initialise the time variable
+    vm.clock = "loading clock...";
+    vm.tickInterval = 1000;
+    var tick = function () {
+        vm.clock = new Date();
+        $timeout(tick, vm.tickInterval); // reset the timer
+    }
+    // Start the timer
+    $timeout(tick, vm.tickInterval);
 
     /**
      * This method is called when we receive the response from the server.

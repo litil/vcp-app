@@ -101,7 +101,7 @@
               class="row ticket-footer-container"
               ng-class="{'progress-hidden': ticketController.song.first === true}">
               <div class="col-md-8 ticket-label-container">
-                <label>SAT 1ST NOV. 5:19 AM</label>
+                <label>{{ticketController.clock | clockFilter}}</label>
                 <div barcode class="svg-code"></div><!-- see svgCodeDirective -->
               </div>
               <div class="col-md-2 small-icon-container" id="volume-container" ng-class="{'muted': ticketController.isMuted()}">
