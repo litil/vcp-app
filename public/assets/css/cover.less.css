@@ -426,6 +426,9 @@ body {
     .ticket-label-playlist {
       padding-left: 7px;
     }
+    #ticket-actual-next-container {
+      margin-top: 10px;
+    }
     .row-content {
       font-family: @KO51;
       font-size: @important-font-size;
