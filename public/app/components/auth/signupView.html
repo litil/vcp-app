@@ -27,33 +27,26 @@
               </div>
             </div>
             <div class="row" id="row-login-social">
-              <div class="col-md-12">
-                <span class="login-label">
-                  Check-in with:
-                </span>
-              </div>
               <div class="col-md-12" id="login-social-container">
-                <i class="fa fa-facebook-square"></i>
-                <i class="fa fa-twitter-square"></i>
+                <span class="login-label login-with-label">
+                  Check-in with :
+                </span>
+                <i class="fa fa-facebook-square" ng-click="authController.authenticate('facebook')"></i>
+                <i class="fa fa-twitter-square" ng-click="authController.authenticate('twitter')"></i>
               </div>
             </div>
 
             <div class="row" id="row-login-basic">
               <div class="col-md-12">
                 <label class="login-label">
-                  E-mail
+                  Or :
                   </span>
               </div>
               <div class="col-md-12 login-input">
-                <input type="text" name="email" ng-model="authController.email">
-              </div>
-              <div class="col-md-12">
-                <label class="login-label">
-                  Password
-                  </span>
+                <input type="text" name="email" placeholder="email" ng-model="authController.email">
               </div>
               <div class="col-md-12 login-input">
-                <input type="password" name="password" ng-model="authController.password">
+                <input type="password" name="password" placeholder="password" ng-model="authController.password">
               </div>
             </div>
 
