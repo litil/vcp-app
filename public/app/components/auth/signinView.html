@@ -38,19 +38,14 @@
             <div class="row" id="row-login-basic">
               <div class="col-md-12">
                 <label class="login-label">
-                  E-mail
+                  Or :
                   </span>
               </div>
               <div class="col-md-12 login-input">
-                <input type="text" name="email" ng-model="authController.email">
-              </div>
-              <div class="col-md-12">
-                <label class="login-label">
-                  Password
-                  </span>
+                <input type="text" name="email" placeholder="email" ng-model="authController.email">
               </div>
               <div class="col-md-12 login-input">
-                <input type="password" name="password" ng-model="authController.password">
+                <input type="password" name="password" placeholder="password" ng-model="authController.password">
               </div>
             </div>
 
@@ -64,7 +59,7 @@
 
               <div class="row">
                 <div class="col-md-12 ticket-content-container signup-button">
-                  <a href="#/signup">
+                  <a href="#/signup" id="signup-link">
                     Nouveau ? Enregistrement ici
                   </span>
                 </div>

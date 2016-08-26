@@ -731,10 +731,10 @@ body {
         margin-bottom: 10px;
       }
       #row-login-basic {
-        margin-top: 5px;
+        margin-top: 15px;
       }
       .signup-button {
-        margin-top: 25px;
+        margin-top: 30px;
         a {
           color: @font-grey-color;
           font-family: @KO31;
@@ -751,6 +751,9 @@ body {
             border-top: 0;
             height: 5px;
           }
+        }
+        a#signup-link {
+          padding: 0px 7px 2px 7px;
         }
       }
     }
