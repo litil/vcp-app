@@ -5,25 +5,6 @@
   so that users can authenticate and one link to the signup part.
 -->
 
-<!--
-<div class="col-sm-4 col-sm-offset-4">
-    <div class="well">
-        <h3>Login</h3>
-        <form>
-            <div class="form-group">
-                <input type="email" class="form-control" placeholder="Email" ng-model="auth.email">
-            </div>
-            <div class="form-group">
-                <input type="password" class="form-control" placeholder="Password" ng-model="auth.password">
-            </div>
-            <button class="btn btn-primary" ng-click="auth.login()">Submit</button>
-        </form>
-    </div>
-</div>
--->
-
-
-
 <!-- INNER BODY -->
 <div class="inner cover">
   <div class="row">
@@ -44,15 +25,14 @@
               </div>
             </div>
             <div class="row" id="row-login-social">
-              <div class="col-md-12">
-                <span class="login-label">
-                  Login:
-                </span>
-              </div>
               <div class="col-md-12" id="login-social-container">
+                <span class="login-label login-with-label">
+                  Login with :
+                </span>
                 <i class="fa fa-facebook-square" ng-click="authController.authenticate('facebook')"></i>
                 <i class="fa fa-twitter-square" ng-click="authController.authenticate('twitter')"></i>
               </div>
+
             </div>
 
             <div class="row" id="row-login-basic">
