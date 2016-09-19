@@ -103,7 +103,7 @@
       'id' : 0,
       'artist' : 'The Artist',
       'title' : 'The Title',
-      'duration' : 4*60*1000
+      'duration' : 3*60*1000
     }
 
     // initialise the time variable

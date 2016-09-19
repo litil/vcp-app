@@ -104,7 +104,7 @@
                 <label>{{ticketController.clock | clockFilter}}</label>
                 <div barcode class="svg-code"></div><!-- see svgCodeDirective -->
               </div>
-              <div class="col-md-2 small-icon-container" id="volume-container" ng-class="{'muted': ticketController.isMuted()}">
+              <div class="col-md-1 col-md-offset-1 small-icon-container" id="volume-container" ng-class="{'muted': ticketController.isMuted()}">
                 <i
                   class="fa fa-volume-off"
                   ng-class="{'show': ticketController.isMuted(), 'hidden': !ticketController.isMuted()}"

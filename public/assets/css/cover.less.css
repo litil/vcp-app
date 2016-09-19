@@ -473,9 +473,6 @@ body {
       #clock {
         margin-top: 12px;
       }
-      #volume-container {
-        margin-top: 6px;
-      }
       div.svg-code {
         display: inline;
         svg-code {
@@ -490,6 +487,10 @@ body {
         .fa-volume-up, .fa-volume-off {
           cursor: pointer;
         }
+      }
+      #volume-container {
+        margin-top: 6px;
+        text-align: left;
       }
     }
   }
