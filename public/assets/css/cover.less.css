@@ -884,6 +884,9 @@ body {
         padding-left: 5px;
         margin-top: 25px;
 
+        &.no-button {
+        margin-top: 5px;
+        }
         .fa {
           font-size: @bigger-font-size;
           cursor: pointer;
@@ -970,19 +973,21 @@ body {
     padding-left: 0px;
 
     .playlist-title, .playlist-sub {
-      font-family: @KO31;
       text-transform: uppercase;
     }
 
     .playlist-title {
-      font-size: @bigger-font-size;
-      font-weight: bold;
-      padding: 10px 0px 0px 10px;
+      font-family: @KO48;
+      font-size: 59px;
+      padding: 15px 0px 0px 10px;
+      line-height: 48px;
+      letter-spacing: 2px;
     }
 
     .playlist-sub {
-      font-size: @small-font-size;
-      padding: 0px 0px 10px 10px;
+      font-family: @KO31;
+      font-size: @main-font-size;
+      padding: 0px 0px 5px 10px;
       text-transform: uppercase;
     }
   }

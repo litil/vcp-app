@@ -90,7 +90,8 @@
         <a>Retour au live</a>
       </div>
       <div
-        class="col-md-12 text-left fa-container no-gutter-left">
+        class="col-md-12 text-left fa-container no-gutter-left"
+        ng-class="{'no-button': extrasController.playlists.playing.key === extrasController.playlists.current.key}">
         <i
           class="fa fa-volume-off"
           ng-class="{'show': extrasController.isMuted(), 'hidden': !extrasController.isPlaying() || !extrasController.isMuted()}"
