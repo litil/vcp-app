@@ -491,7 +491,23 @@ body {
       #volume-container {
         margin-top: 6px;
         text-align: left;
+        font-size: 25px;
+
+        .fa-stack {
+          font-size: 0.5em;
+        }
+        .fa-stack > .fa-right{
+        	position:absolute;
+        	line-height:inherit;
+        	right:10%;
+        	font-size:2.8em
+        }
+        .fa-stack > .fa-nudge-left{
+            left:auto;
+        	right: 28%;
+        }
       }
+
     }
   }
 }

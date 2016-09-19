@@ -105,11 +105,20 @@
                 <div barcode class="svg-code"></div><!-- see svgCodeDirective -->
               </div>
               <div class="col-md-1 col-md-offset-1 small-icon-container" id="volume-container" ng-class="{'muted': ticketController.isMuted()}">
+                <span class="fa-stack"
+                  ng-class="{'show': ticketController.isMuted(), 'hidden': !ticketController.isMuted()}"
+                  ng-click="ticketController.togglePlay()">
+                    <i class="fa fa-volume-off fa-stack-2x fa-nudge-left"></i>
+                    <i class="fa fa-times fa-right" style="font-size:1em"></i>
+                </span>
+
+                <!--
                 <i
                   class="fa fa-volume-off"
                   ng-class="{'show': ticketController.isMuted(), 'hidden': !ticketController.isMuted()}"
                   ng-click="ticketController.togglePlay()">
                 </i>
+              -->
                 <i
                   class="fa fa-volume-up"
                   ng-class="{'show': !ticketController.isMuted(), 'hidden': ticketController.isMuted()}"
