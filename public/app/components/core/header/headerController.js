@@ -22,6 +22,22 @@
     var vm = this;
     $rootScope.location = $location;
 
+    /**
+     * This method return the playlist which is being listened. If no playlist
+     * is being listened, returns the current playlist, according to the schedule.
+     *
+     * @return the "being listened" playlist
+     */
+    $scope.getListenedPlaylist = function() {
+        var key = PlayerService.getPlayingPlaylistKey();
+
+        if (!key) {
+            return PlaylistService.getCurrentPlaylist();
+        } else {
+            return PlaylistService.getPlaylist(key);
+        }
+    }
+
     //TODO find a way to check the rootscope from the view
     $scope.isAuthenticated = $rootScope.authenticated;
     if($scope.isAuthenticated) {
