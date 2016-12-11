@@ -3,7 +3,6 @@
 The goal is to deploy from Rocketeer with only one command line but it still
 does not work.
 
-
 ## MANUAL DEPLOYMENT
 
 For now, we can deploy on an EC2 instance (staging environment) manually. First,
@@ -19,7 +18,7 @@ Then deploy manually :
   sudo rm -rf *
   git clone https://github.com/litil/vcp-app.git
   sudo chown -R ec2-user:ec2-user vcp-app/
-  cd vcp-app/ && mv * ../ && mv .git/ ../ && vm .env.example ../ && cd ..
+  cd vcp-app/ && mv * ../ && mv .git/ ../ && mv .env.example ../ && cd ..
   vim .env
   sudo service httpd restart
   composer install
@@ -27,11 +26,11 @@ Then deploy manually :
   sudo chmod -R 777 bootstrap
   php artisan migrate
   sudo service httpd restart
-  
+
 
 ## AUTOMATED DEPLOYMENT
 
- With Rocketeer, we can deploy from our codeing environment automatically by
+ With Rocketeer, we can deploy from our coding environment automatically by
  running :
   rocketeer deploy
 
