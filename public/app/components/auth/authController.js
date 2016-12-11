@@ -8,6 +8,13 @@
         .module('vcpProject')
         .controller('AuthController', AuthController);
 
+    // logo directive
+    angular.module("vcpProject").directive("logo", function() {
+      return {
+        templateUrl: "app/components/core/header/awesomeLogoDirective.html"
+      }
+    });
+
 
     function AuthController($auth, $state, $http, $rootScope, $location, PlayerService, PlaylistService) {
         var vm = this;

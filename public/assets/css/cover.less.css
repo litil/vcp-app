@@ -251,19 +251,61 @@ body {
   padding: 0px 30px 0px 0px;
   fill: @morning-weekend;
   .masthead-brand {
-    font-family: @KO31;
-    font-size: 36px;
+    font-family: @KO48;
+    font-size: 48px;
     .white-ie8-proofing;
-    margin: 10px 0px 0px 0px;
+    margin: 0px 0px -3px 0px;
     padding: 0px 0px @header-delta-text-filet 0px;
     text-transform: uppercase;
-    a:hover {
-      text-decoration: none;
+    a {
+        letter-spacing: 4px;
+        &:hover {
+          text-decoration: none;
+        }
     }
   }
   .svg-logo-play {
     float: left;
-    margin: 14px 5px 0px 0px;
+    margin: 10px 10px 0px 0px;
+
+    &.morning-weekend-font {
+      fill: @morning-weekend;
+    }
+    path {
+        &.morning {
+          fill: @morning;
+        }
+        &.cruising {
+          fill: @cruising;
+        }
+        &.before {
+          fill: @before;
+        }
+        &.after {
+          fill: @after;
+        }
+        &.girls-night {
+          fill: @girls-night;
+        }
+        &.on-road {
+          fill: @on-road;
+        }
+        &.depressed {
+          fill: @depressed;
+        }
+        &.kids {
+          fill: @kids;
+        }
+        &.sports {
+          fill: @sports;
+        }
+        &.eighties {
+          fill: @eighties;
+        }
+        &.hip-hop {
+          fill: @hip-hop;
+        }
+    }
   }
   .masthead-nav {
     padding: 0px 0px;
@@ -396,7 +438,7 @@ body {
 .ticket-left {
   min-height: @ticket-height;
   width: @ticket-width;
-  border-right: 2px dotted #7C7A80;
+  /*border-right: 2px dotted #7C7A80;*/
   .border-radius(0, 0, @ticket-radius, @ticket-radius);
 
   .ticket-info-wrapper {
@@ -565,6 +607,7 @@ body {
       .ticket-cover-default {
         width: @cover-width;
         height: @ticket-height;
+        border-left: 3px dotted @body-bg-color;
 
         #ticket-cover-default-container {
           padding: 20px;
@@ -784,15 +827,34 @@ body {
   .ticket-right {
     width: 15%;
     background-color: @morning-weekend;
-    #logo-container {
+
+    .row {
+        height: 400px;
+        border-left: 3px dotted @body-bg-color;
+        margin-left: 0px !important;
+    }
+
+    #brand-container {
       color: @font-grey-color;
-      font-family: @KO31;
-      font-size: @bigger-font-size;
+      font-family: @KO48;
+      letter-spacing: 3px;
+      font-size: 48px;
       transform: rotate(270deg);
-      margin-top: 40px;
       text-transform: uppercase;
       float: left;
+      margin-left: -5px;
+      padding: 0px 0px !important;
       /* Floating the element will essentially emulate an auto width */
+    }
+
+    #logo-container {
+        transform: rotate(270deg);
+        margin-left: -5px;
+        .svg-logo-play {
+            path {
+                fill: @font-grey-color;
+            }
+        }
     }
   }
 }
