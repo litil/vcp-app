@@ -1,0 +1,17 @@
+tail -f /var/log/apache2/access.log
+
+176.151.98.236 - - [23/Nov/2016:21:02:52 +0100] "GET /app/shared/404/404View.html HTTP/1.1" 404 520 "http://vcp.gromi.net/~guillaume/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36"
+176.151.98.236 - - [23/Nov/2016:21:02:52 +0100] "GET /app/shared/404/404View.html HTTP/1.1" 404 520 "http://vcp.gromi.net/~guillaume/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36"
+176.151.98.236 - - [23/Nov/2016:21:02:52 +0100] "GET /app/shared/404/404View.html HTTP/1.1" 404 520 "http://vcp.gromi.net/~guillaume/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36"
+176.151.98.236 - - [23/Nov/2016:21:02:52 +0100] "GET /app/shared/404/404View.html HTTP/1.1" 404 520 "http://vcp.gromi.net/~guillaume/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36"
+176.151.98.236 - - [23/Nov/2016:21:02:52 +0100] "GET /app/shared/404/404View.html HTTP/1.1" 404 520 "http://vcp.gromi.net/~guillaume/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36"
+176.151.98.236 - - [23/Nov/2016:21:02:54 +0100] "GET /app/shared/404/404View.html HTTP/1.1" 404 520 "http://vcp.gromi.net/~guillaume/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36"
+176.151.98.236 - - [23/Nov/2016:21:03:54 +0100] "GET /~guillaume/app/shared/404/404View.html HTTP/1.1" 200 635 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36"
+176.151.98.236 - - [23/Nov/2016:21:03:55 +0100] "GET /favicon.ico HTTP/1.1" 404 504 "http://vcp.gromi.net/~guillaume/app/shared/404/404View.html" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36"
+176.151.98.236 - - [23/Nov/2016:21:05:24 +0100] "GET /~guillaume/app/components/ticket/ticketView.html HTTP/1.1" 200 1801 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36"
+176.151.98.236 - - [23/Nov/2016:21:05:24 +0100] "GET /~guillaume/app/components/ticket/%7B%7BticketController.song.img%7D%7D HTTP/1.1" 500 803 "http://vcp.gromi.net/~guillaume/app/components/ticket/ticketView.html" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36"
+176.151.98.236 - - [23/Nov/2016:21:06:16 +0100] "-" 408 0 "-" "-"
+176.151.98.236 - - [23/Nov/2016:21:06:16 +0100] "-" 408 0 "-" "-"
+176.151.98.236 - - [23/Nov/2016:21:06:16 +0100] "-" 408 0 "-" "-"
+176.151.98.236 - - [23/Nov/2016:21:06:16 +0100] "-" 408 0 "-" "-"
+176.151.98.236 - - [23/Nov/2016:21:06:16 +0100] "-" 408 0 "-" "-"

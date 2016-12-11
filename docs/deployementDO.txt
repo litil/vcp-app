@@ -1,0 +1,101 @@
+## DIGITAL OCEAN
+
+Based on this tutorial :
+    https://laracasts.com/index.php/discuss/channels/laravel/install-laravel-on-digitalocean-by-lamp
+
+Step 1 - Choose a LAMP stack on Ubuntu 16.04
+
+Step 2 - Test the connection
+    go to 178.62.117.184 in your browser
+    connect to the server with : ssh root@178.62.117.184
+
+Step 3 - install dist-upgrade
+    sudo apt-get update
+    sudo apt-get dist-upgrade
+
+Step 4 - enable the Apache mod_rewrite module
+    sudo a2enmod rewrite
+    service apache2 restart
+
+Step 5 - change your mysql password
+    cat /root/.digitalocean_password
+    mysqladmin -u root -p"ba27da7b7cc0119c0262c2f236e2dd1aaaf06d65e2c96320" password {password}
+
+Step 6 - test mysql connection and create db
+    mysql -u root -p
+    create database vcp;
+
+Step 7 - Install mbstring
+    sudo apt-get install php-mbstring php7.0-mbstring php-gettext libapache2-mod-php7.0
+
+Step 8 - Install zip and unzip
+    sudo apt-get install unzip
+    sudo apt-get install zip
+
+Step 9 - install composer
+    curl -sS https://getcomposer.org/installer | php
+    sudo mv composer.phar /usr/local/bin/composer
+
+Step 10 - install git (even thought it should already be installed)
+    sudo apt-get install git
+
+Step 11 - get source code
+    git clone https://github.com/litil/vcp-app.git
+
+Step 12 - Update .env file
+    cd vcp-app
+    vim .env
+        update database name, user and password
+    sudo service apache2 reload
+
+Step 13 - Run composer
+    composer install
+
+Step 14 - Change permissions on storage and bootstrap
+    sudo chmod -R 777 storage
+    sudo chmod -R 777 bootstrap
+
+Step 15 - Run artisan migrate
+    php artisan migrate
+        if no error, the database and the .env file are correct
+
+Step 16 - Create new virtual host
+    vim /etc/apache2/sites-available/my_app.conf
+        <VirtualHost *:80>
+            ServerName my-site.com
+            ServerAlias 178.62.117.184
+
+            DocumentRoot /var/www/vcp-app/public
+            <Directory /var/www/vcp-app/public>
+                # Don't show directory index
+                Options -Indexes +FollowSymLinks +MultiViews
+
+                # Allow .htaccess files
+                AllowOverride All
+
+                # Allow web access to this directory
+                Require all granted
+            </Directory>
+
+            # Error and access logs
+            ErrorLog ${APACHE_LOG_DIR}/vcp-app.error.log
+            # Possible values include: debug, info, notice, warn, error, crit,
+            # alert, emerg.
+            LogLevel warn
+            CustomLog ${APACHE_LOG_DIR}/vcp-app.access.log combined
+        </VirtualHost>
+
+Step 17 - Enable the virtual host
+    sudo a2ensite my_app
+    sudo service apache2 reload
+
+Misc
+    http://blog.luutaa.com/cloud/setting-up-laravel-5-on-digital-ocean-ubuntu-on-apache/
+    https://laracasts.com/index.php/discuss/channels/laravel/install-laravel-on-digitalocean-by-lamp
+
+    install mcrypt
+        https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-phpmyadmin-on-ubuntu-16-04
+        sudo apt-get install phpmyadmin php-mbstring php-gettext
+        sudo phpenmod mcrypt
+        sudo phpenmod mbstring
+        sudo systemctl restart apache2
