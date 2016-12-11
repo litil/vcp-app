@@ -145,12 +145,12 @@
 
                 <!-- TICKET COVER -->
                 <div class="ticket-cover">
-                  <div class="ticket-cover-with-img"
-                  ng-class="{'show': ticketController.song.img !== null, 'hidden': ticketController.song.img === null}">
-                    <img src="{{ticketController.song.img}}"/>
-                    <div class="ticket-cover-overlay {{ticketController.playlists.current.cls}}"></div>
-                    <div class="ticket-cover-overlay-black"></div>
+                    <div class="ticket-cover-with-img-container {{ticketController.playlists.current.cls}}">
+                      <div class="ticket-cover-with-img {{ticketController.playlists.current.cls}}" style="background-image: url({{ticketController.song.img}})"
+                        ng-class="{'show': ticketController.song.img !== null, 'hidden': ticketController.song.img === null}">
+                      </div>
                   </div>
+
                   <div class="ticket-cover-default {{ticketController.playlists.current.cls}}"
                     ng-class="{'show': ticketController.song.img === null, 'hidden': ticketController.song.img !== null}">
                     <div id="ticket-cover-default-container">
