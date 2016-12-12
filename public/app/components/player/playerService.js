@@ -120,6 +120,28 @@
             this.getSongInfosTask();
           },
 
+          i.prototype.stringLengthClass = function(str) {
+              if (str != undefined && str.length > 0) {
+                  if (str.indexOf('[') > -1){
+                      str = str.substring(0, str.indexOf('['));
+                  }
+              }
+
+              if(str.length < 18) {
+                  return "";
+              } else if (str.length < 22) {
+                  return "char22"
+              } else if (str.length < 25) {
+                  return "char25"
+              } else if (str.length < 30) {
+                  return "char30"
+              } else if (str.length < 35) {
+                  return "char35"
+              } else {
+                  return "char40"
+              }
+          },
+
           /**
            * This method is automatically called after we called the radio for
            * the current information. It gets the artist and the title, then resets
@@ -164,6 +186,10 @@
               title = title.substring(0, 64) + ' ... ';
             }
 
+            // calculated artist and title css class name
+            var artistClassName = this.stringLengthClass(artist);
+            var titleClassName = this.stringLengthClass(title);
+
             // reset the duration counter if it is a new song
             //TODO Player - replace title with id once the id is correctly sent by server
             if (this.isSameSong(title, playingSong.title, id, playingSong.id) === false){
@@ -187,7 +213,9 @@
             playingSong = {
               'id' : id,
               'artist' : artist,
+              'artistClass' : artistClassName,
               'title' : title,
+              'titleClass' : titleClassName,
               'duration' : rawData.duration * 1000,
               'first' : isFirstSong,
               'img': img
