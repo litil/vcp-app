@@ -461,6 +461,16 @@ body {
     .ticket-label-container, .ticket-content-container {
       text-align: left;
     }
+
+    .ticket-content-container {
+        #ticket-artist, #ticket-title {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            display: block;
+            white-space:nowrap
+        }
+    }
+
     .ticket-label-container {
       margin-top: 10px;
       line-height: 0.9;
