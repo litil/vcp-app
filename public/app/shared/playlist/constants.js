@@ -14,7 +14,7 @@
   angular.module("vcpProject").constant("playlists", {
       normal : {
         MWE : {
-          label : 'Morning Weekend',
+          label : 'Morning W-E',
           cls : 'morning-weekend',
           infoKey: '/radio_VCP_MorningWeekEnd',
           description: 'On l’écoute en s’étirant, en chuchotant, en s’embrassant, en brunchant. Pour se réveiller détendu (e) au coté de celui ou celle que l’on aime ou que l’on va aimer.'
