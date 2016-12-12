@@ -155,35 +155,30 @@
             // var INFOS_KEY = "/radio_VCP";
             var rawData = data[INFOS_KEY];
 
-            // remove [Vendredi c'est permis]] from the rawTitle if it exists
-            var artistTitle = rawData.title;
-            if (rawData.title.indexOf('[Vendredi c\'est permis]') > -1){
-              artistTitle = rawData.title.substring(0, rawData.title.indexOf('[Vendredi c\'est permis]'));
-            }
-            artistTitle = artistTitle.trim();
-
-            // get the id within {} it it exists
-            // remove the {} from the raw title if it exists
+            var artist = 'Artiste inconnu';
+            var title = 'Titre inconnu';
             var id;
-            if (artistTitle.indexOf('{') === 0 && artistTitle.indexOf('}') > -1){
-              id = artistTitle.substring(1, artistTitle.indexOf('}'));
-              artistTitle = artistTitle.substring(artistTitle.indexOf('}') + 1, artistTitle.length);
-              artistTitle = artistTitle.trim();
-            }
-
-            // split the raw title to get the title and the artist
-            var artistTitleArray = artistTitle.split(" - ");
-            var artist = artistTitleArray[0];
-            var title = artistTitleArray[1];
             var img = null;
+            if (rawData.title && rawData.title.length > 0){
+                // remove [Vendredi c'est permis]] from the rawTitle if it exists
+                var artistTitle = rawData.title;
+                if (rawData.title.indexOf('[Vendredi c\'est permis]') > -1){
+                  artistTitle = rawData.title.substring(0, rawData.title.indexOf('[Vendredi c\'est permis]'));
+                }
+                artistTitle = artistTitle.trim();
 
-            // check title and artist length
-            // ellipsis them of > 64
-            if (artist.length > 64){
-              artist = artist.substring(0, 64) + ' ... ';
-            }
-            if (title.length > 64){
-              title = title.substring(0, 64) + ' ... ';
+                // get the id within {} it it exists
+                // remove the {} from the raw title if it exists
+                if (artistTitle.indexOf('{') === 0 && artistTitle.indexOf('}') > -1){
+                  id = artistTitle.substring(1, artistTitle.indexOf('}'));
+                  artistTitle = artistTitle.substring(artistTitle.indexOf('}') + 1, artistTitle.length);
+                  artistTitle = artistTitle.trim();
+                }
+
+                // split the raw title to get the title and the artist
+                var artistTitleArray = artistTitle.split(" - ");
+                artist = artistTitleArray[0];
+                title = artistTitleArray[1];
             }
 
             // calculated artist and title css class name
