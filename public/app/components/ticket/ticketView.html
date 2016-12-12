@@ -154,9 +154,10 @@
                   <div class="ticket-cover-default {{ticketController.playlists.current.cls}}"
                     ng-class="{'show': ticketController.song.img === null, 'hidden': ticketController.song.img !== null}">
                     <div id="ticket-cover-default-container">
-                      <div id="title">{{ticketController.song.artist}}</div>
-                      <div id="artist">{{ticketController.song.title | title}}</div>
-                      <div id="logo">vcp</div>
+                      <div id="artist" class="{{ticketController.song.artistClass}}">{{ticketController.song.artist}}</div>
+                      <div id="title" class="{{ticketController.song.titleClass}}">{{ticketController.song.title | title}}</div>
+                      
+                      <div id="logo"><span logo></span> vcp</div>
                     </div>
                   </div>
                 </div>

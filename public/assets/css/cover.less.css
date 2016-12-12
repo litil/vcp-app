@@ -606,16 +606,48 @@ body {
             overflow: hidden;
             white-space: nowrap;
           }
-          #artist {
+          #title {
             border-bottom: @cover-filet;
           }
+
+          .char22 {
+              font-size: 50px !important;
+          }
+          .char25 {
+              font-size: 44px !important;
+          }
+          .char30 {
+              font-size: 36px !important;
+          }
+          .char35 {
+              font-size: 30px !important;
+          }
+          .char40 {
+              font-size: 26px !important;
+          }
+
+          .char22, .char25, .char30, .char35, .char40 {
+              text-overflow: ellipsis;
+          }
+
           #logo {
-            font-size: @main-font-size;
+            font-size: @important-font-size;
             font-family: @KO48;
             color: @body-bg-color;
             text-align: left;
             text-transform: uppercase;
             margin-top: 10px;
+
+            span {
+                margin-right: 2px;
+                svg {
+                    width: 12px;
+                    height: 12px;
+                    path{
+                        fill: @body-bg-color !important;
+                    }
+                }
+            }
           }
         }
       }
