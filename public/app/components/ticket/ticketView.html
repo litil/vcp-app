@@ -26,7 +26,7 @@
             </div>
             <div class="row">
               <div class="col-md-12 ticket-content-container">
-                <div class="row-content fake-input">{{ticketController.song.artist}}</div>
+                <div id="ticket-artist" class="row-content fake-input">{{ticketController.song.artist}}</div>
               </div>
             </div>
 
@@ -38,7 +38,7 @@
             </div>
             <div class="row">
               <div class="col-md-12 ticket-content-container">
-                <div class="row-content fake-input">{{ticketController.song.title | title}}</div>
+                <div id="ticket-title"  class="row-content fake-input">{{ticketController.song.title | title}}</div>
               </div>
             </div>
 
@@ -156,6 +156,10 @@
                     <div id="ticket-cover-default-container">
                       <div id="artist" class="{{ticketController.song.artistClass}}">{{ticketController.song.artist}}</div>
                       <div id="title" class="{{ticketController.song.titleClass}}">{{ticketController.song.title | title}}</div>
+<<<<<<< 6318537c276238a6529ccd9a638d31570ea0b353
+=======
+
+>>>>>>> UI - Ticket - Handled ellipsis in CSS, not in JS anymore
                       <div id="logo"><span logo></span> vcp</div>
                     </div>
                   </div>
