@@ -93,6 +93,56 @@
 @huge-font-size: 110px;
 @massive-font-size: 136px;
 
+/* vcp-blink */
+/* Firefox old*/
+@-moz-keyframes vcp-blink {
+    0% {
+        opacity:1;
+    }
+    50% {
+        opacity:0;
+    }
+    100% {
+        opacity:1;
+    }
+}
+
+@-webkit-keyframes vcp-blink {
+    0% {
+        opacity:1;
+    }
+    50% {
+        opacity:0;
+    }
+    100% {
+        opacity:1;
+    }
+}
+/* IE */
+@-ms-keyframes vcp-blink {
+    0% {
+        opacity:1;
+    }
+    50% {
+        opacity:0;
+    }
+    100% {
+        opacity:1;
+    }
+}
+/* Opera and prob css3 final iteration */
+@keyframes vcp-blink {
+    0% {
+        opacity:1;
+    }
+    50% {
+        opacity:0;
+    }
+    100% {
+        opacity:1;
+    }
+}
+
 /* bounce */
 @-webkit-keyframes vcp-bounce {
   0%, 100% {
@@ -670,12 +720,10 @@ body {
         opacity: 0;
       }
       .try-playing {
-        -webkit-animation: vcp-bounce 2s infinite ease-in-out;
-        animation: vcp-bounce 2s infinite ease-in-out;
-        -webkit-animation-direction: reverse;
-        animation-direction: reverse;
-
-        opacity: 0.8;
+        -moz-animation: vcp-blink normal 2s infinite ease-in-out; /* Firefox */
+        -webkit-animation: vcp-blink normal 2s infinite ease-in-out; /* Webkit */
+        -ms-animation: vcp-blink normal 2s infinite ease-in-out; /* IE */
+        animation: vcp-blink normal 2s infinite ease-in-out; /* Opera and prob css3 final iteration */
       }
     }
   }
