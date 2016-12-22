@@ -1327,3 +1327,5 @@ Stack trace:
 #43 /home/vagrant/Code/public/vcp-app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(99): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
 #44 /home/vagrant/Code/public/vcp-app/public/index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #45 {main}  
+[2016-12-22 22:05:54] local.ERROR: boum  
+[2016-12-22 22:05:55] local.INFO: Authenticate success !!!  
