@@ -11,7 +11,6 @@ use App\Http\Controllers\Controller;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use App\User;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use GuzzleHttp;
@@ -99,7 +98,7 @@ class AuthenticateController extends Controller
      * 2- Authenticate the user with the Facebook id
      * 3- If no user was found with the Facebook id, authenticate him with the Facebook email address
      * 4- If no user was found with the Facebook email address, create a new user
-     * 
+     *
      */
     public function facebook(Request $request)
     {

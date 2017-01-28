@@ -77,6 +77,11 @@ This directive works with promises, meaning you can retrieve matches using the `
   _(Default: `angular.noop`)_ -
   Binding to a variable that indicates if no matching results were found.
 
+* `typeahead-should-select($event)`
+  <small class="badge">$</small>
+  _(Default: `null`)_ -
+  A callback executed when a `keyup` event that might trigger a selection occurs. Selection will only occur if this function returns true.
+
 * `typeahead-on-select($item, $model, $label, $event)`
   <small class="badge">$</small>
   _(Default: `null`)_ -
@@ -115,3 +120,7 @@ This directive works with promises, meaning you can retrieve matches using the `
   <small class="badge">$</small>
   <i class="glyphicon glyphicon-eye-open"></i> -
   Comprehension Angular expression (see [select directive](http://docs.angularjs.org/api/ng.directive:select)).
+
+**Notes**
+
+If a custom template for the popup is used, the wrapper selector used for the match items is the `uib-typeahead-match` class.

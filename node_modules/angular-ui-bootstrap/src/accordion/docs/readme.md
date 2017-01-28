@@ -32,11 +32,6 @@ The body of each accordion group is transcluded into the body of the collapsible
   _(Default: `false`)_ -
   Whether accordion group is open or closed.
 
-* `panel-class`
-  <i class="glyphicon glyphicon-eye-open"></i>
-  _(Default: `panel-default`)_ -
-  Add ability to use Bootstrap's contextual panel classes (panel-primary, panel-success, panel-info, etc...) or your own.  This must be a string.
-
 * `template-url`
   _(Default: `uib/template/accordion/accordion-group.html`)_ -
   Add the ability to override the template used on the component.
@@ -49,6 +44,6 @@ If you're using a custom template for the `uib-accordion-group`, you'll need to 
 
 ### Known issues
 
-To use clickable elements within the accordion, you have override the accordion-group template to use div elements instead of anchor elements, and add `cursor: pointer` in your CSS. This is due to browsers interpreting anchor elements as the target of any click event, which triggers routing when certain elements such as buttons are nested inside the anchor element.
+To use clickable elements within the accordion, you have to override the accordion-group template to use div elements instead of anchor elements, and add `cursor: pointer` in your CSS. This is due to browsers interpreting anchor elements as the target of any click event, which triggers routing when certain elements such as buttons are nested inside the anchor element.
 
 If custom classes on the accordion-group element are desired, one needs to either modify the template to remove the `ng-class` usage in the accordion-group template and use ng-class on the accordion-group element (not recommended), or use an interpolated expression in the class attribute, i.e. `<uib-accordion-group class="{{customClass()}}"></uib-accordion-group>`.
