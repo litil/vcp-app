@@ -29,6 +29,9 @@ Based on https://scotch.io/tutorials/token-based-authentication-for-angularjs-an
         <!-- CSS built with LESS -->
         <link rel="stylesheet/less" type="text/css" href="assets/css/cover.less.css" />
         <script type="text/javascript" src="assets/js/less.js"></script>
+
+        <!-- Angular Notifications -->
+        <link rel="stylesheet" href="assets/node_modules/angular-ui-notification/dist/angular-ui-notification.min.css">
     </head>
 
 
@@ -42,6 +45,7 @@ Based on https://scotch.io/tutorials/token-based-authentication-for-angularjs-an
 
     <!-- Application Dependencies -->
     <script src="assets/node_modules/angular/angular.js"></script>
+    <script src="assets/node_modules/angular-ui-notification/dist/angular-ui-notification.min.js"></script>
     <script src="assets/node_modules/angular-ui-router/build/angular-ui-router.js"></script>
     <script src="assets/node_modules/satellizer/satellizer.js"></script>
     <script src="assets/node_modules/angular-soundmanager2.js"></script>
