@@ -806,6 +806,10 @@ body {
       #login-social-container {
         font-size: @bigger-font-size;
         vertical-align: middle;
+
+        i {
+            cursor: pointer;
+        }
       }
       .login-label {
         font-family: @KO31;
