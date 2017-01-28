@@ -88,23 +88,59 @@
          */
         vm.authenticate = function(provider) {
           $auth.authenticate(provider).then(function(result) {
-            var data = {
-                access_token: result.access_token
-            };
+              if (provider == 'facebook'){
+                  vm.authenticateWithFacebook(result);
+              } else if (provider == 'twitter'){
+                  vm.authenticateWithTwitter(result);
+              }
 
-            $http.post("/api/auth/facebook", data).then(function(result) {
-                // set the token in satellizer_token in local storage
-                var token = result.data;
-                localStorage.setItem('satellizer_token', token);
+          // Handle errors
+          }, function(error) {
+              vm.loginError = true;
+              vm.loginErrorText = error.data.error;
+              console.log(error);
+              console.log('error while logging in with oauth');
+          });
+        };
 
-                // get the authenticated user
-                return $http.get('api/authenticate/user');
 
-            }, function(error) {
-                vm.loginError = true;
-                vm.loginErrorText = error.data.error;
-                console.log('error while logging in with facebook PHP');
-            }).then(function(response) {
+        vm.authenticateWithFacebook = function(result){
+              var data = {
+                  access_token: result.access_token
+              };
+
+              $http.post("/api/auth/facebook", data).then(function(result) {
+                  // set the token in satellizer_token in local storage
+                  var token = result.data;
+                  localStorage.setItem('satellizer_token', token);
+
+                  // get the authenticated user
+                  return $http.get('api/authenticate/user');
+
+              }, function(error) {
+                  vm.loginError = true;
+                  vm.loginErrorText = error.data.error;
+                  console.log('error while logging in with facebook PHP');
+              }).then(function(response) {
+                  var user = JSON.stringify(response.data.user);
+                  localStorage.setItem('user', user);
+                  $rootScope.authenticated = true;
+                  $rootScope.currentUser = response.data.user;
+                  console.log("User " + response.data.user.email + " is authenticated!");
+                  $location.path('/ticket');
+              });
+          };
+
+        vm.authenticateWithTwitter = function(result){
+            // set the token in satellizer_token in local storage
+            var token = result.data;
+            localStorage.setItem('satellizer_token', token);
+
+            console.log("token", token);
+
+            // get the authenticated user
+            return $http.get('api/authenticate/user').then(function(response) {
+                console.log("in response");
                 var user = JSON.stringify(response.data.user);
                 localStorage.setItem('user', user);
                 $rootScope.authenticated = true;
@@ -112,14 +148,7 @@
                 console.log("User " + response.data.user.email + " is authenticated!");
                 $location.path('/ticket');
             });
-
-          // Handle errors
-          }, function(error) {
-              vm.loginError = true;
-              vm.loginErrorText = error.data.error;
-              console.log('error while logging in with facebook');
-          });
         };
-    }
 
+    }
 })();
