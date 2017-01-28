@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use App\User;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
 
 
@@ -51,7 +52,6 @@ class AuthenticateController extends Controller
      */
     public function authenticate(Request $request) {
         $credentials = $request->only('email', 'password');
-
         try {
             // verify the credentials and create a token for the user
             if (! $token = JWTAuth::attempt($credentials)) {
@@ -61,7 +61,7 @@ class AuthenticateController extends Controller
             // something went wrong
             return response()->json(['error' => 'could_not_create_token'], 500);
         }
-
+        Log::info('Authenticate success !!!');
         // if no errors are encountered we can return a JWT
         return response()->json(compact('token'));
     }
@@ -81,6 +81,7 @@ class AuthenticateController extends Controller
         } catch (Tymon\JWTAuth\Exceptions\JWTException $e) {
             return response()->json(['token_absent'], $e->getStatusCode());
         }
+
 
         // the token is valid and we have found the user via the sub claim
         return response()->json(compact('user'));
