@@ -9,7 +9,7 @@
         .controller('AuthController', AuthController);
 
 
-    function AuthController($auth, $state, $http, $rootScope, $location, PlayerService, PlaylistService) {
+    function AuthController($auth, $state, $http, $rootScope, $location, Notification, PlayerService, PlaylistService) {
         var vm = this;
 
         vm.loginError = false;
@@ -53,6 +53,10 @@
             // Because we returned the $http.get request in the $auth.login
             // promise, we can chain the next promise to the end here
             }).then(function(response) {
+                if (!response) {
+                    // an error occurred, display a message
+                    Notification.error({message: 'Erreur d\'authentification', delay: 5000});
+                }
                 var user = JSON.stringify(response.data.user);
                 localStorage.setItem('user', user);
                 $rootScope.authenticated = true;

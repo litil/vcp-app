@@ -3,7 +3,7 @@
 	'use strict';
 
 	angular
-		.module('vcpProject', ['ui.router', 'satellizer', 'angularSoundManager', 'ui.bootstrap'])
+		.module('vcpProject', ['ui.router', 'satellizer', 'angularSoundManager', 'ui.bootstrap', 'ui-notification'])
 		.config(function($stateProvider, $urlRouterProvider, $authProvider, $httpProvider, $provide) {
 
 			// social authentication setup
