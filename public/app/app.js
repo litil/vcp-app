@@ -13,6 +13,15 @@
       		  responseType: 'token'
 		    });
 
+			// Twitter
+			$authProvider.twitter({
+			  url: '/api/auth/twitter',
+			  authorizationEndpoint: 'https://api.twitter.com/oauth/authenticate',
+			  redirectUri: window.location.origin,
+			  oauthType: '1.0',
+			  popupOptions: { width: 495, height: 645 }
+			});
+
 			/**
 			 * This method redirects the user
  			 */

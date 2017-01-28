@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Config;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use JWTAuth;
@@ -27,7 +28,7 @@ class AuthenticateController extends Controller
        // Apply the jwt.auth middleware to all methods in this controller
        // except for the authenticate method. We don't want to prevent
        // the user from retrieving their token if they don't already have it
-       $this->middleware('jwt.auth', ['except' => ['authenticate', 'register', 'facebook']]);
+       $this->middleware('jwt.auth', ['except' => ['authenticate', 'register', 'facebook', 'twitter']]);
      }
 
     public function index()
@@ -142,6 +143,99 @@ class AuthenticateController extends Controller
                         'email' => $profile['email'],
                         'name' => $profile['name'],
                         'facebook' => $profile['id'],
+                        'password' => Hash::make(str_random(8)),
+                        'created_at' => $now,
+                        'updated_at' => $now
+                    ]
+                );
+                $newusers = User::where('id', '=', $id);
+                return JWTAuth::fromUser($newusers->first());
+            }
+        }
+    }
+
+    /**
+     * Login with Twitter.
+     */
+    public function twitter(Request $request)
+    {
+        $stack = GuzzleHttp\HandlerStack::create();
+        // Part 1 of 2: Initial request from Satellizer.
+        if (!$request->input('oauth_token') || !$request->input('oauth_verifier'))
+        {
+            $stack = GuzzleHttp\HandlerStack::create();
+            $requestTokenOauth = new Oauth1([
+              'consumer_key' => Config::get('app.twitter_key'),
+              'consumer_secret' => Config::get('app.twitter_secret'),
+              'callback' => $request->input('redirectUri'),
+              'token' => '',
+              'token_secret' => ''
+            ]);
+            $stack->push($requestTokenOauth);
+            $client = new GuzzleHttp\Client([
+                'handler' => $stack
+            ]);
+            // Step 1. Obtain request token for the authorization popup.
+            $requestTokenResponse = $client->request('POST', 'https://api.twitter.com/oauth/request_token', [
+                'auth' => 'oauth'
+            ]);
+            $oauthToken = array();
+            parse_str($requestTokenResponse->getBody(), $oauthToken);
+            // Step 2. Send OAuth token back to open the authorization screen.
+            return response()->json($oauthToken);
+        }
+        // Part 2 of 2: Second request after Authorize app is clicked.
+        else
+        {
+            $accessTokenOauth = new Oauth1([
+                'consumer_key' => Config::get('app.twitter_key'),
+                'consumer_secret' => Config::get('app.twitter_secret'),
+                'token' => $request->input('oauth_token'),
+                'verifier' => $request->input('oauth_verifier'),
+                'token_secret' => ''
+            ]);
+            $stack->push($accessTokenOauth);
+            $client = new GuzzleHttp\Client([
+                'handler' => $stack
+            ]);
+            // Step 3. Exchange oauth token and oauth verifier for access token.
+            $accessTokenResponse = $client->request('POST', 'https://api.twitter.com/oauth/access_token', [
+                'auth' => 'oauth'
+            ]);
+            $accessToken = array();
+            parse_str($accessTokenResponse->getBody(), $accessToken);
+            $profileOauth = new Oauth1([
+                'consumer_key' => Config::get('app.twitter_key'),
+                'consumer_secret' => Config::get('app.twitter_secret'),
+                'oauth_token' => $accessToken['oauth_token'],
+                'token_secret' => ''
+            ]);
+            $stack->push($profileOauth);
+            $client = new GuzzleHttp\Client([
+                'handler' => $stack
+            ]);
+            // Step 4. Retrieve profile information about the current user.
+            $profileResponse = $client->request('GET', 'https://api.twitter.com/1.1/users/show.json?screen_name=' . $accessToken['screen_name'], [
+                'auth' => 'oauth'
+            ]);
+
+
+            $profile = json_decode($profileResponse->getBody(), true);
+            // Step 5. Try to authenticate user with Twitter id
+            $user = User::where('twitter', '=', $profile['id']);
+            if ($user->first()) {
+                Log::info('AUTH - Twitter user retrieved from Twitter ID');
+                return JWTAuth::fromUser($user->first());
+
+            } else {
+                // Step 3. Create a new user and authenticate it
+                // we can't get address email from Twitter
+                Log::info('AUTH - No Twitter user retrieved, we create a new one');
+                $now = new DateTime();
+                $id = User::insertGetId(
+                    [
+                        'name' => $profile['screen_name'],
+                        'twitter' => $profile['id'],
                         'password' => Hash::make(str_random(8)),
                         'created_at' => $now,
                         'updated_at' => $now
