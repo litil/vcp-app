@@ -28,6 +28,11 @@ Route::group(['prefix' => 'api'], function()
     Route::resource('authenticate', 'AuthenticateController', ['only' => ['index']]);
     Route::post('authenticate', 'AuthenticateController@authenticate');
     Route::get('authenticate/user', 'AuthenticateController@getAuthenticatedUser');
+
+    // OAuth, Login and Signup Routes.
+    Route::post('auth/twitter', 'AuthenticateController@twitter');
+    Route::post('auth/facebook', 'AuthenticateController@facebook');
+    Route::get('auth/unlink/{provider}', ['middleware' => 'auth', 'uses' => 'AuthenticateController@unlink']);
 });
 
 /*

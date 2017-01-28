@@ -12,6 +12,11 @@ use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use App\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
+use GuzzleHttp;
+use GuzzleHttp\Subscriber\Oauth\Oauth1;
+use App\Http\Controllers\JWT;
+use DateTime;
 
 
 class AuthenticateController extends Controller
@@ -22,7 +27,7 @@ class AuthenticateController extends Controller
        // Apply the jwt.auth middleware to all methods in this controller
        // except for the authenticate method. We don't want to prevent
        // the user from retrieving their token if they don't already have it
-       $this->middleware('jwt.auth', ['except' => ['authenticate', 'register']]);
+       $this->middleware('jwt.auth', ['except' => ['authenticate', 'register', 'facebook']]);
      }
 
     public function index()
@@ -84,5 +89,67 @@ class AuthenticateController extends Controller
 
         // the token is valid and we have found the user via the sub claim
         return response()->json(compact('user'));
+    }
+
+
+    /**
+     * Login with Facebook. The algorithm is quite simple :
+     * 1- Get the Facebook user with the iven access_token
+     * 2- Authenticate the user with the Facebook id
+     * 3- If no user was found with the Facebook id, authenticate him with the Facebook email address
+     * 4- If no user was found with the Facebook email address, create a new user
+     * 
+     */
+    public function facebook(Request $request)
+    {
+        $client = new GuzzleHttp\Client();
+
+        // Step 1. Retrieve profile information about the current user.
+        $fields = 'id,email,first_name,last_name,link,name';
+        $profileResponse = $client->request('GET', 'https://graph.facebook.com/v2.5/me', [
+            'query' => [
+                'access_token' => $request->input('access_token'),
+                'fields' => $fields
+            ]
+        ]);
+        $profile = json_decode($profileResponse->getBody(), true);
+
+        // Step 2. Try to authenticate user with Facebook id
+        $user = User::where('facebook', '=', $profile['id']);
+        if ($user->first()) {
+            Log::info('AUTH - Facebook user retrieved from Facebook ID');
+            return JWTAuth::fromUser($user->first());
+
+        } else {
+            // Step 3. Try to authenticate user with Facebook email address
+            $users = User::where('email', '=', $profile['email']);
+
+            if ($users->first()) {
+                Log::info('AUTH - Facebook user retrieved from Facebook email address');
+                $user = $users->first();
+                $user->facebook = $profile['id'];
+                $user->email = $user->email ?: $profile['email'];
+                $user->displayName = $user->displayName ?: $profile['name'];
+                $user->save();
+                return JWTAuth::fromUser($user);
+
+            } else {
+                // Step 4. Create a new user and authenticate it
+                Log::info('AUTH - No Facebook user retrieved, we create a new one');
+                $now = new DateTime();
+                $id = User::insertGetId(
+                    [
+                        'email' => $profile['email'],
+                        'name' => $profile['name'],
+                        'facebook' => $profile['id'],
+                        'password' => Hash::make(str_random(8)),
+                        'created_at' => $now,
+                        'updated_at' => $now
+                    ]
+                );
+                $newusers = User::where('id', '=', $id);
+                return JWTAuth::fromUser($newusers->first());
+            }
+        }
     }
 }
