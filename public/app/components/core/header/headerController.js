@@ -18,7 +18,7 @@
   /**
    * Constructor
    */
-  function HeaderController($auth, $state, $http, $rootScope, $scope, $location, $window, $uibModal, PlayerService, PlaylistService) {
+  function HeaderController(/*$auth, */$state, $http, $rootScope, $scope, $location, $window, $uibModal, PlayerService, PlaylistService) {
     var vm = this;
     $rootScope.location = $location;
 
@@ -107,19 +107,19 @@
      */
     $scope.logout = function() {
 
-      $auth.logout().then(function() {
-        // remove user in local storage
-        localStorage.removeItem('user');
-
-        // set authenticated flag to false
-        $rootScope.authenticated = false;
-
-        // set $rootScope.currentUser to null
-        $rootScope.currentUser = null;
-
-        // redirect to ticket view if we're not already there
-        $location.path('/ticket');
-      });
+    //   $auth.logout().then(function() {
+    //     // remove user in local storage
+    //     localStorage.removeItem('user');
+      //
+    //     // set authenticated flag to false
+    //     $rootScope.authenticated = false;
+      //
+    //     // set $rootScope.currentUser to null
+    //     $rootScope.currentUser = null;
+      //
+    //     // redirect to ticket view if we're not already there
+    //     $location.path('/ticket');
+    //   });
 
     };
 
