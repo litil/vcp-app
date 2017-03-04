@@ -12,11 +12,10 @@
 
       <div class="row row-eq-height main-row-ticket">
 
-        <div class="ticket-nick ticket-nick-left"></div>
-        <div class="ticket-nick ticket-nick-right"></div>
-
         <!-- TICKET LEFT -->
         <div class="ticket-left {{ticketController.playlists.current.cls}}">
+
+          <div class="ticket-nick ticket-nick-left"></div>
           <div class="ticket-info-wrapper">
             <!-- ARTIST -->
             <div class="row row-content" id="row-artist">
@@ -139,6 +138,8 @@
         <!-- TICKET RIGHT -->
         <div class="ticket-right col-md-4">
           <div class="ticket-right-wrapper" ng-click="ticketController.togglePlay()">
+
+            <div class="ticket-nick ticket-nick-right-inner"></div>
 
             <div class="row">
               <div id="cover-container" class="col-md-12">
