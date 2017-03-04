@@ -95,7 +95,7 @@
   /**
    * Constructor
    */
-  function TicketController($auth, $state, $http, $rootScope, $interval, $timeout, PlayerService, PlaylistService) {
+  function TicketController($state, $http, $rootScope, $interval, $timeout, PlayerService, PlaylistService) {
       var vm = this;
 
     // set default value into vm.song
