@@ -12,6 +12,7 @@
     "angular-sanitize": "^1.6.1",
     "angular-touch": "^1.6.1",
     "angular-ui-notification": "^0.3.5",
+    "bootstrap": "^3.3.7",
     "gulp": "^3.9.1",
     "jasmine-core": "^2.5.2",
     "karma": "^1.4.0",
@@ -24,7 +25,6 @@
   },
   "dependencies": {
     "angular-ui-bootstrap": "^2.5.0",
-    "bootstrap-sass": "^3.3.7",
     "laravel-elixir": "^6.0.0-15"
   }
 }
