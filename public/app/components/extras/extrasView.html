@@ -29,14 +29,36 @@
 
   <!-- first row : header -->
   <div class="row header">
+      <!-- TODO VCP-29 : find a way to not duplicate this part -->
+      <div class="col-sm-12 about-header-connexion" id="about-header-connexion-small">
+        <div class="col-sm-4 back-to-live-button text-left {{extrasController.playlists.playing.cls}}"
+          ng-click="open('lg')">
+          <a>Retour au live</a>
+        </div>
+        <div
+          class="col-md-12 text-left fa-container no-gutter-left"
+          ng-class="{'no-button': extrasController.playlists.playing.key === extrasController.playlists.current.key}">
+          <i
+            class="fa fa-volume-off"
+            ng-class="{'show': extrasController.isMuted(), 'hidden': !extrasController.isPlaying() || !extrasController.isMuted()}"
+            ng-click="extrasController.togglePlay()">
+          </i>
+          <i
+            class="fa fa-volume-up"
+            ng-class="{'show': !extrasController.isMuted(), 'hidden': !extrasController.isPlaying() || extrasController.isMuted()}"
+            ng-click="extrasController.togglePlay()">
+          </i>
+        </div>
+      </div>
+
     <div class="col-md-2 current-playlist {{extrasController.playlists.playing.cls}}-font">
       {{extrasController.playlists.playing.key}}
     </div>
 
-    <div class="col-md-8 text-left" id="about-header-song-info">
+    <div class="col-md-8 col-sm-8 text-left" id="about-header-song-info">
       <div class="row ">
         <!-- ARTIST -->
-        <div class="col-md-6">
+        <div class="col-md-6" id="about-header-artist">
           <div class="row">
             <div class="col-md-12 label-container">
               <label class="">ARTIST ı ARTISTE :</label>
@@ -83,9 +105,8 @@
       </div>
     </div>
 
-    <div class="col-md-2" id="about-header-connexion">
+    <div class="col-md-2 about-header-connexion" id="about-header-connexion">
       <div class="col-md-12 back-to-live-button text-left {{extrasController.playlists.playing.cls}}"
-        ng-if="extrasController.playlists.playing.key !== extrasController.playlists.current.key"
         ng-click="open('lg')">
         <a>Retour au live</a>
       </div>
@@ -113,7 +134,7 @@
     </div>
   </div>
   <div class="row playlist-row">
-    <div class="playlist-col col-md-2" ng-repeat="playlist in normalPlaylists">
+    <div class="playlist-col col-md-2 col-sm-3 col-xs-6" ng-repeat="playlist in normalPlaylists">
       <div
           class="playlist-container text-left col-md-12 {{playlist.cls}}"
           ng-click="extrasController.switchPlaylist(playlist.key)">
@@ -134,7 +155,7 @@
     </div>
   </div>
   <div class="row playlist-row">
-    <div class="playlist-col col-md-2" ng-repeat="playlist in specialPlaylists">
+    <div class="playlist-col col-md-2 col-sm-3 col-xs-6" ng-repeat="playlist in specialPlaylists">
       <div
           class="playlist-container text-left col-md-12 {{playlist.cls}}"
           ng-click="extrasController.switchPlaylist(playlist.key)">

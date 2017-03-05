@@ -13,39 +13,45 @@
 
   <!-- first row brand + playlist -->
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-6 col-sm-12 col-xs-12">
       <div class="brand text-left col-md-12">
         Radio VCP
       </div>
-      <div class="subbrand text-left col-md-12">
+      <div class="subbrand text-left col-md-12 col-sm-12 col-xs-12">
         Simply Good Music
       </div>
-    </div>
-    <div class="playlist-col col-md-2">
-      <div class="playlist-container text-left col-md-12 {{aboutController.playlists.current.cls}}">
-        <div class="playlist-title text-left col-md-12">
-          {{aboutController.playlists.current.key}}
-        </div>
-        <div class="playlist-sub text-left col-md-12">
-          {{aboutController.playlists.current.label}}
-        </div>
+      <div class="brand-description col-md-12 text-left">
+        Bienvenue dans l’univers VCP. 24/7, VCP vous fournit à tout moment de la semaine
+        et de la journée un flux musical de qualité, sans pub et régulièrement mis à jour.
+        Consistant en un simple Play/Stop, la musique de vos brunchs, déjeuners, apéros,
+        dîners, dates,... est améliorée. L’outil parfait quand vous êtes en panne d’inspiration
+        musicale. Branchez vous sur VCP, la solution est toute trouvée. Trois fuseaux de
+        diffusion existent (Paris, New York, Singapour). Ils sont déclenchés en fonction
+        de votre localisation dans le monde.
       </div>
     </div>
-  </div>
+    <div class="playlist-col col-md-6 col-sm-12 col-xs-12">
+        <div class="row">
+            <div id="about-playlist-container"
+                class="playlist-container text-left col-md-4 col-sm-6 col-xs-6 {{aboutController.playlists.current.cls}}">
+              <div class="playlist-title text-left col-md-12">
+                {{aboutController.playlists.current.key}}
+              </div>
+              <div class="playlist-sub text-left col-md-12">
+                {{aboutController.playlists.current.label}}
+              </div>
+            </div>
+        </div>
 
-  <!-- second row description -->
-  <div class="about-description row">
-    <div class="col-md-6 text-left">
-      Bienvenue dans l’univers VCP. 24/7, VCP vous fournit à tout moment de la semaine
-      et de la journée un flux musical de qualité, sans pub et régulièrement mis à jour.
-      Consistant en un simple Play/Stop, la musique de vos brunchs, déjeuners, apéros,
-      dîners, dates,... est améliorée. L’outil parfait quand vous êtes en panne d’inspiration
-      musicale. Branchez vous sur VCP, la solution est toute trouvée. Trois fuseaux de
-      diffusion existent (Paris, New York, Singapour). Ils sont déclenchés en fonction
-      de votre localisation dans le monde.
-    </div>
-    <div class="col-md-4 text-left playlist-desc">
-      {{aboutController.playlists.current.description}}
+        <div class="row">
+            <div class="text-left col-md-12" id="playlist-desc-container">
+                <div class="col-md-12 text-left playlist-desc">
+                  {{aboutController.playlists.current.description}}
+                </div>
+            </div>
+        </div>
+
+
     </div>
   </div>
 
