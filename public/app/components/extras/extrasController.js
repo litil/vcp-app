@@ -28,7 +28,7 @@
   /**
    * Constructor
    */
-  function ExtrasController($auth, $state, $http, $rootScope, $scope, $interval, $window, $uibModal, $log, PlayerService, PlaylistService) {
+  function ExtrasController($state, $http, $rootScope, $scope, $interval, $window, $uibModal, $log, PlayerService, PlaylistService) {
       var vm = this;
       vm.playlists = {};
       vm.playlists.playing = {};{};

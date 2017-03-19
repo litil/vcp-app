@@ -17,13 +17,12 @@
   /**
    * Constructor
    */
-  function AboutController($auth, $state, $http, $rootScope, PlaylistService) {
+  function AboutController($state, $http, $rootScope, PlaylistService) {
       var vm = this;
 
       // first we get the current playlist
       vm.playlists = {};
       vm.playlists.current = PlaylistService.getCurrentPlaylist();
-
 
       /**
        * This method checks the given days, start time and end time representing

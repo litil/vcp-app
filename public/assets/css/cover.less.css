@@ -79,6 +79,20 @@
 @ticket-height: 400px;
 @cover-width: 400px;
 @ticket-width: 700px;
+@auth-width: 350px;
+@auth-right-width: 82px;
+
+@ticket-height-max-1320: 380px;
+@cover-width-max-1320: 380px;
+@ticket-width-max-1320: 620px;
+
+@ticket-height-max-1200: 350px;
+@cover-width-max-1200: 350px;
+@ticket-width-max-1200: 480px;
+
+@ticket-height-max-992: 800px;
+@cover-height-max-992: 400px;
+@cover-width-max-992: 400px;
 
 /* fonts */
 
@@ -443,6 +457,7 @@ body {
   width: @ticket-width;
   /*border-right: 2px dotted #7C7A80;*/
   .border-radius(0, 0, @ticket-radius, @ticket-radius);
+}
 
   .ticket-info-wrapper {
     margin: 10px 20px 10px 20px;
@@ -565,11 +580,17 @@ body {
 
     }
   }
-}
+
 .ticket-right {
   width: @cover-width;
   height: @ticket-height;
+  padding-left: 15px;
   .border-radius(@ticket-radius, @ticket-radius, 0, 0);
+
+  .ticket-bottom {
+      display: none;
+  }
+
   .ticket-right-wrapper {
     width: @cover-width;
     height: @ticket-height;
@@ -704,18 +725,18 @@ body {
 .main-row-login {
   color: @font-grey-color;
   text-align: left;
-  .ticket-nick-left {
-    left: -2.125rem;
-  }
-  .ticket-nick-right {
-    right: -2.125rem;
-  }
+
   .ticket-left {
-    width: 85%;
+    width: @auth-width;
     background-color: @morning-weekend;
+
+    .ticket-nick-left {
+      left: -0.85rem;
+    }
+
     .ticket-login-wrapper {
       margin: 10px 20px 10px 20px;
-      padding: 0px 20px 0px 20px;
+      padding: 0px 0px 0px 20px;
       .row div {
         padding-left: 0px;
       }
@@ -861,6 +882,10 @@ body {
     width: 15%;
     background-color: @morning-weekend;
 
+    .ticket-nick-right {
+      right: -0.85rem;
+    }
+
     .row {
         height: 400px;
         border-left: 3px dotted @body-bg-color;
@@ -988,7 +1013,11 @@ body {
       margin-top: 30px;
     }
 
-    #about-header-connexion {
+    #about-header-connexion-small {
+        display: none;
+    }
+
+    .about-header-connexion {
       margin-top: 44px;
       padding: 0px 30px 0px 0px;
 
@@ -1084,6 +1113,10 @@ body {
     .border-radius(@playlist-radius, @playlist-radius, @playlist-radius, @playlist-radius);
     padding-left: 0px;
 
+    &#about-playlist-container {
+        margin-left: 20px;
+    }
+
     .playlist-title, .playlist-sub {
       text-transform: uppercase;
     }
@@ -1102,6 +1135,11 @@ body {
       padding: 0px 0px 5px 10px;
       text-transform: uppercase;
     }
+  }
+
+  .playlist-desc{
+    padding-left: 10px !important;
+    margin-top: 10px;
   }
 }
 
@@ -1127,6 +1165,13 @@ body {
     font-size: @small-font-size;
   }
 
+  .brand-description {
+      padding-left: 0px !important;
+      margin-top: 45px;
+      margin-bottom: 10px;
+      text-align: justify;
+  }
+
   .playlist-col {
     padding-left: 30px;
     padding-right: 0px;
@@ -1139,10 +1184,6 @@ body {
     div {
       font-family: @KO31;
       font-size: @main-font-size;
-    }
-
-    .playlist-desc{
-      padding-left: 30px;
     }
   }
 
@@ -1448,6 +1489,195 @@ footer {
 
 
 /*****************************************************************************/
+@media (max-width: 768px) {
+    .extras {
+        #about-header-connexion {
+            display: none;
+        }
+        #about-header-connexion-small {
+            display: block;
+            margin: 20px 0px 0px 15px !important;
+        }
+    }
+}
+
+@media (max-width: 992px) {
+    .ticket {
+        .ticket-left {
+            display: none;
+        }
+
+        .ticket-right {
+            width: @cover-width-max-992;
+            height: @ticket-height-max-992;
+            .border-radius(@ticket-radius, 0, 0, @ticket-radius);
+
+            .ticket-nick {
+                top: 0%;
+                left: 50%;
+                width: 7rem;
+                height: 1.50rem;
+                margin-left: -4rem;
+
+                &.ticket-nick-right-inner {
+                  top: 1.7rem;
+                }
+            }
+
+            .ticket-right-wrapper {
+                width: @cover-width-max-992;
+
+                .ticket-cover {
+                    width: @cover-width-max-992;
+                    height: @cover-height-max-992;
+                    .ticket-cover-with-img-container {
+                        border-bottom: 3px dotted @body-bg-color;
+                        border-left: none;
+
+                        .ticket-cover-with-img {
+                          width: @cover-width-max-992;
+                          height: @cover-height-max-992;
+                        }
+                    }
+                    .ticket-cover-default {
+                      width: @cover-width-max-992;
+                      height: @cover-height-max-992;
+                      border-bottom: 3px dotted @body-bg-color;
+                      border-left: none;
+                    }
+                }
+            }
+
+            .ticket-bottom {
+                display: block;
+                .border-radius(0, @ticket-radius, @ticket-radius, 0);
+                margin-left: -15px !important;
+                margin-right: 15px !important;
+
+                .ticket-info-wrapper {
+                    margin: 10px 20px 15px 20px;
+                    padding: 0px 15px 10px 10px;
+
+                    #ticket-artist {
+                        text-transform: uppercase;
+                        font-weight: bold;
+                        margin-top: 10px;
+                    }
+                    #ticket-title {
+                        text-transform: uppercase;
+                        margin-top: 10px;
+                    }
+                    #ticket-duration {
+                        text-align: center;
+                        margin-top: 10px;
+                        margin-bottom: 10px;
+                    }
+                    .small-icon-container {
+                      font-size: @bigger-font-size;
+                      color: @body-bg-color;
+
+                      &#volume-container {
+                          margin-top: 6px;
+                      }
+                      &#social-container {
+                          text-align: right;
+                      }
+                    }
+                }
+
+                .playlist-row {
+                    margin-top: 20px;
+                    .fake-input {
+                        font-size: 22px;
+                    }
+                    .fake-input-big {
+                        font-size: 62px;
+                        height: 3.3rem;
+                        line-height: 1.6rem;
+                    }
+                }
+            }
+        }
+    }
+    .main-row-login {
+      .ticket-left {
+        width: @auth-width;
+        display: block;
+      }
+      .ticket-right {
+        width: @auth-right-width;
+        height: @ticket-height;
+        .border-radius(@ticket-radius, @ticket-radius, 0, 0);
+
+        .ticket-nick {
+            top: 50%;
+            right: 0%;
+            height: 7rem;
+            width: 1.50rem;
+            margin-left: 3.5rem;
+
+            &.ticket-nick-right-inner {
+              top: 1.7rem;
+            }
+        }
+      }
+    }
+
+    .about {
+        #about-playlist-container {
+            margin-left: 0px !important;
+            margin-top: 20px;
+        }
+        #playlist-desc-container {
+            padding-left: 0px !important;
+            .playlist-desc {
+                padding-left: 0px !important;
+            }
+        }
+        .timetable {
+            display: none;
+        }
+    }
+
+    .extras {
+        .header {
+            .current-playlist, #about-header-song-info {
+                width: 100%;
+            }
+
+            #about-header-connexion {
+                display: none;
+            }
+            #about-header-connexion-small {
+                display: block;
+                margin: 0px 0px 10px 15px;
+            }
+
+
+            .current-playlist {
+                text-align: left;
+                font-size: @huge-font-size;
+                line-height: 1.1em;
+            }
+            #about-header-song-info {
+                margin-top: 0px;
+                #about-header-artist {
+                    padding: 0px 30px 0px 30px !important;
+                }
+                #about-header-title {
+                    padding: 0px 30px 0px 15px !important;
+                    margin-top: 20px;
+                }
+                .progress-bar-container {
+                    padding-left: 15px;
+                }
+            }
+        }
+    }
+}
+
+
+
 @media (min-width: 768px) {
   .navbar {
     margin-top: 20px;
@@ -1455,6 +1685,15 @@ footer {
     .inner {
       padding-left: 75px;
       padding-right: 75px;
+    }
+  }
+
+  .main-row-login {
+    .ticket-left {
+      width: @auth-width;
+    }
+    .ticket-right {
+      width: @auth-right-width;
     }
   }
 
@@ -1509,13 +1748,147 @@ footer {
       }
     }
   }
-}
-@media (min-width: 1200px) {
-  .masthead, .mastfoot, .cover-container {
-    width: 1200px;
-
+  .main-row-login {
+    .ticket-left {
+      width: @auth-width;
+      height: @ticket-height;
+    }
+    .ticket-right {
+      width: @auth-right-width;
+      height: @ticket-height;
+    }
   }
 }
+
+@media (max-width: 1200px) and (min-width: 992px) {
+  .masthead, .mastfoot, .cover-container {
+    width: 1200px;
+  }
+
+  .ticket {
+      .ticket-left {
+          min-height: @ticket-height-max-1200;
+          width: @ticket-width-max-1200;
+          .progress-bar-container .ticket-content-container {
+             height: 6px;
+          }
+
+          .ticket-info-wrapper {
+              .fake-input-big {
+                  font-size: 106px;
+              }
+              label {
+                  font-size: 14px;
+              }
+              .ticket-footer-container {
+                 margin-top: 0px;
+                 &.progress-hidden {
+                     margin-top: 168px;
+                 }
+
+                 .ticket-label-container, .small-icon-container{
+                     padding-right: 0px;
+                 }
+             }
+             div.svg-code {
+               svg-code {
+                 margin-left: 10px;
+               }
+             }
+          }
+      }
+      .ticket-right {
+          width: @cover-width-max-1200;
+          height: @ticket-height-max-1200;
+          .ticket-right-wrapper {
+              width: @cover-width-max-1200;
+              .ticket-cover {
+                  width: @cover-width-max-1200;
+                  height: @ticket-height-max-1200;
+                  .ticket-cover-with-img-container {
+                      .ticket-cover-with-img {
+                        width: @cover-width-max-1200;
+                        height: @ticket-height-max-1200;
+                      }
+                  }
+                  .ticket-cover-default {
+                    width: @cover-width-max-1200;
+                    height: @ticket-height-max-1200;
+                  }
+              }
+          }
+      }
+  }
+  .main-row-login {
+    .ticket-left {
+      width: @auth-width;
+      height: @ticket-height;
+    }
+    .ticket-right {
+      width: @auth-right-width;
+      height: @ticket-height;
+    }
+  }
+
+  .extras {
+      #about-header-song-info {
+          padding-left: 40px;
+      }
+      .playlist-row {
+          .playlist-col {
+              width: 20%;
+          }
+      }
+  }
+}
+
+@media (max-width: 1320px) and (min-width: 1200px) {
+    .ticket {
+        .ticket-left {
+            min-height: @ticket-height-max-1320;
+            width: @ticket-width-max-1320;
+            .ticket-info-wrapper .ticket-footer-container {
+                margin-top: 16px;
+
+                &.progress-hidden {
+                    margin-top: 198px;
+                }
+            }
+        }
+        .ticket-right {
+            width: @cover-width-max-1320;
+            height: @ticket-height-max-1320;
+            .ticket-right-wrapper {
+                width: @cover-width-max-1320;
+                .ticket-cover {
+                    width: @cover-width-max-1320;
+                    height: @ticket-height-max-1320;
+                    .ticket-cover-with-img-container {
+                        .ticket-cover-with-img {
+                          width: @cover-width-max-1320;
+                          height: @ticket-height-max-1320;
+                        }
+                    }
+                    .ticket-cover-default {
+                      width: @cover-width-max-1320;
+                      height: @ticket-height-max-1320;
+                    }
+                }
+            }
+        }
+    }
+    .main-row-login {
+      .ticket-left {
+        width: @auth-width;
+        height: @ticket-height;
+      }
+      .ticket-right {
+        width: @auth-right-width;
+        height: @ticket-height;
+      }
+    }
+}
+
 @media (min-width: 1400px) {
   .masthead, .mastfoot, .cover-container {
     width: 1350px;
