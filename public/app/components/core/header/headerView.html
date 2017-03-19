@@ -19,10 +19,14 @@
             <li class="col-md-4 {{isActive('/about')}}"><a href="#/about">About</a></li>
             <li class="col-md-4 {{isActive('/extras')}}"><a href="#/extras">Extras</a></li>
             <li class="col-md-4 {{isActive('/auth')}}">
-              <a ng-if="!$root.currentUser.email" href="#/signin" id="header-signin">
+              <a ng-if="!$root.currentUser.id" href="#/signin" id="header-signin">
                 Connexion
               </a>
-              <a ng-if="$root.currentUser.email" ng-click="logout()" id="header-logout">
+              <a ng-if="$root.currentUser.twitter || $root.currentUser.facebook" ng-click="logout()" id="header-logout">
+                {{$root.currentUser.name | limitTo: 3}}
+                <i class="fa fa-sign-out" aria-hidden="true"></i>
+              </a>
+              <a ng-if="$root.currentUser.email && !($root.currentUser.twitter || $root.currentUser.facebook)" ng-click="logout()" id="header-logout">
                 {{$root.currentUser.email | limitTo: 3}}
                 <i class="fa fa-sign-out" aria-hidden="true"></i>
               </a>

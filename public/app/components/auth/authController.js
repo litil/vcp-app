@@ -9,7 +9,7 @@
         .controller('AuthController', AuthController);
 
 
-    function AuthController($auth, $state, $http, $rootScope, $location, PlayerService, PlaylistService) {
+    function AuthController($auth, $state, $http, $rootScope, $location, Notification, PlayerService, PlaylistService) {
         var vm = this;
 
         vm.loginError = false;
@@ -33,7 +33,6 @@
           return playingPlaylist.cls;
         }
 
-
         vm.login = function() {
             // get crendetials from the scope
             var credentials = {
@@ -54,24 +53,14 @@
             // Because we returned the $http.get request in the $auth.login
             // promise, we can chain the next promise to the end here
             }).then(function(response) {
-                // Stringify the returned data to prepare it
-                // to go into local storage
+                if (!response) {
+                    // an error occurred, display a message
+                    Notification.error({message: 'Erreur d\'authentification', delay: 5000});
+                }
                 var user = JSON.stringify(response.data.user);
-
-                // Set the stringified user data into local storage
                 localStorage.setItem('user', user);
-
-                // The user's authenticated state gets flipped to
-                // true so we can now show parts of the UI that rely
-                // on the user being logged in
                 $rootScope.authenticated = true;
-
-                // Putting the user's data on $rootScope allows
-                // us to access it anywhere across the app
                 $rootScope.currentUser = response.data.user;
-
-                // Everything worked out so we can now redirect to
-                // the users state to view the data
                 console.log("User " + response.data.user.email + " is authenticated!");
                 $location.path('/ticket');
             });
@@ -88,9 +77,6 @@
             }
 
             $auth.signup(credentials).then(function() {
-              // Return an $http request for the now authenticated
-              // user so that we can flatten the promise chain
-              // return $http.get('api/authenticate/user');
               vm.login();
 
             // Handle errors
@@ -105,8 +91,68 @@
          * provider (ex : Facebook, Twitter ...).
          */
         vm.authenticate = function(provider) {
-          $auth.authenticate(provider);
-        };
-    }
+          $auth.authenticate(provider).then(function(result) {
+              if (provider == 'facebook'){
+                  vm.authenticateWithFacebook(result);
+              } else if (provider == 'twitter'){
+                  vm.authenticateWithTwitter(result);
+              }
 
+          // Handle errors
+          }, function(error) {
+              vm.loginError = true;
+              vm.loginErrorText = error.data.error;
+              console.log(error);
+              console.log('error while logging in with oauth');
+          });
+        };
+
+
+        vm.authenticateWithFacebook = function(result){
+              var data = {
+                  access_token: result.access_token
+              };
+
+              $http.post("/api/auth/facebook", data).then(function(result) {
+                  // set the token in satellizer_token in local storage
+                  var token = result.data;
+                  localStorage.setItem('satellizer_token', token);
+
+                  // get the authenticated user
+                  return $http.get('api/authenticate/user');
+
+              }, function(error) {
+                  vm.loginError = true;
+                  vm.loginErrorText = error.data.error;
+                  console.log('error while logging in with facebook PHP');
+              }).then(function(response) {
+                  var user = JSON.stringify(response.data.user);
+                  localStorage.setItem('user', user);
+                  $rootScope.authenticated = true;
+                  $rootScope.currentUser = response.data.user;
+                  console.log("User " + response.data.user.email + " is authenticated!");
+                  $location.path('/ticket');
+              });
+          };
+
+        vm.authenticateWithTwitter = function(result){
+            // set the token in satellizer_token in local storage
+            var token = result.data;
+            localStorage.setItem('satellizer_token', token);
+
+            console.log("token", token);
+
+            // get the authenticated user
+            return $http.get('api/authenticate/user').then(function(response) {
+                console.log("in response");
+                var user = JSON.stringify(response.data.user);
+                localStorage.setItem('user', user);
+                $rootScope.authenticated = true;
+                $rootScope.currentUser = response.data.user;
+                console.log("User " + response.data.user.email + " is authenticated!");
+                $location.path('/ticket');
+            });
+        };
+
+    }
 })();

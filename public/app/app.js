@@ -3,14 +3,24 @@
 	'use strict';
 
 	angular
-		.module('vcpProject', ['ui.router', 'satellizer', 'angularSoundManager', 'ui.bootstrap'])
-		.config(function($stateProvider, $urlRouterProvider, $authProvider, $httpProvider, $provide) {
+		.module('vcpProject', ['ui.router', /*'satellizer', */'angularSoundManager', 'ui.bootstrap', 'ui-notification'])
+		.config(function($stateProvider, $urlRouterProvider, /*$authProvider, */$httpProvider, $provide) {
 
 			// social authentication setup
 			// no additional setup required for Twitter
-			$authProvider.facebook({
-	      clientId: 'Facebook App ID'
-	    });
+			// $authProvider.facebook({
+		    //   clientId: '1531824530180454',
+      // 		  responseType: 'token'
+		    // });
+			//
+			// // Twitter
+			// $authProvider.twitter({
+			//   url: '/api/auth/twitter',
+			//   authorizationEndpoint: 'https://api.twitter.com/oauth/authenticate',
+			//   redirectUri: window.location.origin,
+			//   oauthType: '1.0',
+			//   popupOptions: { width: 495, height: 645 }
+			// });
 
 			/**
 			 * This method redirects the user
@@ -52,8 +62,8 @@
 			// Push the new factory onto the $http interceptor array
 			$httpProvider.interceptors.push('redirectWhenLoggedOut');
 
-			$authProvider.loginUrl = '/api/authenticate';
-			$authProvider.signupUrl = '/api/register';
+			// $authProvider.loginUrl = '/api/authenticate';
+			// $authProvider.signupUrl = '/api/register';
 
 			$urlRouterProvider.otherwise('/404');
 
@@ -62,32 +72,32 @@
 					url: '/construction',
 					templateUrl: '../app/shared/construction/underConstructionView.html',
 					data : {
-          	cssClassnames : 'background-light'
-       		}
+		          		cssClassnames : 'background-light'
+		       		}
 					// no controller, we don't need any to display this static view
 				})
 				.state('termsOfUse', {
 					url: '/termsOfUse',
 					templateUrl: '../app/components/terms/termsOfUse.html',
 					data : {
-          	cssClassnames : 'background-light'
-       		}
+          				cssClassnames : 'background-light'
+       				}
 					// no controller, we don't need any to display this static view
 				})
 				.state('policy', {
 					url: '/policy',
 					templateUrl: '../app/components/policy/privacyPolicy.html',
 					data : {
-          	cssClassnames : 'background-light'
-       		}
+          				cssClassnames : 'background-light'
+       				}
 					// no controller, we don't need any to display this static view
 				})
 				.state('404', {
 					url: '/404',
 					templateUrl: '../app/shared/404/404View.html',
 					data : {
-          	cssClassnames : 'background-light'
-       		}
+          				cssClassnames : 'background-light'
+       				}
 					// no controller, we don't need any to display this static view
 				})
 				.state('ticket', {
@@ -95,48 +105,56 @@
 					templateUrl: '../app/components/ticket/ticketView.html',
 					controller: 'TicketController as ticketController',
 					data : {
-          	cssClassnames : 'background-dark'
-       		}
+          				cssClassnames : 'background-dark'
+       				}
 				})
 				.state('extras', {
 					url: '/extras',
 					templateUrl: '../app/components/extras/extrasView.html',
 					controller: 'ExtrasController as extrasController',
 					data : {
-          	cssClassnames : 'background-light'
-       		}
+          				cssClassnames : 'background-light'
+       				}
 				})
 				.state('about', {
 					url: '/about',
 					templateUrl: '../app/components/about/aboutView.html',
 					controller: 'AboutController as aboutController',
 					data : {
-          	cssClassnames : 'background-light'
-       		}
+          				cssClassnames : 'background-light'
+       				}
+				})
+				.state('authenticate', {
+					url: '/authenticate',
+					templateUrl: '../app/components/auth/signinView.html',
+					controller: 'AuthController as authController',
+					data : {
+          				cssClassnames : 'background-dark'
+       				}
 				})
 				.state('signin', {
 					url: '/signin',
 					templateUrl: '../app/components/auth/signinView.html',
 					controller: 'AuthController as authController',
 					data : {
-          	cssClassnames : 'background-dark'
-       		}
+          				cssClassnames : 'background-dark'
+       				}
 				})
 				.state('signup', {
 					url: '/signup',
 					templateUrl: '../app/components/auth/signupView.html',
 					controller: 'AuthController as authController',
 					data : {
-          	cssClassnames : 'background-dark'
-       		}
+          				cssClassnames : 'background-dark'
+       				}
 				})
 				.state('users', {
 					url: '/users',
 					templateUrl: '../app/components/user/userView.html',
 					controller: 'UserController as user',
 					data : {
-          	cssClassnames : 'background-light'
-       		}
+          				cssClassnames : 'background-light'
+       				}
 				});
 		})
 

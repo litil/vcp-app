@@ -74,8 +74,9 @@ All these settings are available for the three types of tooltips.
   Popup delay in milliseconds until it opens.
 
 * `tooltip-trigger`
-  _(Default: `mouseenter`)_ -
-  What should trigger a show of the tooltip? Supports a space separated list of event names (see below).
+  <small class="badge">$</small>
+  _(Default: `'mouseenter'`)_ -
+  What should trigger a show of the tooltip? Supports a space separated list of event names, or objects (see below).
 
 **Note:** To configure the tooltips, you need to do it on `$uibTooltipProvider` (also see below).
 
@@ -117,3 +118,5 @@ For Safari 7+ support, if you want to use the **focus** `tooltip-trigger`, you n
   Click Me
 </a>
 ```
+
+For Safari (potentially all versions up to 9), there is an issue with the hover CSS selector when using multiple elements grouped close to each other that are using the tooltip - it is possible for multiple elements to gain the hover state when mousing between the elements quickly and exiting the container at the right time. See [issue #5445](https://github.com/angular-ui/bootstrap/issues/5445) for more details.

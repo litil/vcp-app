@@ -1,0 +1,25 @@
+# AWS
+
+## CONNECT WITH SSH
+  ssh -i guillaume-key-pair-virginia.pem ec2-user@ec2-54-235-28-122.compute-1.amazonaws.com
+
+## VPC GROUP
+
+Basic Information :
+  vcp-group
+  guillaume / vcp
+  https://077309247329.signin.aws.amazon.com/console/
+    I didn't create an alias, see here : http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/get-set-up-for-amazon-ec2.html
+
+## PRIVATE GROUP
+  projects/AWS/vcp-key-pair-virginia
+
+## SECURITY GROUP
+  guillaume_SG_virginia
+
+## DATABASE
+  root / rootdb
+
+## CSR
+  csr.pem
+  guillaume / guillaumeaws

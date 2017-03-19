@@ -12,11 +12,11 @@
 
       <div class="row row-eq-height main-row-ticket">
 
-        <div class="ticket-nick ticket-nick-left"></div>
-        <div class="ticket-nick ticket-nick-right"></div>
-
         <!-- TICKET LEFT -->
         <div class="ticket-left {{ticketController.playlists.current.cls}}">
+
+          <div class="ticket-nick ticket-nick-left"></div>
+
           <div class="ticket-info-wrapper">
             <!-- ARTIST -->
             <div class="row row-content" id="row-artist">
@@ -137,8 +137,10 @@
 
 
         <!-- TICKET RIGHT -->
-        <div class="ticket-right col-md-4">
+        <div class="ticket-right col-md-4 col-md-offset-0 col-sm-offset-3 col-xs-offset-3">
           <div class="ticket-right-wrapper" ng-click="ticketController.togglePlay()">
+
+            <div class="ticket-nick ticket-nick-right-inner"></div>
 
             <div class="row">
               <div id="cover-container" class="col-md-12">
@@ -167,6 +169,70 @@
                   </div>
                 </span>
               </div>
+
+
+                <div class="ticket-bottom {{ticketController.playlists.current.cls}}">
+                    <div class="row">
+                      <div class="ticket-info-wrapper">
+                        <!-- ARTIST -->
+                        <div class="row">
+                          <div class="col-sm-12 ticket-content-container">
+                            <div id="ticket-artist" class="row-content fake-input">{{ticketController.song.artist}}</div>
+                          </div>
+                        </div>
+
+                        <!-- TITLE -->
+                        <div class="row">
+                          <div class="col-sm-12 ticket-content-container">
+                            <div id="ticket-title"  class="row-content fake-input">{{ticketController.song.title | title}}</div>
+                          </div>
+                        </div>
+
+                        <!-- DURATION / SOUND / SOCIAL -->
+                        <div class="row" id="row-duration">
+                          <div class="col-sm-6 ticket-content-container">
+                            <div id="ticket-duration"  class="row-content fake-input" ng-class="{'show': ticketController.song.first === false, 'hidden': ticketController.song.first === true}">
+                                {{ticketController.getCurrentPosition() | time}} / {{ticketController.song.duration | time}}
+                            </div>
+                          </div>
+                          <div class="col-sm-1 col-sm-offset-0 col-md-offset-1 small-icon-container" id="volume-container" ng-class="{'muted': ticketController.isMuted()}">
+                            <span class="fa-stack"
+                              ng-class="{'show': ticketController.isMuted(), 'hidden': !ticketController.isMuted()}"
+                              ng-click="ticketController.togglePlay()">
+                                <i class="fa fa-volume-off fa-stack-2x fa-nudge-left"></i>
+                                <i class="fa fa-times fa-right" style="font-size:1em"></i>
+                            </span>
+                            <i
+                              class="fa fa-volume-up"
+                              ng-class="{'show': !ticketController.isMuted(), 'hidden': ticketController.isMuted()}"
+                              ng-click="ticketController.togglePlay()">
+                            </i>
+                          </div>
+                          <div class="col-md-2 col-sm-5 small-icon-container" id="social-container">
+                            <i class="fa fa-facebook-square"></i>
+                            <i class="fa fa-twitter-square"></i>
+                          </div>
+                        </div>
+
+                        <!-- PLAYISTS -->
+                        <div class="row playlist-row">
+                          <div class="col-sm-4">
+                            <div class="row-content fake-input fake-input-big">
+                              <div class="text-center">{{ticketController.playlists.current.key}}</div>
+                            </div>
+                          </div>
+                          <div class="col-sm-8">
+                            <div class="row-content fake-input">
+                              <div class="text-center">{{ticketController.playlists.current.label | uppercase}}</div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- end of PLAYISTS -->
+                      </div>
+                      <!-- end of ticket info wrapper -->
+                  </div>
+              </div>
+
             </div>
           </div>
         </div>
@@ -176,4 +242,4 @@
     </div>
   </div>
 </div>
-<!-- end of INNER BODY>
+<!-- end of INNER BODY -->

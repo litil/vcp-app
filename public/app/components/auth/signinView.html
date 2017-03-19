@@ -8,14 +8,14 @@ so that users can authenticate and one link to the signup part.
 <!-- INNER BODY -->
 <div class="inner cover">
     <div class="row">
-        <div class="ticket col-md-4 col-md-offset-4">
+        <div class="ticket col-md-6 col-md-offset-4 col-sm-offset-3 col-xs-offset-3">
             <div class="row row-eq-height main-row-login">
-
-                <div class="ticket-nick ticket-nick-left"></div>
-                <div class="ticket-nick ticket-nick-right"></div>
 
                 <!-- TICKET LEFT -->
                 <div class="ticket-left {{authController.getPlayingPlaylistCls()}}">
+
+                    <div class="ticket-nick ticket-nick-left"></div>
+
                     <div class="ticket-login-wrapper">
                         <!-- ARTIST -->
                         <div class="row login" id="row-welcome">
@@ -69,13 +69,15 @@ so that users can authenticate and one link to the signup part.
 
                 <!-- TICKET RIGHT -->
                 <div class="ticket-right {{authController.getPlayingPlaylistCls()}}">
+                    <div class="ticket-nick ticket-nick-right"></div>
+
                     <div class="row">
-                        <div id="brand-container" class="col-md-12">
+                        <div id="brand-container" class="col-md-12 col-sm-12 col-xs-12">
                             <span>
                             VCP
                             </span>
                         </div>
-                        <div id="logo-container" class="col-md-12">
+                        <div id="logo-container" class="col-md-12 col-sm-12 col-xs-12">
                             <span logo></span>
                         </div>
                     </div>
