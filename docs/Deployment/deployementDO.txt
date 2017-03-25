@@ -60,6 +60,7 @@ Step 15 - Run artisan migrate
         if no error, the database and the .env file are correct
 
 Step 16 - Create new virtual host
+    cd /etc/apache2/sites-available/
     vim my_app.conf
         <VirtualHost *:80>
             ServerName my-site.com
