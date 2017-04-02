@@ -32,7 +32,16 @@
     </div>
     <div class="playlist-col col-md-6 col-sm-12 col-xs-12">
         <div class="row">
-            <div id="about-playlist-container"
+            <div id="about-playlist-container" ng-if="aboutController.playlists.playing.cls != undefined"
+                class="playlist-container text-left col-md-4 col-sm-6 col-xs-6 {{aboutController.playlists.playing.cls}}">
+              <div class="playlist-title text-left col-md-12">
+                {{aboutController.playlists.playing.key}}
+              </div>
+              <div class="playlist-sub text-left col-md-12">
+                {{aboutController.playlists.playing.label}}
+              </div>
+            </div>
+            <div id="about-playlist-container" ng-if="aboutController.playlists.playing.cls == undefined"
                 class="playlist-container text-left col-md-4 col-sm-6 col-xs-6 {{aboutController.playlists.current.cls}}">
               <div class="playlist-title text-left col-md-12">
                 {{aboutController.playlists.current.key}}
@@ -44,7 +53,14 @@
         </div>
 
         <div class="row">
-            <div class="text-left col-md-12" id="playlist-desc-container">
+            <div class="text-left col-md-12" id="playlist-desc-container"
+                ng-if="aboutController.playlists.playing.cls != undefined">
+                <div class="col-md-12 text-left playlist-desc">
+                  {{aboutController.playlists.playing.description}}
+                </div>
+            </div>
+            <div class="text-left col-md-12" id="playlist-desc-container"
+                ng-if="aboutController.playlists.playing.cls == undefined">
                 <div class="col-md-12 text-left playlist-desc">
                   {{aboutController.playlists.current.description}}
                 </div>
@@ -104,7 +120,8 @@
 
           <div class="row seven-cols">
             <div class="col-md-12 slot slot-5h">
-              <div class="{{aboutController.getCurrentSlotCls([1, 2, 3, 4, 5], 6, 11)}}">
+              <div class="{{aboutController.getSlotCls([1, 2, 3, 4, 5], 6, 11, 'MRN')}}"
+                    ng-click="aboutController.switchPlaylist('MRN')">
                 <span>morning</span>
               </div>
             </div>
@@ -112,19 +129,23 @@
 
           <div class="row five-cols">
             <div class="col-md-3 slot slot-15h">
-              <div class="{{aboutController.getCurrentSlotCls([1, 2, 3], 11, 2)}}">
+              <div class="{{aboutController.getSlotCls([1, 2, 3], 11, 2, 'CRG')}}"
+                    ng-click="aboutController.switchPlaylist('CRG')">
                 <span>cruising</span>
               </div>
             </div>
             <div class="col-md-2">
               <div class="row seven-cols">
                 <div class="col-md-7 slot slot-12h">
-                  <div class="{{aboutController.getCurrentSlotCls([4, 5], 11, 23)}}">
+                  <div class="{{aboutController.getSlotCls([4, 5], 11, 23, 'CRG')}}"
+                        ng-click="aboutController.switchPlaylist('CRG')">
                     <span>cruising</span>
                   </div>
                 </div>
                 <div class="col-md-7 slot slot-3h">
-                  <div class="{{aboutController.getCurrentSlotCls([4, 5, 6], 23, 2)}}">
+                  <div class="{{aboutController.getSlotCls([4, 5, 6], 23, 2, 'BFR')}}"
+                        ng-class="{'before': aboutController.playlists.playing.key === 'BFR'}"
+                        ng-click="aboutController.switchPlaylist('BFR')">
                     <span>before</span>
                   </div>
                 </div>
@@ -136,14 +157,16 @@
         <div class="col-md-2">
           <div class="row seven-cols">
             <div class="col-md-12 slot slot-7h no-padding-right">
-                <div class="{{aboutController.getCurrentSlotCls([0, 6], 6, 13)}}">
+                <div class="{{aboutController.getSlotCls([0, 6], 6, 13, 'MWE')}}"
+                      ng-click="aboutController.switchPlaylist('MWE')">
                   <span>morning week-end</span>
                 </div>
             </div>
           </div>
           <div class="row seven-cols">
             <div class="col-md-12 slot slot-13h no-padding-right">
-                <div class="{{aboutController.getCurrentSlotCls([0, 1, 6], 13, 2)}}">
+                <div class="{{aboutController.getSlotCls([0, 1, 6], 13, 2, 'CRG')}}"
+                      ng-click="aboutController.switchPlaylist('CRG')">
                   <span>cruising</span>
                 </div>
             </div>
@@ -152,7 +175,8 @@
       </div>
       <div class="row seven-cols">
         <div class="col-md-7 slot slot-4h no-padding-right">
-            <div class="{{aboutController.getCurrentSlotCls([0, 1, 2, 3, 4, 5, 6], 2, 6)}}">
+            <div class="{{aboutController.getSlotCls([0, 1, 2, 3, 4, 5, 6], 2, 6, 'AFR')}}"
+                  ng-click="aboutController.switchPlaylist('AFR')">
               <span>after</span>
             </div>
         </div>

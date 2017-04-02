@@ -86,6 +86,7 @@ Step 16 - Create new virtual host
         </VirtualHost>
 
 Step 17 - Enable the virtual host
+    https://www.digitalocean.com/community/questions/port-mapping-and-apache-virtual-host
     sudo a2ensite my_app
     sudo service apache2 reload
 
