@@ -113,11 +113,13 @@
            * will do the same every 5s to update the displayed information.
            */
           i.prototype.init = function() {
-            // first call to the radio to display the current song data
-            httpClient.jsonp("http://radio.vendredicestpermis.com/jsonp.xsl");
+              if (hasBeenInitialized == false) {
+                // first call to the radio to display the current song data
+                httpClient.jsonp("http://radio.vendredicestpermis.com/jsonp.xsl");
 
-            // launches the task to update the song info
-            this.getSongInfosTask();
+                // launches the task to update the song info
+                this.getSongInfosTask();
+              }
           },
 
           i.prototype.stringLengthClass = function(str) {
@@ -269,6 +271,8 @@
            */
           i.prototype.switchPlaylist = function(playlistKey, infoKey) {
             // check we're not switching to the current playlist
+            //TODO do we still have to init the player service here 
+            this.init();
             if (playingPlaylistKey !== null  && playingPlaylistKey === playlistKey){
               return;
             }

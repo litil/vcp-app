@@ -41,6 +41,20 @@
         'duration' : 4*60*1000
       }
 
+      // initializing the Player
+      // meaning it gets the current song data
+      // and set a cron task which does it every 5s
+      PlayerService.init();
+
+      /**
+       * This method is called when we receive the response from the server.
+       * The response starts with "parseMusic(...)" so it calls this method
+       * which only put the song information into a "song" object.
+       */
+      window.parseMusic = function(data) {
+          vm.song = PlayerService.parseMusic(data);
+      };
+
       /**
        * This method gets the current playlist, that means the playlist that
        * is played when the user follows the live flux.
