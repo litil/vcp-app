@@ -1,0 +1,44 @@
+# Deploy new version
+
+Step 12 - Update .env file
+    cp ../vcp-app/.env .
+    sudo service apache2 reload
+
+Step 13 - Run composer
+    composer install
+
+Step 14 - Change permissions on storage and bootstrap
+    mkdir storage
+    sudo chmod -R 777 storage
+    sudo chmod -R 777 bootstrap
+
+Step 15 - Run artisan migrate
+    php artisan migrate
+        if no error, the database and the .env file are correct
+
+Step 16 - Create new virtual host
+    cd /etc/apache2/sites-available/
+    vim my_app.conf
+        <VirtualHost *:80>
+            ServerName my-site.com
+            ServerAlias 178.62.117.184
+
+            DocumentRoot /var/www/vcp-app/public
+            <Directory /var/www/vcp-app/public>
+                # Don't show directory index
+                Options -Indexes +FollowSymLinks +MultiViews
+
+                # Allow .htaccess files
+                AllowOverride All
+
+                # Allow web access to this directory
+                Require all granted
+            </Directory>
+
+            # Error and access logs
+            ErrorLog ${APACHE_LOG_DIR}/vcp-app.error.log
+            # Possible values include: debug, info, notice, warn, error, crit,
+            # alert, emerg.
+            LogLevel warn
+            CustomLog ${APACHE_LOG_DIR}/vcp-app.access.log combined
+        </VirtualHost>
