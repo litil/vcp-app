@@ -3,9 +3,10 @@
 	'use strict';
 
 	angular
-		.module('vcpProject', ['ui.router', 'satellizer', 'angularSoundManager', 'ui.bootstrap', 'ui-notification', '720kb.socialshare'])
-		.config(function($stateProvider, $urlRouterProvider, $authProvider, $httpProvider, $provide) {
+		.module('vcpProject', ['ui.router', /*'satellizer',*/ 'angularSoundManager', 'ui.bootstrap', 'ui-notification'])
+		.config(function($stateProvider, $urlRouterProvider, /*$authProvider,*/ $httpProvider, $provide) {
 
+			/*
 			// social authentication setup
 			// no additional setup required for Twitter
 			$authProvider.facebook({
@@ -21,6 +22,7 @@
 			  oauthType: '1.0',
 			  popupOptions: { width: 495, height: 645 }
 			});
+			*/
 
 			/**
 			 * This method redirects the user
