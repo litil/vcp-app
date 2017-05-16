@@ -553,6 +553,9 @@ body {
         .fa-volume-up, .fa-volume-off {
           cursor: pointer;
         }
+        i {
+          cursor: pointer;
+        }
       }
       #volume-container {
         margin-top: 6px;

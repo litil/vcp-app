@@ -49,6 +49,7 @@ Based on https://scotch.io/tutorials/token-based-authentication-for-angularjs-an
     <script src="assets/node_modules/angular-ui-router/build/angular-ui-router.js"></script>
     <script src="assets/node_modules/satellizer/satellizer.js"></script>
     <script src="assets/node_modules/angular-soundmanager2.js"></script>
+    <script src="assets/node_modules/angular-socialshare.min.js"></script>
     <script src="assets/node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
