@@ -37,6 +37,7 @@
           var playingPlaylistKey = null;
 
           rootScopeParam.$on("angularPlayer:ready", function() {
+              console.log("angularPlayer:ready");
               deferred.resolve();
           }),
           rootScopeParam.$on("currentTrack:position", function(a, progressPos) {
@@ -156,7 +157,6 @@
             // get the song raw data
             // var INFOS_KEY = "/radio_VCP";
             var rawData = data[INFOS_KEY];
-            console.log("[parseMusic]", {data});
 
             var artist = 'Artiste inconnu';
             var title = 'Titre inconnu';
@@ -243,8 +243,6 @@
               playingSong.title = playingSong.title.substring(0, maxSize) + '...';
             }
 
-            console.log("[parseMusic]", {playingSong});
-
             return playingSong;
           },
 
@@ -328,10 +326,8 @@
            */
           i.prototype.isSameSong = function(playingSongTitle, lastSongTitle, playingSongId, lastSongId) {
             var bool = false;
-            console.log("[isSameSong]", {playingSongTitle, lastSongTitle, playingSongId, lastSongId});
 
             if (lastSongTitle === undefined || playingSongTitle === undefined) {
-                console.log("[isSameSong] - last song title is undefined");
                 return false;
             }
 
@@ -346,11 +342,7 @@
               }
             }
 
-            bool = true;
-
-            console.log("[isSameSong]", {"isSameSong": bool});
-
-            return bool;
+            return true;
           },
 
           /**
@@ -358,7 +350,6 @@
            * then plays it.
            */
           i.prototype.play = function() {
-              console.log("[play]");
               return this.playingRawData && this.playCurrent(), this;
           },
 
@@ -367,7 +358,6 @@
            * mute/unmute it, so this method would disappear.
            */
           i.prototype.pause = function() {
-              console.log("[pause]");
               timeoutWrapper(function() {
                  angularPlayerParam.pause();
               }, 0);
@@ -377,7 +367,6 @@
            * This method stops the player and remove the existing track.
            */
           i.prototype.stopAndClean = function() {
-              console.log("[stopAndClean]");
               timeoutWrapper(function() {
                  angularPlayerParam.stop();
               }, 0);
@@ -394,13 +383,11 @@
            * component status but also the current progression.
            */
           i.prototype.isPlaying = function() {
-              console.log("[isPlaying]");
               return angularPlayerParam.isPlayingStatus() && progressPosition > 0;
           },
 
 
           i.prototype.isReady = function() {
-              console.log("[isReady]");
               return deferred.promise;
           },
 
@@ -418,13 +405,10 @@
            * This method plays the current song.
            */
           i.prototype.playCurrent = function() {
-              console.log("[playCurrent]");
-
               var isReady = this.isReady();
-              console.log("[playCurrent]", {isReady});
 
-              return isReady
-                .then(function() {
+            //   return isReady
+                // .then(function() {
                   // build the url from the base url and the infos key
                   this.url = BASE_URL + INFOS_KEY;
 
@@ -440,16 +424,14 @@
                   // play methods inside $timeout
                   // see https://github.com/perminder-klair/angular-soundmanager2/issues/53
                   timeoutWrapper(function(song) {
-                      console.log("[playCurrent] - add track");
                      angularPlayerParam.addTrack(song);
                   }, 0, true, this.song);
 
                   // start the player
                   timeoutWrapper(function() {
-                     console.log("[playCurrent] - play");
                      angularPlayerParam.play();
                   }, 0);
-                }.bind(this)), this
+                // }.bind(this)), this
           },
 
           new i;
