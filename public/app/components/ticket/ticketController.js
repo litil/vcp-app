@@ -95,7 +95,7 @@
   /**
    * Constructor
    */
-  function TicketController($state, $http, $rootScope, $interval, $timeout, PlayerService, PlaylistService/*, Socialshare*/) {
+  function TicketController($state, $http, $rootScope, $interval, $timeout, PlayerService, PlaylistService, Socialshare) {
       var vm = this;
 
     // set default value into vm.song
@@ -194,7 +194,6 @@
         var currentSong = PlayerService.getCurrentSong();
         var message = 'On aime \"' + currentSong.title + '\" - \"' + currentSong.artist + '\" sur VCP!';
 
-        /*
         Socialshare.share({
             'provider': 'facebook',
             'attrs': {
@@ -204,7 +203,6 @@
                 'socialshareTitle': message
             }
         });
-        */
     };
 
     /**
@@ -215,7 +213,6 @@
         var currentSong = PlayerService.getCurrentSong();
         var message = 'On aime \"' + currentSong.title + '\" - \"' + currentSong.artist + '\" sur VCP!';
 
-        /*
         Socialshare.share({
             'provider': 'twitter',
             'attrs': {
@@ -223,7 +220,6 @@
                 'socialshareText': message
             }
         });
-        */
     };
   }
 })();

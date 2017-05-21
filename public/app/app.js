@@ -3,7 +3,7 @@
 	'use strict';
 
 	angular
-		.module('vcpProject', ['ui.router', /*'satellizer',*/ 'angularSoundManager', 'ui.bootstrap', 'ui-notification'])
+		.module('vcpProject', ['ui.router', /*'satellizer',*/ 'angularSoundManager', 'ui.bootstrap', 'ui-notification', '720kb.socialshare'])
 		.config(function($stateProvider, $urlRouterProvider, /*$authProvider,*/ $httpProvider, $provide) {
 
 			/*
