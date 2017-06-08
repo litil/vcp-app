@@ -65,7 +65,7 @@
 			$authProvider.loginUrl = '/api/authenticate';
 			$authProvider.signupUrl = '/api/register';
 
-			$urlRouterProvider.otherwise('/404');
+			$urlRouterProvider.otherwise('/ticket');
 
 			$stateProvider
 				.state('construction', {
