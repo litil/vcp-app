@@ -18,7 +18,7 @@
   /**
    * Constructor
    */
-  function HeaderController(/*$auth, */$state, $http, $rootScope, $scope, $location, $window, $uibModal, Notification, PlayerService, PlaylistService) {
+  function HeaderController($auth, $state, $http, $rootScope, $scope, $location, $window, $uibModal, Notification, PlayerService, PlaylistService) {
     var vm = this;
     $rootScope.location = $location;
 
@@ -106,7 +106,6 @@
      * if he's not already on this view.
      */
     $scope.logout = function() {
-        /*
       $auth.logout().then(function() {
         // remove user in local storage
         localStorage.removeItem('user');
@@ -123,7 +122,6 @@
         // the user has been successfully sign out
         Notification.success({message: 'Vous avez bien été déconnecté.', delay: 2000});
       });
-      */
     };
 
   }
