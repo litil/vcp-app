@@ -3,24 +3,24 @@
 	'use strict';
 
 	angular
-		.module('vcpProject', ['ui.router', /*'satellizer', */'angularSoundManager', 'ui.bootstrap', 'ui-notification'])
-		.config(function($stateProvider, $urlRouterProvider, /*$authProvider, */$httpProvider, $provide) {
+		.module('vcpProject', ['ui.router', 'satellizer', 'angularSoundManager', 'ui.bootstrap', 'ui-notification', '720kb.socialshare'])
+		.config(function($stateProvider, $urlRouterProvider, $authProvider, $httpProvider, $provide) {
 
 			// social authentication setup
 			// no additional setup required for Twitter
-			// $authProvider.facebook({
-		    //   clientId: '1531824530180454',
-      // 		  responseType: 'token'
-		    // });
-			//
-			// // Twitter
-			// $authProvider.twitter({
-			//   url: '/api/auth/twitter',
-			//   authorizationEndpoint: 'https://api.twitter.com/oauth/authenticate',
-			//   redirectUri: window.location.origin,
-			//   oauthType: '1.0',
-			//   popupOptions: { width: 495, height: 645 }
-			// });
+			$authProvider.facebook({
+		      clientId: '1531824530180454',
+      		  responseType: 'token'
+		    });
+
+			// Twitter
+			$authProvider.twitter({
+			  url: '/api/auth/twitter',
+			  authorizationEndpoint: 'https://api.twitter.com/oauth/authenticate',
+			  redirectUri: window.location.origin,
+			  oauthType: '1.0',
+			  popupOptions: { width: 495, height: 645 }
+			});
 
 			/**
 			 * This method redirects the user
@@ -62,10 +62,10 @@
 			// Push the new factory onto the $http interceptor array
 			$httpProvider.interceptors.push('redirectWhenLoggedOut');
 
-			// $authProvider.loginUrl = '/api/authenticate';
-			// $authProvider.signupUrl = '/api/register';
+			$authProvider.loginUrl = '/api/authenticate';
+			$authProvider.signupUrl = '/api/register';
 
-			$urlRouterProvider.otherwise('/404');
+			$urlRouterProvider.otherwise('/ticket');
 
 			$stateProvider
 				.state('construction', {

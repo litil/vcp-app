@@ -23,6 +23,7 @@
     "test": "karma start karma.conf.js"
   },
   "dependencies": {
+    "angular-socialshare": "^2.3.7",
     "angular-ui-bootstrap": "^2.5.0",
     "bootstrap-sass": "^3.3.7",
     "laravel-elixir": "^6.0.0-15"

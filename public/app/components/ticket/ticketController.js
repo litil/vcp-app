@@ -95,12 +95,8 @@
   /**
    * Constructor
    */
-  function TicketController($state, $http, $rootScope, $interval, $timeout, PlayerService, PlaylistService) {
+  function TicketController($state, $http, $rootScope, $interval, $timeout, PlayerService, PlaylistService, Socialshare) {
       var vm = this;
-
-
-      			$state.bearer = 'aa';
-      			$rootScope.bearer = 'cc';
 
     // set default value into vm.song
     vm.song = {
@@ -190,5 +186,40 @@
       PlayerService.togglePlay();
     };
 
+    /**
+     * This method shares the current title - author, with a link to the VCP
+     * home, on facebook.
+     */
+    this.shareFacebook = function() {
+        var currentSong = PlayerService.getCurrentSong();
+        var message = 'On aime \"' + currentSong.title + '\" - \"' + currentSong.artist + '\" sur VCP!';
+
+        Socialshare.share({
+            'provider': 'facebook',
+            'attrs': {
+                'socialshareUrl': 'http://178.62.117.184:8181/#/ticket',
+                'socialshareType': 'share',
+                'socialshareVia': '1531824530180454',
+                'socialshareTitle': message
+            }
+        });
+    };
+
+    /**
+     * This method shares the current title - author, with a link to the VCP
+     * home, on twitter.
+     */
+    this.shareTwitter = function() {
+        var currentSong = PlayerService.getCurrentSong();
+        var message = 'On aime \"' + currentSong.title + '\" - \"' + currentSong.artist + '\" sur VCP!';
+
+        Socialshare.share({
+            'provider': 'twitter',
+            'attrs': {
+                'socialshareUrl': 'http://178.62.117.184:8181/#/ticket',
+                'socialshareText': message
+            }
+        });
+    };
   }
 })();

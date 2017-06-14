@@ -37,6 +37,7 @@
           var playingPlaylistKey = null;
 
           rootScopeParam.$on("angularPlayer:ready", function() {
+              console.log("angularPlayer:ready");
               deferred.resolve();
           }),
           rootScopeParam.$on("currentTrack:position", function(a, progressPos) {
@@ -271,7 +272,7 @@
            */
           i.prototype.switchPlaylist = function(playlistKey, infoKey) {
             // check we're not switching to the current playlist
-            //TODO do we still have to init the player service here 
+            //TODO do we still have to init the player service here
             this.init();
             if (playingPlaylistKey !== null  && playingPlaylistKey === playlistKey){
               return;
@@ -324,18 +325,20 @@
            * ID/title.
            */
           i.prototype.isSameSong = function(playingSongTitle, lastSongTitle, playingSongId, lastSongId) {
+            var bool = false;
+
+            if (lastSongTitle === undefined || playingSongTitle === undefined) {
+                return false;
+            }
+
             if (playingSongId !== undefined && lastSongId !== undefined){
               if (playingSongId !== lastSongId){
-                return false;
+                  bool = false;
               }
             } else {
-              if (lastSongTitle === undefined || playingSongTitle === undefined) {
-                return false;
-              }
-
               // for some reason, these 2 titles might not be truncated the same way
               if (playingSongTitle.substring(0, 24) !== lastSongTitle.substring(0, 24)){
-                return false;
+                bool = false;
               }
             }
 
@@ -402,8 +405,10 @@
            * This method plays the current song.
            */
           i.prototype.playCurrent = function() {
-              return this.isReady()
-                .then(function() {
+              var isReady = this.isReady();
+
+            //   return isReady
+                // .then(function() {
                   // build the url from the base url and the infos key
                   this.url = BASE_URL + INFOS_KEY;
 
@@ -426,7 +431,7 @@
                   timeoutWrapper(function() {
                      angularPlayerParam.play();
                   }, 0);
-                }.bind(this)), this
+                // }.bind(this)), this
           },
 
           new i;
