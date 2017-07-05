@@ -140,11 +140,8 @@
             var token = result.data;
             localStorage.setItem('satellizer_token', token);
 
-            console.log("token", token);
-
             // get the authenticated user
             return $http.get('api/authenticate/user').then(function(response) {
-                console.log("in response");
                 var user = JSON.stringify(response.data.user);
                 localStorage.setItem('user', user);
                 $rootScope.authenticated = true;

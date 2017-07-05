@@ -197,7 +197,7 @@
         Socialshare.share({
             'provider': 'facebook',
             'attrs': {
-                'socialshareUrl': 'http://178.62.117.184:8181/#/ticket',
+                'socialshareUrl': 'http://radiovcp.com',
                 'socialshareType': 'share',
                 'socialshareVia': '1531824530180454',
                 'socialshareTitle': message
@@ -216,7 +216,7 @@
         Socialshare.share({
             'provider': 'twitter',
             'attrs': {
-                'socialshareUrl': 'http://178.62.117.184:8181/#/ticket',
+                'socialshareUrl': 'http://radiovcp.com',
                 'socialshareText': message
             }
         });
