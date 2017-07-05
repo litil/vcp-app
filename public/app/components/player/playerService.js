@@ -37,7 +37,6 @@
           var playingPlaylistKey = null;
 
           rootScopeParam.$on("angularPlayer:ready", function() {
-              console.log("angularPlayer:ready");
               deferred.resolve();
           }),
           rootScopeParam.$on("currentTrack:position", function(a, progressPos) {
@@ -154,8 +153,6 @@
            * @param data the current song information
            */
           i.prototype.parseMusic = function(data) {
-              console.log("parsemusic", data);
-
             // get the song raw data
             // var INFOS_KEY = "/radio_VCP";
             var rawData = data[INFOS_KEY];
@@ -193,7 +190,6 @@
             // reset the duration counter if it is a new song
             //TODO Player - replace title with id once the id is correctly sent by server
             var isSameSongReturn = this.isSameSong(title, playingSong.title, id, playingSong.id);
-            console.log('isSameSongReturn', isSameSongReturn);
 
             if (isSameSongReturn === false){
 
