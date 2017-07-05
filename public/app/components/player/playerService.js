@@ -154,6 +154,8 @@
            * @param data the current song information
            */
           i.prototype.parseMusic = function(data) {
+              console.log("parsemusic", data);
+
             // get the song raw data
             // var INFOS_KEY = "/radio_VCP";
             var rawData = data[INFOS_KEY];
@@ -190,7 +192,11 @@
 
             // reset the duration counter if it is a new song
             //TODO Player - replace title with id once the id is correctly sent by server
-            if (this.isSameSong(title, playingSong.title, id, playingSong.id) === false){
+            var isSameSongReturn = this.isSameSong(title, playingSong.title, id, playingSong.id);
+            console.log('isSameSongReturn', isSameSongReturn);
+
+            if (isSameSongReturn === false){
+
               this.resetProgress();
 
               // init isFirstSong
@@ -325,20 +331,18 @@
            * ID/title.
            */
           i.prototype.isSameSong = function(playingSongTitle, lastSongTitle, playingSongId, lastSongId) {
-            var bool = false;
-
             if (lastSongTitle === undefined || playingSongTitle === undefined) {
                 return false;
             }
 
             if (playingSongId !== undefined && lastSongId !== undefined){
               if (playingSongId !== lastSongId){
-                  bool = false;
+                  return false;
               }
             } else {
               // for some reason, these 2 titles might not be truncated the same way
               if (playingSongTitle.substring(0, 24) !== lastSongTitle.substring(0, 24)){
-                bool = false;
+                return false;
               }
             }
 
