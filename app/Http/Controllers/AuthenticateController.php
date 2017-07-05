@@ -130,7 +130,7 @@ class AuthenticateController extends Controller
                 $user = $users->first();
                 $user->facebook = $profile['id'];
                 $user->email = $user->email ?: $profile['email'];
-                $user->displayName = $user->displayName ?: $profile['name'];
+                $user->name = $user->name ?: $profile['name'];
                 $user->save();
                 return JWTAuth::fromUser($user);
 
