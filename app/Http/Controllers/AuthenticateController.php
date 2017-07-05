@@ -237,6 +237,7 @@ class AuthenticateController extends Controller
                         'name' => $profile['screen_name'],
                         'twitter' => $profile['id'],
                         'password' => Hash::make(str_random(8)),
+                        'email' => 'none',
                         'created_at' => $now,
                         'updated_at' => $now
                     ]
