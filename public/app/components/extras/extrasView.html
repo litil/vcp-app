@@ -88,8 +88,8 @@
 
       <!-- PROGRESS BAR -->
       <div
-        class="row progress-bar-container"
-        ng-class="{'show': song.first === false, 'hidden': song.first === true}">
+        class="row progress-bar-container hidden"
+        ng-class="{'show': false, 'hidden': true}">
         <div class="col-md-12 progress-label-container">
           <label>
             {{extrasController.getCurrentPosition() | time}} / {{song.duration | time}}

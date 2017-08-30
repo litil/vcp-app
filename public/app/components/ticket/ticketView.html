@@ -81,7 +81,7 @@
             <!-- end of PLAYISTS -->
 
             <!-- PROGRESS BAR -->
-            <div
+            <!-- <div
               class="row progress-bar-container"
               ng-class="{'show': ticketController.song.first === false, 'hidden': ticketController.song.first === true}">
               <div class="col-md-12 ticket-label-container">
@@ -94,12 +94,11 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
 
             <!-- DATE & BARCODE -->
             <div
-              class="row ticket-footer-container"
-              ng-class="{'progress-hidden': ticketController.song.first === true}">
+              class="row ticket-footer-container progress-hidden">
               <div class="col-md-8 ticket-label-container" id="clock">
                 <label>{{ticketController.clock | clockFilter}}</label>
                 <div barcode class="svg-code"></div><!-- see svgCodeDirective -->
