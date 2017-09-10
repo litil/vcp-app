@@ -427,7 +427,7 @@ body {
     top: 50%;
     height: 7rem;
     width: 1.50rem;
-    z-index: 10000;
+    z-index: 1000;
     margin-top: -2.5rem;
     background-color: @body-bg-color;
     .rounded(10px);

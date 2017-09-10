@@ -62,6 +62,7 @@
                 $rootScope.authenticated = true;
                 $rootScope.currentUser = response.data.user;
                 console.log("User " + response.data.user.email + " is authenticated!");
+                $rootScope.mustAuthenticateModalDisplayed = false;
                 $location.path('/ticket');
             });
         };
@@ -131,6 +132,7 @@
                   $rootScope.authenticated = true;
                   $rootScope.currentUser = response.data.user;
                   console.log("User " + response.data.user.email + " is authenticated!");
+                  $rootScope.mustAuthenticateModalDisplayed = false;
                   $location.path('/ticket');
               });
           };
@@ -147,6 +149,7 @@
                 $rootScope.authenticated = true;
                 $rootScope.currentUser = response.data.user;
                 console.log("User " + response.data.user.email + " is authenticated!");
+                $rootScope.mustAuthenticateModalDisplayed = false;
                 $location.path('/ticket');
             });
         };
