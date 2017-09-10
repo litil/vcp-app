@@ -32,16 +32,16 @@
     </div>
     <div class="playlist-col col-md-6 col-sm-12 col-xs-12">
         <div class="row">
-            <div id="about-playlist-container" ng-if="aboutController.playlists.playing.cls != undefined"
-                class="playlist-container text-left col-md-4 col-sm-6 col-xs-6 {{aboutController.playlists.playing.cls}}">
+            <div id="about-playlist-container" ng-if="aboutController.playlists.selected.cls != undefined"
+                class="playlist-container text-left col-md-4 col-sm-6 col-xs-6 {{aboutController.playlists.selected.cls}}">
               <div class="playlist-title text-left col-md-12">
-                {{aboutController.playlists.playing.key}}
+                {{aboutController.playlists.selected.key}}
               </div>
               <div class="playlist-sub text-left col-md-12">
-                {{aboutController.playlists.playing.label}}
+                {{aboutController.playlists.selected.label}}
               </div>
             </div>
-            <div id="about-playlist-container" ng-if="aboutController.playlists.playing.cls == undefined"
+            <div id="about-playlist-container" ng-if="aboutController.playlists.selected.cls == undefined"
                 class="playlist-container text-left col-md-4 col-sm-6 col-xs-6 {{aboutController.playlists.current.cls}}">
               <div class="playlist-title text-left col-md-12">
                 {{aboutController.playlists.current.key}}
@@ -54,13 +54,13 @@
 
         <div class="row">
             <div class="text-left col-md-12" id="playlist-desc-container"
-                ng-if="aboutController.playlists.playing.cls != undefined">
+                ng-if="aboutController.playlists.selected.cls != undefined">
                 <div class="col-md-12 text-left playlist-desc">
-                  {{aboutController.playlists.playing.description}}
+                  {{aboutController.playlists.selected.description}}
                 </div>
             </div>
             <div class="text-left col-md-12" id="playlist-desc-container"
-                ng-if="aboutController.playlists.playing.cls == undefined">
+                ng-if="aboutController.playlists.selected.cls == undefined">
                 <div class="col-md-12 text-left playlist-desc">
                   {{aboutController.playlists.current.description}}
                 </div>
