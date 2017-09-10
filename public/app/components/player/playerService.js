@@ -72,21 +72,23 @@
            * it mute it or unmute if he is playing.
            */
           i.prototype.togglePlay = function() {
-            if (this.isPlaying() === false){
-              // play the radio
-              isPlaying = true;
-              this.play();
-            }
+              if (!rootScopeParam.mustAuthenticateModalDisplayed){
+                  if (this.isPlaying() === false){
+                    // play the radio
+                    isPlaying = true;
+                    this.play();
+                  }
 
-            if (this.isPlaying() && isMuted){
-              // unmute the radio
-              isMuted = false;
-              this.mute();
-            } else if (this.isPlaying() && !isMuted){
-              // mute the radio
-              isMuted = true;
-              this.mute();
-            }
+                  if (this.isPlaying() && isMuted){
+                    // unmute the radio
+                    isMuted = false;
+                    this.mute();
+                  } else if (this.isPlaying() && !isMuted){
+                    // mute the radio
+                    isMuted = true;
+                    this.mute();
+                  }
+              }
           },
 
           /**
@@ -406,6 +408,10 @@
            */
           i.prototype.playCurrent = function() {
               var isReady = this.isReady();
+
+              if(rootScopeParam.firstPlayDate == undefined){
+                  rootScopeParam.firstPlayDate = new Date();
+              }
 
             //   return isReady
                 // .then(function() {
