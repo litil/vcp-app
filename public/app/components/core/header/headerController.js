@@ -159,13 +159,13 @@
                 var deltaInSeconds = Math.abs((dateNow.getTime() - $rootScope.firstPlayDate.getTime()) / 1000);
 
                 // if more than x minutes, stop the stream and display a popup
-                if (deltaInSeconds > 10 && !$rootScope.mustAuthenticateModalDisplayed && !$rootScope.authenticated){
+                if (deltaInSeconds > 15*60 && !$rootScope.mustAuthenticateModalDisplayed && !$rootScope.authenticated){
                     PlayerService.togglePlay();
                     $rootScope.mustAuthenticateModalDisplayed = true;
                     $scope.openMustAuthenticateModal();
                 }
             }
-        }, 5000);
+        }, 30000);
     }
 
   }
