@@ -9,6 +9,12 @@ Based on https://scotch.io/tutorials/token-based-authentication-for-angularjs-an
         <!-- Firefox, Chrome, Safari, IE 11+ and Opera. 196x196 pixels in size. -->
         <link rel="icon" href="favicon.png">
 
+        <!-- Facebook specific metadata -->
+        <meta property="og:url" content="http://radiovcp.com/" />
+        <meta property="og:title" content="VCP - Vendredi c'est permis" />
+        <meta property="og:description" content="VCP vous fournit à tout moment de la semaine et de la journée un flux musical de qualité, sans pub et régulièrement mis à jour. Consistant en un simple Play/Stop, la musique de vos brunchs, déjeuners, apéros, dîners, dates,... est améliorée. L’outil parfait quand vous êtes en panne d’inspiration musicale. Branchez vous sur VCP, la solution est toute trouvée." />
+        <meta property="og:image" content="vcp_metadata.img" />
+
         <!-- bootstrap and bootstrap-ui style -->
         <link rel="stylesheet" href="assets/node_modules/bootstrap/dist/css/bootstrap.css">
         <link rel="stylesheet" href="assets/node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css">
