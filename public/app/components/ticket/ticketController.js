@@ -99,12 +99,17 @@
       var vm = this;
 
     // set default value into vm.song
-    vm.song = {
-      'id' : 0,
-      'artist' : 'The Artist',
-      'title' : 'The Title',
-      'duration' : 3*60*1000
+    if (PlayerService.getCurrentSong().artist == undefined){
+        vm.song = {
+          'id' : 0,
+          'artist' : 'The Artist',
+          'title' : 'The Title',
+          'duration' : 3*60*1000
+        }
+    } else {
+        vm.song = PlayerService.getCurrentSong();
     }
+
 
     // initialise the time variable
     vm.clock = "loading clock...";
@@ -221,5 +226,6 @@
             }
         });
     };
+    
   }
 })();

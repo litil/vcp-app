@@ -18,7 +18,7 @@
   /**
    * Constructor
    */
-  function HeaderController($auth, $state, $http, $rootScope, $scope, $location, $window, $uibModal, Notification, PlayerService, PlaylistService) {
+  function HeaderController($auth, $state, $http, $rootScope, $interval, $scope, $location, $window, $uibModal, Notification, PlayerService, PlaylistService) {
     var vm = this;
     $rootScope.location = $location;
 
@@ -116,6 +116,13 @@
         // set $rootScope.currentUser to null
         $rootScope.currentUser = null;
 
+        // set the first play date to undefined
+        if (PlayerService.isPlaying()){
+            $rootScope.firstPlayDate = new Date();
+        } else {
+            $rootScope.firstPlayDate = undefined;
+        }
+
         // redirect to ticket view if we're not already there
         $location.path('/ticket');
 
@@ -123,6 +130,43 @@
         Notification.success({message: 'Vous avez bien été déconnecté.', delay: 2000});
       });
     };
+
+    $scope.openMustAuthenticateModal = function() {
+        var mustAuthenticateModal = $uibModal.open({
+          animation: false,
+          templateUrl: 'mustAuthenticateModal.html',
+          controller: 'BackToLiveModalController',
+          size: 'lg',
+          resolve: {
+            items: function () {
+              return [];
+            }
+          }
+        });
+
+        // handle yes/no answer
+        mustAuthenticateModal.result.then(function (selectedItem) {
+          // the user will be redirected to the login page
+          $window.location.href = '/#/signin';
+        }, function () { });
+    }
+
+
+    if ($rootScope.authenticated == undefined){
+        $interval(function(mustAuthenticateModal) {
+            if ($rootScope.firstPlayDate != undefined){
+                var dateNow = new Date();
+                var deltaInSeconds = Math.abs((dateNow.getTime() - $rootScope.firstPlayDate.getTime()) / 1000);
+
+                // if more than x minutes, stop the stream and display a popup
+                if (deltaInSeconds > 10 && !$rootScope.mustAuthenticateModalDisplayed && !$rootScope.authenticated){
+                    PlayerService.togglePlay();
+                    $rootScope.mustAuthenticateModalDisplayed = true;
+                    $scope.openMustAuthenticateModal();
+                }
+            }
+        }, 5000);
+    }
 
   }
 
