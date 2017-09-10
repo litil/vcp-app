@@ -20,9 +20,10 @@
   function AboutController($state, $http, $rootScope, PlayerService, PlaylistService) {
       var vm = this;
 
-      // first we get the current playlist
+      // first we get the current playlist and set it as the selected one
       vm.playlists = {};
       vm.playlists.current = PlaylistService.getCurrentPlaylist();
+      vm.playlists.selected = PlaylistService.getCurrentPlaylist();
 
       // initializing the Player
       // meaning it gets the current song data
@@ -112,24 +113,10 @@
        * @param playlistKey
        */
       this.switchPlaylist = function(playlistKey) {
-        PlayerService.switchPlaylist(playlistKey, PlaylistService.getPlaylist(playlistKey).infoKey);
-        vm.playlists.playing = this.getPlayingPlaylist();
-      };
-
-      /**
-       * This method gets the playlist that is actually playing. It could be
-       * the same as the current (live) playlist if the user follows the live
-       * flux but it could be different he has chosen to listen to another one.
-       *
-       * @return the playing playlist
-       */
-      this.getPlayingPlaylist = function() {
-        var playingPlaylist = PlaylistService.getPlaylist(PlayerService.getPlayingPlaylistKey());
-        if (playingPlaylist == null) {
-          playingPlaylist = PlaylistService.getCurrentPlaylist();
-        }
-
-        return playingPlaylist;
+        // @see VCP-54 if we decide to really swtich playlist,
+        // we just have to replace selected with playing in the template
+        // PlayerService.switchPlaylist(playlistKey, PlaylistService.getPlaylist(playlistKey).infoKey);
+        vm.playlists.selected = PlaylistService.getPlaylist(playlistKey);
       };
 
   }
