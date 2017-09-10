@@ -1819,8 +1819,12 @@ footer {
 
           .ticket-info-wrapper {
               .fake-input-big {
-                  font-size: 106px;
+                  font-size: 86px;
+                  line-height: 17.75rem;
               }
+          }
+
+          .ticket-info-wrapper {
               label {
                   font-size: 14px;
               }
@@ -1896,6 +1900,13 @@ footer {
 
                 &.progress-hidden {
                     margin-top: 198px;
+                }
+            }
+
+            .ticket-info-wrapper {
+                .fake-input-big {
+                    font-size: 116px;
+                    line-height: 16.75rem;
                 }
             }
         }
