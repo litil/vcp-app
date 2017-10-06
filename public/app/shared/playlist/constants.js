@@ -17,31 +17,31 @@
           label : 'Morning W-E',
           cls : 'morning-weekend',
           infoKey: '/radio_VCP_MorningWeekEnd',
-          description: 'On l’écoute en s’étirant, en chuchotant, en s’embrassant, en brunchant. Pour se réveiller détendu (e) au coté de celui ou celle que l’on aime ou que l’on va aimer.'
+          description: 'Stretching, whispering, kissing, eating, you listen to MRN to kindly wake up beside your lover and even your one night stand.'
         },
         MRN : {
           label : 'Morning',
           cls : 'morning',
           infoKey: '/radio_VCP_Morning',
-          description: 'Pour un réveil dynamique tout au long de la semaine.'
+          description: 'This playlist stands for a dynamic wake up in order to face the though working world.'
         },
         CRG : {
           label : 'Cruising',
           cls : 'cruising',
           infoKey: '/radio_VCP',
-          description: 'C’est LA selection VCP en vitesse de croisière. Diffusée la majeure partie du temps, elle s’adapte à tout moment de la journée. Confortable, agréable, on y travaille, on s’y avachi dans un canapé, on y accueille ses invités à dîner, on partage, etc...'
+          description: 'This is the main cruising playlist. Seatbelt sign is off, you can enjoy different type of music that will (hopefully) all work with your mood. Confortable, kind, you can work, you can park in your favourite sofa, welcome friends, chat, etc...'
         },
         BFR : {
           label : 'Before',
           cls : 'before',
           infoKey: '/radio_VCP_Before',
-          description: 'Sortie de dîner, envie d’une selection un peu plus dynamique afin de se préparer à sortir et festoyer.'
+          description: 'Out of a diner, you feel like something is happening and wish to turn the volume up in order to be warm enough for your night.'
         },
         AFR : {
           label : 'After',
           cls : 'after',
           infoKey: '/radio_VCP_After',
-          description: 'Diverse, surprenante, heteroclyte, la selection After s’écoute au retour de boite, en insomnie, seul ou accompagné(e). Du classique à l’electro, le spectre est vaste.'
+          description: 'Eclectic, surprising, the After selection is meant to be listened coming back of your favourite night club, on your own or not... From classical music to electro, there is a lot!'
         }
       },
       special : {

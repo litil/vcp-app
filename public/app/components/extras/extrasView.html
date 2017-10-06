@@ -9,16 +9,16 @@
 <script type="text/ng-template" id="myModalContent.html">
     <div class="retour-au-live-modal">
       <div class="modal-body">
-        <h1>Avertissement</h1>
+        <h1>Warning</h1>
         <p>
-          Vous etes sur le point de quitter le mode manuel pour revenir a la diffusion live.
+            You are about to quit manual mode to go back to regular flight.
           <br />
-            Est-ce bien votre intention ?
+            Is it your intention?
         </p>
       </div>
       <div class="modal-footer">
-          <button class="btn" type="button" ng-click="ok()">Oui</button>
-          <button class="btn" type="button" ng-click="cancel()">Non</button>
+          <button class="btn" type="button" ng-click="ok()">Yes</button>
+          <button class="btn" type="button" ng-click="cancel()">No</button>
       </div>
     </div>
 </script>
@@ -33,7 +33,7 @@
       <div class="col-sm-12 about-header-connexion" id="about-header-connexion-small">
         <div class="col-sm-4 back-to-live-button text-left {{extrasController.playlists.playing.cls}}"
           ng-click="open('lg')">
-          <a>Retour au live</a>
+          <a>Back to live</a>
         </div>
         <div
           class="col-md-12 text-left fa-container no-gutter-left"
@@ -108,7 +108,7 @@
     <div class="col-md-2 about-header-connexion" id="about-header-connexion">
       <div class="col-md-12 back-to-live-button text-left {{extrasController.playlists.playing.cls}}"
         ng-click="open('lg')">
-        <a>Retour au live</a>
+        <a>Back to live</a>
       </div>
       <div
         class="col-md-12 text-left fa-container no-gutter-left"
