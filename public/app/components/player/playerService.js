@@ -207,7 +207,7 @@
 
             // get the song image
             //id = '80f0177f4de5003b82100505a70929e1';
-            if(id !== undefined && id !== '00000000000000000000000000000000'){
+            if(id !== undefined && id !== '00000000000000000000000000000000' && id != ""){
               img = 'http://player.vendredicestpermis.com/img/covers/' + id;
             }
 
