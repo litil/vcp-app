@@ -13,6 +13,8 @@ Based on https://scotch.io/tutorials/token-based-authentication-for-angularjs-an
         <meta property="og:url" content="http://radiovcp.com/" />
         <meta property="og:title" content="VCP - Vendredi c'est permis" />
         <meta property="og:description" content="Please proceed to boarding to RadioVCP and enjoy good music as simple as a play." />
+        <meta property="og:type"   content="website" />
+        <meta property="fb:app_id" content="1531824530180454" />
         <meta property="og:image" content="vcp-fb-metadata.jpg" />
 
         <!-- bootstrap and bootstrap-ui style -->
