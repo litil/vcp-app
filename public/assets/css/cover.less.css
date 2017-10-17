@@ -424,7 +424,7 @@ body {
     position: absolute;
     /* TODO : see how to better handle nick positionning */
     ;
-    top: 50%;
+    top: 47%;
     height: 7rem;
     width: 1.50rem;
     z-index: 1000;
@@ -1810,6 +1810,9 @@ footer {
   }
 
   .ticket {
+      .ticket-nick {
+          top: 47%;
+      }
       .ticket-left {
           min-height: @ticket-height-max-1200;
           width: @ticket-width-max-1200;
@@ -1892,6 +1895,9 @@ footer {
 
 @media (max-width: 1320px) and (min-width: 1200px) {
     .ticket {
+        .ticket-nick {
+            top: 47%;
+        }
         .ticket-left {
             min-height: @ticket-height-max-1320;
             width: @ticket-width-max-1320;
