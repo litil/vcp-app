@@ -70,6 +70,7 @@ Based on https://scotch.io/tutorials/token-based-authentication-for-angularjs-an
     <script src="app/components/user/userController.js"></script>
     <script src="app/components/core/header/headerController.js"></script>
     <script src="app/shared/modal/BackToLiveModalController.js"></script>
+    <script src="app/shared/modal/ConfirmLogoutController.js"></script>
 
         <!-- Application Scripts - Directives -->
     <script src="app/shared/routeCssClassnames.js"></script>

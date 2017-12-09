@@ -100,36 +100,24 @@
       });
     };
 
+    $scope.confirmLogoutModal = function() {
+        var confirmLogoutModal = $uibModal.open({
+          animation: false,
+          templateUrl: 'confirmLogout.html',
+          controller: 'ConfirmLogoutController',
+          size: 'lg',
+          resolve: {
+            items: function () {
+              return [];
+            }
+          }
+        });
 
-    /**
-     * This method logs out the user and redirects him to the ticket view
-     * if he's not already on this view.
-     */
-    $scope.logout = function() {
-      $auth.logout().then(function() {
-        // remove user in local storage
-        localStorage.removeItem('user');
-
-        // set authenticated flag to false
-        $rootScope.authenticated = false;
-
-        // set $rootScope.currentUser to null
-        $rootScope.currentUser = null;
-
-        // set the first play date to undefined
-        if (PlayerService.isPlaying()){
-            $rootScope.firstPlayDate = new Date();
-        } else {
-            $rootScope.firstPlayDate = undefined;
-        }
-
-        // redirect to ticket view if we're not already there
-        $location.path('/ticket');
-
-        // the user has been successfully sign out
-        Notification.success({message: 'Vous avez bien été déconnecté.', delay: 2000});
-      });
-    };
+        // handle yes/no answer
+        confirmLogoutModal.result.then(function (selectedItem) {
+            // do nothing ?
+        }, function () { });
+    }
 
     $scope.openMustAuthenticateModal = function() {
         var mustAuthenticateModal = $uibModal.open({
