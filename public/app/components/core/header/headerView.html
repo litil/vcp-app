@@ -22,13 +22,13 @@
               <a ng-if="!$root.currentUser.id" href="#/signin" id="header-signin">
                 Boarding
               </a>
-              <a ng-if="$root.currentUser.twitter || $root.currentUser.facebook" ng-click="logout()" id="header-logout">
+              <a ng-if="$root.currentUser.twitter || $root.currentUser.facebook" id="header-logout">
                 {{$root.currentUser.name | limitTo: 3}}
-                <i class="fa fa-sign-out" aria-hidden="true"></i>
+                <i class="fa fa-sign-out" aria-hidden="true" ng-click="logout()"></i>
               </a>
-              <a ng-if="$root.currentUser.email && !($root.currentUser.twitter || $root.currentUser.facebook)" ng-click="logout()" id="header-logout">
+              <a ng-if="$root.currentUser.email && !($root.currentUser.twitter || $root.currentUser.facebook)" id="header-logout">
                 {{$root.currentUser.email | limitTo: 3}}
-                <i class="fa fa-sign-out" aria-hidden="true"></i>
+                <i class="fa fa-sign-out" aria-hidden="true" ng-click="logout()"></i>
               </a>
             </li>
           </ul>

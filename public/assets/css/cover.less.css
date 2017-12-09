@@ -338,6 +338,14 @@ body {
     }
 
     &#header-logout {
+        cursor: default !important;
+
+        i.fa-sign-out {
+            cursor: pointer !important;
+        }
+    }
+
+    &#header-logout {
       cursor: pointer;
       text-transform: uppercase;
       i {
