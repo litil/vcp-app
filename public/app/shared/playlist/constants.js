@@ -65,20 +65,15 @@
           cls : 'kids',
           infoKey: '/radio_VCP_Kids'
         },
-        SPR : {
-          label : 'Sports',
+        HPH : {
+          label : 'Hip-Hop',
           cls : 'sports',
           infoKey: '/radio_VCP'
         },
-        EGS : {
-          label : 'Eighties',
+        NTS : {
+          label : '90\'s',
           cls : 'eighties',
           infoKey: '/radio_VCP_Eighties'
-        },
-        HPH : {
-          label : 'Hip-Hop',
-          cls : 'hip-hop',
-          infoKey: '/radio_VCP'
         }
       }
   });
