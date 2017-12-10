@@ -1256,6 +1256,15 @@ body {
         padding: 0px 10px 10px 0px;
         cursor: pointer;
 
+        .about-logo {
+            background-color: transparent;
+            margin-right: 5px;
+            padding-top: 5px;
+            path {
+                fill: @body-bg-color;
+            }
+        }
+
         .morning-weekend-current {
           background-color: @morning-weekend-current !important;
         }
