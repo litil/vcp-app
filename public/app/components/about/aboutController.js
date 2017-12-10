@@ -13,7 +13,6 @@
     .module('vcpProject')
     .controller('AboutController', AboutController);
 
-
   /**
    * Constructor
    */
@@ -117,6 +116,36 @@
         // we just have to replace selected with playing in the template
         // PlayerService.switchPlaylist(playlistKey, PlaylistService.getPlaylist(playlistKey).infoKey);
         vm.playlists.selected = PlaylistService.getPlaylist(playlistKey);
+      };
+
+      /**
+       * This method returns true if the given playlist key corresponds to the
+       * playlist being played.
+       *
+       * @param playlistKey
+       */
+      this.isPlayingPlayilist = function(days, start, end, slotKey) {
+          var playingPlaylistKey = PlayerService.getPlayingPlaylistKey()
+          var isPlaying = PlayerService.isPlaying()
+          var currentPlaylistKey = PlaylistService.getCurrentPlaylist().key
+
+          var playingPlaylistKey = playingPlaylistKey ?
+            playingPlaylistKey :
+            isPlaying ? currentPlaylistKey : null
+
+         if (playingPlaylistKey == null) return false
+
+
+         if (playingPlaylistKey == slotKey) {
+             if (playingPlaylistKey == currentPlaylistKey) {
+                 var slotCls = this.getSlotCls(days, start, end, slotKey)
+                 if (slotCls !== '-current') return true
+             } else {
+                 return true
+             }
+         }
+
+         return false
       };
 
   }

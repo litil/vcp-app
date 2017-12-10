@@ -120,6 +120,10 @@
             <div class="col-md-12 slot slot-5h">
               <div class="{{aboutController.getSlotCls([1, 2, 3, 4, 5], 6, 11, 'MRN')}}"
                     ng-click="aboutController.switchPlaylist('MRN')">
+                <div logo
+                      ng-if="aboutController.isPlayingPlayilist([1, 2, 3, 4, 5], 6, 11, 'MRN') == true"
+                    class="about-logo">
+                </div>
                 <span>morning</span>
               </div>
             </div>
@@ -129,6 +133,10 @@
             <div class="col-md-3 slot slot-15h">
               <div class="{{aboutController.getSlotCls([1, 2, 3], 11, 2, 'CRG')}}"
                     ng-click="aboutController.switchPlaylist('CRG')">
+                <div logo
+                      ng-if="aboutController.isPlayingPlayilist([1, 2, 3], 11, 2, 'CRG') == true"
+                    class="about-logo">
+                </div>
                 <span>cruising</span>
               </div>
             </div>
@@ -137,6 +145,10 @@
                 <div class="col-md-7 slot slot-12h">
                   <div class="{{aboutController.getSlotCls([4, 5], 11, 23, 'CRG')}}"
                         ng-click="aboutController.switchPlaylist('CRG')">
+                    <div logo
+                          ng-if="aboutController.isPlayingPlayilist([4, 5], 11, 23, 'CRG') == true"
+                        class="about-logo">
+                    </div>
                     <span>cruising</span>
                   </div>
                 </div>
@@ -144,6 +156,10 @@
                   <div class="{{aboutController.getSlotCls([4, 5, 6], 23, 2, 'BFR')}}"
                         ng-class="{'before': aboutController.playlists.playing.key === 'BFR'}"
                         ng-click="aboutController.switchPlaylist('BFR')">
+                    <div logo
+                          ng-if="aboutController.isPlayingPlayilist([4, 5, 6], 23, 2, 'BFR') == true"
+                        class="about-logo">
+                    </div>
                     <span>before</span>
                   </div>
                 </div>
@@ -157,6 +173,10 @@
             <div class="col-md-12 slot slot-7h no-padding-right">
                 <div class="{{aboutController.getSlotCls([0, 6], 6, 13, 'MWE')}}"
                       ng-click="aboutController.switchPlaylist('MWE')">
+                  <div logo
+                        ng-if="aboutController.isPlayingPlayilist([0, 6], 6, 13, 'MWE') == true"
+                      class="about-logo">
+                  </div>
                   <span>morning week-end</span>
                 </div>
             </div>
@@ -165,6 +185,10 @@
             <div class="col-md-12 slot slot-13h no-padding-right">
                 <div class="{{aboutController.getSlotCls([0, 1, 6], 13, 2, 'CRG')}}"
                       ng-click="aboutController.switchPlaylist('CRG')">
+                  <div logo
+                        ng-if="aboutController.isPlayingPlayilist([0, 1, 6], 13, 2, 'CRG') == true"
+                        class="about-logo" >
+                  </div>
                   <span>cruising</span>
                 </div>
             </div>
@@ -175,6 +199,10 @@
         <div class="col-md-7 slot slot-4h no-padding-right">
             <div class="{{aboutController.getSlotCls([0, 1, 2, 3, 4, 5, 6], 2, 6, 'AFR')}}"
                   ng-click="aboutController.switchPlaylist('AFR')">
+              <div logo
+                    ng-if="aboutController.isPlayingPlayilist([0, 1, 2, 3, 4, 5, 6], 2, 6, 'AFR') == true"
+                  class="about-logo">
+              </div>
               <span>after</span>
             </div>
         </div>
