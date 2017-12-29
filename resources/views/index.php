@@ -9,6 +9,9 @@ Based on https://scotch.io/tutorials/token-based-authentication-for-angularjs-an
         <!-- Firefox, Chrome, Safari, IE 11+ and Opera. 196x196 pixels in size. -->
         <link rel="icon" href="favicon.png">
 
+        <!-- Viewport @see https://developer.mozilla.org/en-US/docs/Mozilla/Mobile/Viewport_meta_tag -->
+        <meta name="viewport" content="width=600">
+
         <!-- Facebook specific metadata -->
         <meta property="og:url" content="http://radiovcp.com/" />
         <meta property="og:title" content="VCP - Vendredi c'est permis" />
