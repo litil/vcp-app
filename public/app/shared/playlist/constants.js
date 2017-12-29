@@ -68,7 +68,7 @@
         HPH : {
           label : 'Hip-Hop',
           cls : 'sports',
-          infoKey: '/radio_VCP'
+          infoKey: '/radio_VCP_Sport'
         },
         NTS : {
           label : '90\'s',
