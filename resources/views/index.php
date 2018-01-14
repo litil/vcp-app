@@ -4,14 +4,14 @@ Based on https://scotch.io/tutorials/token-based-authentication-for-angularjs-an
 <html>
     <head>
         <meta charset="utf-8">
-        <title>VCP - Vendredi c'est permis</title>
+        <title>Radio VCP</title>
 
         <!-- Firefox, Chrome, Safari, IE 11+ and Opera. 196x196 pixels in size. -->
         <link rel="icon" href="favicon.png">
 
         <!-- Facebook specific metadata -->
         <meta property="og:url" content="http://radiovcp.com/" />
-        <meta property="og:title" content="VCP - Vendredi c'est permis" />
+        <meta property="og:title" content="Radio VCP" />
         <meta property="og:description" content="Please proceed to boarding to RadioVCP and enjoy good music as simple as a play." />
         <meta property="og:type"   content="website" />
         <meta property="fb:app_id" content="1531824530180454" />
@@ -20,6 +20,9 @@ Based on https://scotch.io/tutorials/token-based-authentication-for-angularjs-an
         <!-- bootstrap and bootstrap-ui style -->
         <link rel="stylesheet" href="assets/node_modules/bootstrap/dist/css/bootstrap.css">
         <link rel="stylesheet" href="assets/node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css">
+
+        <!-- Viewport @see https://developer.mozilla.org/en-US/docs/Mozilla/Mobile/Viewport_meta_tag -->
+        <meta name="viewport" content="width=600">
 
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
         <link rel="stylesheet" href="assets/css/ie10-viewport-bug-workaround.css">
