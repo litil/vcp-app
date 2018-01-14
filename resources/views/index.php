@@ -22,7 +22,7 @@ Based on https://scotch.io/tutorials/token-based-authentication-for-angularjs-an
         <link rel="stylesheet" href="assets/node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css">
 
         <!-- Viewport @see https://developer.mozilla.org/en-US/docs/Mozilla/Mobile/Viewport_meta_tag -->
-        <meta name="viewport" content="width=600">
+        <meta name="viewport" content="width=600, initial-scale=0.5">
 
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
         <link rel="stylesheet" href="assets/css/ie10-viewport-bug-workaround.css">
